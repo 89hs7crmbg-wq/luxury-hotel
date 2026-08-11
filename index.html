@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
 
@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="A cinematic luxury hotel experience."
+        content="A cinematic journey through a luxury hotel."
     >
 
     <title>The Hotel</title>
@@ -20,58 +20,53 @@
 
 <body>
 
-    <!-- =========================================
-         PRELOADER
-    ========================================== -->
-
+    <!-- PRELOADER -->
     <div class="preloader" id="preloader">
         <div class="preloader__line"></div>
         <span class="preloader__text">THE HOTEL</span>
     </div>
 
 
-    <!-- =========================================
-         HEADER
-    ========================================== -->
-
-    <header class="header" id="header">
+    <!-- HEADER -->
+    <header class="header">
 
         <a href="#hero" class="logo">
             THE HOTEL
         </a>
 
-        <button
-            class="menu-button"
-            id="menuButton"
-            type="button"
-            aria-label="Open menu"
-        >
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header__right">
+            <span class="header__location">PARIS · FRANCE</span>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Open menu"
+            >
+                <span></span>
+                <span></span>
+            </button>
+        </div>
 
     </header>
 
 
-    <!-- =========================================
-         MAIN EXPERIENCE
-    ========================================== -->
-
     <main>
 
-        <!--
-            HERO
-            Frame 00 — THE HOTEL
-        -->
+        <!-- =====================================
+             HERO / FRAME 00
+        ====================================== -->
 
         <section class="hero" id="hero">
 
             <div class="hero__image">
                 <img
-                    src="assets/images/00-the-hotel.webp"
+                    src="00-the-hotel.jpg"
                     alt="The Hotel"
                 >
             </div>
+
+            <div class="hero__overlay"></div>
 
             <div class="hero__content">
 
@@ -85,8 +80,8 @@
                 </h1>
 
                 <p class="hero__intro">
-                    An immersive journey through space,
-                    architecture and atmosphere.
+                    An immersive journey through
+                    architecture, space and atmosphere.
                 </p>
 
             </div>
@@ -105,117 +100,221 @@
 
         <section class="journey" id="journey">
 
-            <!--
-                The 14 following frames will be
-                controlled by JavaScript.
-            -->
+            <div class="journey__stage" id="journeyStage">
 
-            <div class="journey__stage">
-
-                <div class="journey__frame is-active">
+                <!-- 01 -->
+                <div
+                    class="journey__frame is-active"
+                    data-index="1"
+                    data-name="ARRIVAL"
+                    data-title="ARRIVAL"
+                    data-description="The beginning of the journey."
+                >
                     <img
-                        src="assets/images/01-arrival.webp"
+                        src="01-arrival.jpg"
                         alt="Arrival"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 02 -->
+                <div
+                    class="journey__frame"
+                    data-index="2"
+                    data-name="THRESHOLD"
+                    data-title="THRESHOLD"
+                    data-description="The moment the outside world disappears."
+                >
                     <img
-                        src="assets/images/02-threshold.webp"
+                        src="02-threshold.jpg"
                         alt="Threshold"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 03 -->
+                <div
+                    class="journey__frame"
+                    data-index="3"
+                    data-name="LOBBY"
+                    data-title="LOBBY"
+                    data-description="The first space of the hotel."
+                >
                     <img
-                        src="assets/images/03-lobby.webp"
+                        src="03-lobby.jpg"
                         alt="Lobby"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 04 -->
+                <div
+                    class="journey__frame"
+                    data-index="4"
+                    data-name="DEEPER IN"
+                    data-title="DEEPER IN"
+                    data-description="The journey continues inward."
+                >
                     <img
-                        src="assets/images/04-deeper-in.webp"
+                        src="04-deeper-in.jpg"
                         alt="Deeper inside"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 05 -->
+                <div
+                    class="journey__frame"
+                    data-index="5"
+                    data-name="ELEVATOR"
+                    data-title="ELEVATOR"
+                    data-description="Leaving the public spaces behind."
+                >
                     <img
-                        src="assets/images/05-elevator.webp"
+                        src="05-elevator.jpg"
                         alt="Elevator"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 06 -->
+                <div
+                    class="journey__frame"
+                    data-index="6"
+                    data-name="OPEN"
+                    data-title="OPEN"
+                    data-description="A new level reveals itself."
+                >
                     <img
-                        src="assets/images/06-open.webp"
-                        alt="Open"
+                        src="06-open.jpg"
+                        alt="Open elevator"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 07 -->
+                <div
+                    class="journey__frame"
+                    data-index="7"
+                    data-name="INSIDE"
+                    data-title="INSIDE"
+                    data-description="The private part of the hotel begins."
+                >
                     <img
-                        src="assets/images/07-inside.webp"
+                        src="07-inside.jpg"
                         alt="Inside"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 08 -->
+                <div
+                    class="journey__frame"
+                    data-index="8"
+                    data-name="THE CORRIDOR"
+                    data-title="THE CORRIDOR"
+                    data-description="A quiet passage toward your room."
+                >
                     <img
-                        src="assets/images/08-the-corridor.webp"
-                        alt="The corridor"
+                        src="08-the-corridor.jpg"
+                        alt="Hotel corridor"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 09 -->
+                <div
+                    class="journey__frame"
+                    data-index="9"
+                    data-name="THE DOOR"
+                    data-title="THE DOOR"
+                    data-description="The final step before entering."
+                >
                     <img
-                        src="assets/images/09-the-door.webp"
-                        alt="The door"
+                        src="09-the-door.jpg"
+                        alt="Hotel room door"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 10 -->
+                <div
+                    class="journey__frame"
+                    data-index="10"
+                    data-name="THE SUITE"
+                    data-title="THE SUITE"
+                    data-description="Your private space."
+                >
                     <img
-                        src="assets/images/10-the-suite.webp"
-                        alt="The suite"
+                        src="10-the-suite.jpg"
+                        alt="Luxury hotel suite"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 11 -->
+                <div
+                    class="journey__frame"
+                    data-index="11"
+                    data-name="THE BED"
+                    data-title="THE BED"
+                    data-description="A quieter side of the experience."
+                >
                     <img
-                        src="assets/images/11-the-bed.webp"
-                        alt="The bed"
+                        src="11-the-bed.jpg"
+                        alt="Luxury hotel bed"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 12 -->
+                <div
+                    class="journey__frame"
+                    data-index="12"
+                    data-name="THE LOUNGE"
+                    data-title="THE LOUNGE"
+                    data-description="A place to slow down."
+                >
                     <img
-                        src="assets/images/12-the-lounge.webp"
-                        alt="The lounge"
+                        src="12-the-lounge.jpg"
+                        alt="Hotel lounge"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 13 -->
+                <div
+                    class="journey__frame"
+                    data-index="13"
+                    data-name="THE VIEW"
+                    data-title="THE VIEW"
+                    data-description="The city becomes part of the room."
+                >
                     <img
-                        src="assets/images/13-the-view.webp"
-                        alt="The view"
+                        src="13-the-view.jpg"
+                        alt="Hotel room view"
                     >
                 </div>
 
-                <div class="journey__frame">
+
+                <!-- 14 -->
+                <div
+                    class="journey__frame"
+                    data-index="14"
+                    data-name="THE BATH"
+                    data-title="THE BATH"
+                    data-description="A final private retreat."
+                >
                     <img
-                        src="assets/images/14-the-bath.webp"
-                        alt="The bath"
+                        src="14-the-bath.jpg"
+                        alt="Luxury hotel bathroom"
                     >
                 </div>
 
             </div>
 
 
-            <!-- =================================
-                 SCENE INFORMATION
-            ================================== -->
+            <!-- SCENE COUNTER -->
 
             <div class="scene-info">
 
@@ -224,16 +323,17 @@
                     <span>/ 14</span>
                 </div>
 
-                <div class="scene-info__name" id="sceneName">
+                <div
+                    class="scene-info__name"
+                    id="sceneName"
+                >
                     ARRIVAL
                 </div>
 
             </div>
 
 
-            <!-- =================================
-                 SCENE TEXT
-            ================================== -->
+            <!-- SCENE TEXT -->
 
             <div class="scene-copy">
 
@@ -251,14 +351,24 @@
 
             </div>
 
+
+            <!-- SCROLL PROGRESS -->
+
+            <div class="journey-progress">
+                <div
+                    class="journey-progress__bar"
+                    id="progressBar"
+                ></div>
+            </div>
+
         </section>
 
 
         <!-- =====================================
-             FINAL SECTION
+             FINAL
         ====================================== -->
 
-        <section class="final" id="final">
+        <section class="final">
 
             <div class="final__content">
 
@@ -276,7 +386,10 @@
                     Others are experienced.
                 </p>
 
-                <a href="#" class="final__button">
+                <a
+                    href="#"
+                    class="final__button"
+                >
                     RESERVE YOUR STAY
                 </a>
 
@@ -286,10 +399,6 @@
 
     </main>
 
-
-    <!-- =========================================
-         SCRIPTS
-    ========================================== -->
 
     <script src="script.js"></script>
 
