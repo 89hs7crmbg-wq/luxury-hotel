@@ -1,0 +1,622 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    background: #080807;
+    color: #f2eee7;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* =========================================
+   PRELOADER
+========================================= */
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: #080807;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+.preloader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader__text {
+    margin-top: 18px;
+
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+
+    opacity: 0.65;
+}
+
+.preloader__line {
+    width: 90px;
+    height: 1px;
+
+    background: #f2eee7;
+
+    transform-origin: left;
+    animation: loadingLine 1.8s ease-in-out infinite;
+}
+
+@keyframes loadingLine {
+
+    0% {
+        transform: scaleX(0);
+    }
+
+    50% {
+        transform: scaleX(1);
+    }
+
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 90px;
+
+    padding: 0 5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    mix-blend-mode: difference;
+}
+
+.logo {
+    pointer-events: auto;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.menu-button {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+}
+
+.menu-button span {
+    display: block;
+
+    width: 24px;
+    height: 1px;
+
+    margin-left: auto;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.4s ease,
+        width 0.4s ease;
+}
+
+.menu-button span:last-child {
+    width: 16px;
+}
+
+.menu-button:hover span:last-child {
+    width: 24px;
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+main {
+    position: relative;
+}
+
+.eyebrow {
+    font-size: 9px;
+    line-height: 1;
+
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    min-height: 680px;
+
+    overflow: hidden;
+
+    background: #080807;
+}
+
+.hero__image {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+}
+
+.hero__image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.05) 45%,
+            rgba(0, 0, 0, 0.6)
+        );
+}
+
+.hero__image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+.hero__content {
+    position: absolute;
+
+    left: 5vw;
+    bottom: 13vh;
+
+    z-index: 2;
+
+    max-width: 700px;
+}
+
+.hero h1 {
+    margin-top: 20px;
+
+    font-size: clamp(70px, 13vw, 190px);
+    line-height: 0.78;
+
+    font-weight: 300;
+    letter-spacing: -0.065em;
+}
+
+.hero__intro {
+    max-width: 280px;
+
+    margin-top: 36px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: rgba(242, 238, 231, 0.7);
+}
+
+.scroll-indicator {
+    position: absolute;
+
+    right: 5vw;
+    bottom: 7vh;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+.scroll-indicator__line {
+    width: 55px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+/* =========================================
+   JOURNEY
+========================================= */
+
+.journey {
+    position: relative;
+
+    width: 100%;
+    height: 1400vh;
+
+    background: #080807;
+}
+
+.journey__stage {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    min-height: 680px;
+
+    overflow: hidden;
+
+    background: #080807;
+}
+
+.journey__frame {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+
+    transform: scale(1.08);
+
+    transition:
+        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    will-change: opacity, transform;
+}
+
+.journey__frame.is-active {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+.journey__frame::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.08),
+            transparent 50%,
+            rgba(0, 0, 0, 0.42)
+        );
+
+    pointer-events: none;
+}
+
+.journey__frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================================
+   SCENE INFO
+========================================= */
+
+.scene-info {
+    position: fixed;
+
+    left: 5vw;
+    bottom: 5vh;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    pointer-events: none;
+
+    mix-blend-mode: difference;
+}
+
+.scene-info__number {
+    display: flex;
+    gap: 7px;
+
+    font-size: 9px;
+    letter-spacing: 0.2em;
+}
+
+.scene-info__number span:last-child {
+    opacity: 0.4;
+}
+
+.scene-info__name {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   SCENE COPY
+========================================= */
+
+.scene-copy {
+    position: fixed;
+
+    right: 5vw;
+    bottom: 5vh;
+
+    z-index: 20;
+
+    width: min(280px, 30vw);
+
+    pointer-events: none;
+
+    text-align: right;
+
+    mix-blend-mode: difference;
+}
+
+.scene-copy h2 {
+    margin-top: 10px;
+
+    font-size: clamp(28px, 4vw, 60px);
+    line-height: 0.9;
+
+    font-weight: 300;
+    letter-spacing: -0.04em;
+}
+
+.scene-copy p:last-child {
+    margin-top: 14px;
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final {
+    position: relative;
+
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 12vh 5vw;
+
+    background: #080807;
+}
+
+.final__content {
+    max-width: 900px;
+}
+
+.final h2 {
+    margin-top: 25px;
+
+    font-size: clamp(70px, 13vw, 180px);
+    line-height: 0.78;
+
+    font-weight: 300;
+    letter-spacing: -0.065em;
+}
+
+.final p:not(.eyebrow) {
+    max-width: 300px;
+
+    margin-top: 40px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: rgba(242, 238, 231, 0.65);
+}
+
+.final__button {
+    display: inline-flex;
+
+    margin-top: 45px;
+    padding: 16px 24px;
+
+    border: 1px solid rgba(242, 238, 231, 0.35);
+
+    font-size: 9px;
+    letter-spacing: 0.2em;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
+}
+
+.final__button:hover {
+    background: #f2eee7;
+    color: #080807;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .hero__content {
+        left: 7vw;
+        bottom: 15vh;
+    }
+
+    .scene-copy {
+        width: 220px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 72px;
+        padding: 0 6vw;
+    }
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero__content {
+        left: 6vw;
+        right: 6vw;
+        bottom: 15vh;
+    }
+
+    .hero h1 {
+        font-size: clamp(64px, 21vw, 120px);
+    }
+
+    .hero__intro {
+        margin-top: 28px;
+    }
+
+    .scroll-indicator {
+        left: 6vw;
+        right: auto;
+        bottom: 6vh;
+    }
+
+    .journey {
+        height: 1400vh;
+    }
+
+    .journey__stage {
+        min-height: 600px;
+    }
+
+    .scene-info {
+        left: 6vw;
+        bottom: 4vh;
+    }
+
+    .scene-copy {
+        display: none;
+    }
+
+    .scene-info__name {
+        display: none;
+    }
+
+    .final {
+        min-height: 100svh;
+        padding: 12vh 6vw;
+    }
+
+    .final h2 {
+        font-size: clamp(64px, 20vw, 110px);
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
