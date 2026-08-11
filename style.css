@@ -15,8 +15,17 @@ html {
 body {
     background: #080807;
     color: #f2eee7;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x: hidden;
+}
+
+body.is-loading {
+    overflow: hidden;
 }
 
 img {
@@ -41,34 +50,25 @@ button {
 .preloader {
     position: fixed;
     inset: 0;
+
     z-index: 9999;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     background: #080807;
 
     transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+        opacity 0.9s ease,
+        visibility 0.9s ease;
 }
 
 .preloader.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-}
-
-.preloader__text {
-    margin-top: 18px;
-
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-
-    opacity: 0.65;
 }
 
 .preloader__line {
@@ -78,7 +78,23 @@ button {
     background: #f2eee7;
 
     transform-origin: left;
-    animation: loadingLine 1.8s ease-in-out infinite;
+
+    animation:
+        loadingLine 1.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        infinite;
+}
+
+.preloader__text {
+    margin-top: 18px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+
+    opacity: 0.6;
 }
 
 @keyframes loadingLine {
@@ -104,6 +120,7 @@ button {
 
 .header {
     position: fixed;
+
     top: 0;
     left: 0;
 
@@ -112,11 +129,11 @@ button {
 
     padding: 0 5vw;
 
+    z-index: 100;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    z-index: 100;
 
     pointer-events: none;
 
@@ -126,24 +143,49 @@ button {
 .logo {
     pointer-events: auto;
 
-    font-size: 12px;
+    font-size: 11px;
+
     font-weight: 500;
 
     letter-spacing: 0.28em;
+
     text-transform: uppercase;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.header__location {
+    font-size: 8px;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+
+    opacity: 0.65;
 }
 
 .menu-button {
     width: 42px;
     height: 42px;
 
+    padding: 0;
+
     display: flex;
     flex-direction: column;
+
+    align-items: flex-end;
     justify-content: center;
+
     gap: 6px;
 
     background: transparent;
-    border: none;
+
+    border: 0;
 
     cursor: pointer;
 
@@ -156,13 +198,11 @@ button {
     width: 24px;
     height: 1px;
 
-    margin-left: auto;
-
     background: #ffffff;
 
     transition:
-        transform 0.4s ease,
-        width 0.4s ease;
+        width 0.4s ease,
+        transform 0.4s ease;
 }
 
 .menu-button span:last-child {
@@ -184,9 +224,11 @@ main {
 
 .eyebrow {
     font-size: 9px;
+
     line-height: 1;
 
     letter-spacing: 0.3em;
+
     text-transform: uppercase;
 
     opacity: 0.65;
@@ -203,7 +245,7 @@ main {
     width: 100%;
     height: 100svh;
 
-    min-height: 680px;
+    min-height: 650px;
 
     overflow: hidden;
 
@@ -212,24 +254,10 @@ main {
 
 .hero__image {
     position: absolute;
+
     inset: 0;
 
     overflow: hidden;
-}
-
-.hero__image::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.2),
-            rgba(0, 0, 0, 0.05) 45%,
-            rgba(0, 0, 0, 0.6)
-        );
 }
 
 .hero__image img {
@@ -239,6 +267,22 @@ main {
     object-fit: cover;
 
     object-position: center;
+
+    transform: scale(1.01);
+}
+
+.hero__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.12),
+            rgba(0, 0, 0, 0.03) 45%,
+            rgba(0, 0, 0, 0.68)
+        );
 }
 
 .hero__content {
@@ -253,24 +297,38 @@ main {
 }
 
 .hero h1 {
-    margin-top: 20px;
+    margin-top: 22px;
 
-    font-size: clamp(70px, 13vw, 190px);
+    font-size:
+        clamp(
+            72px,
+            13vw,
+            190px
+        );
+
     line-height: 0.78;
 
     font-weight: 300;
+
     letter-spacing: -0.065em;
 }
 
 .hero__intro {
-    max-width: 280px;
+    max-width: 290px;
 
-    margin-top: 36px;
+    margin-top: 38px;
 
     font-size: 12px;
+
     line-height: 1.6;
 
-    color: rgba(242, 238, 231, 0.7);
+    color:
+        rgba(
+            242,
+            238,
+            231,
+            0.7
+        );
 }
 
 .scroll-indicator {
@@ -279,14 +337,18 @@ main {
     right: 5vw;
     bottom: 7vh;
 
-    z-index: 2;
+    z-index: 3;
 
     display: flex;
+
     align-items: center;
+
     gap: 16px;
 
     font-size: 8px;
+
     letter-spacing: 0.25em;
+
     text-transform: uppercase;
 
     opacity: 0.7;
@@ -308,6 +370,7 @@ main {
     position: relative;
 
     width: 100%;
+
     height: 1400vh;
 
     background: #080807;
@@ -315,12 +378,13 @@ main {
 
 .journey__stage {
     position: sticky;
+
     top: 0;
 
     width: 100%;
     height: 100svh;
 
-    min-height: 680px;
+    min-height: 650px;
 
     overflow: hidden;
 
@@ -329,17 +393,33 @@ main {
 
 .journey__frame {
     position: absolute;
+
     inset: 0;
 
     opacity: 0;
 
-    transform: scale(1.08);
+    transform: scale(1.06);
+
+    will-change:
+        opacity,
+        transform;
 
     transition:
-        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 1s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
 
-    will-change: opacity, transform;
+        transform 1.5s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
 .journey__frame.is-active {
@@ -348,29 +428,31 @@ main {
     transform: scale(1);
 }
 
-.journey__frame::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.08),
-            transparent 50%,
-            rgba(0, 0, 0, 0.42)
-        );
-
-    pointer-events: none;
-}
-
 .journey__frame img {
     width: 100%;
     height: 100%;
 
     object-fit: cover;
+
     object-position: center;
+}
+
+.journey__frame::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.06),
+            transparent 48%,
+            rgba(0, 0, 0, 0.45)
+        );
 }
 
 
@@ -384,10 +466,12 @@ main {
     left: 5vw;
     bottom: 5vh;
 
-    z-index: 20;
+    z-index: 30;
 
     display: flex;
+
     align-items: center;
+
     gap: 20px;
 
     pointer-events: none;
@@ -397,9 +481,11 @@ main {
 
 .scene-info__number {
     display: flex;
+
     gap: 7px;
 
     font-size: 9px;
+
     letter-spacing: 0.2em;
 }
 
@@ -409,7 +495,9 @@ main {
 
 .scene-info__name {
     font-size: 9px;
+
     letter-spacing: 0.25em;
+
     text-transform: uppercase;
 }
 
@@ -424,34 +512,91 @@ main {
     right: 5vw;
     bottom: 5vh;
 
-    z-index: 20;
+    z-index: 30;
 
-    width: min(280px, 30vw);
-
-    pointer-events: none;
+    width: min(
+        300px,
+        30vw
+    );
 
     text-align: right;
+
+    pointer-events: none;
 
     mix-blend-mode: difference;
 }
 
 .scene-copy h2 {
-    margin-top: 10px;
+    margin-top: 11px;
 
-    font-size: clamp(28px, 4vw, 60px);
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            60px
+        );
+
     line-height: 0.9;
 
     font-weight: 300;
+
     letter-spacing: -0.04em;
 }
 
 .scene-copy p:last-child {
-    margin-top: 14px;
+    margin-top: 15px;
 
     font-size: 10px;
+
     line-height: 1.5;
 
     opacity: 0.6;
+}
+
+
+/* =========================================
+   JOURNEY PROGRESS
+========================================= */
+
+.journey-progress {
+    position: fixed;
+
+    top: 50%;
+    right: 24px;
+
+    width: 1px;
+    height: 110px;
+
+    z-index: 30;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.2
+        );
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+}
+
+.journey-progress__bar {
+    width: 100%;
+    height: 0%;
+
+    background: #ffffff;
+
+    transition:
+        height 0.35s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
 
@@ -465,9 +610,11 @@ main {
     min-height: 100svh;
 
     display: flex;
+
     align-items: center;
 
-    padding: 12vh 5vw;
+    padding:
+        12vh 5vw;
 
     background: #080807;
 }
@@ -479,33 +626,57 @@ main {
 .final h2 {
     margin-top: 25px;
 
-    font-size: clamp(70px, 13vw, 180px);
+    font-size:
+        clamp(
+            72px,
+            13vw,
+            180px
+        );
+
     line-height: 0.78;
 
     font-weight: 300;
+
     letter-spacing: -0.065em;
 }
 
-.final p:not(.eyebrow) {
+.final__content p:not(.eyebrow) {
     max-width: 300px;
 
     margin-top: 40px;
 
     font-size: 12px;
+
     line-height: 1.6;
 
-    color: rgba(242, 238, 231, 0.65);
+    color:
+        rgba(
+            242,
+            238,
+            231,
+            0.65
+        );
 }
 
 .final__button {
     display: inline-flex;
 
     margin-top: 45px;
-    padding: 16px 24px;
 
-    border: 1px solid rgba(242, 238, 231, 0.35);
+    padding:
+        16px 24px;
+
+    border:
+        1px solid
+        rgba(
+            242,
+            238,
+            231,
+            0.35
+        );
 
     font-size: 9px;
+
     letter-spacing: 0.2em;
 
     transition:
@@ -515,6 +686,7 @@ main {
 
 .final__button:hover {
     background: #f2eee7;
+
     color: #080807;
 }
 
@@ -525,13 +697,12 @@ main {
 
 @media (max-width: 900px) {
 
-    .hero__content {
-        left: 7vw;
-        bottom: 15vh;
+    .header {
+        padding: 0 6vw;
     }
 
     .scene-copy {
-        width: 220px;
+        width: 230px;
     }
 
 }
@@ -545,7 +716,13 @@ main {
 
     .header {
         height: 72px;
-        padding: 0 6vw;
+
+        padding:
+            0 6vw;
+    }
+
+    .header__location {
+        display: none;
     }
 
     .hero {
@@ -555,11 +732,17 @@ main {
     .hero__content {
         left: 6vw;
         right: 6vw;
+
         bottom: 15vh;
     }
 
     .hero h1 {
-        font-size: clamp(64px, 21vw, 120px);
+        font-size:
+            clamp(
+                64px,
+                21vw,
+                120px
+            );
     }
 
     .hero__intro {
@@ -569,6 +752,7 @@ main {
     .scroll-indicator {
         left: 6vw;
         right: auto;
+
         bottom: 6vh;
     }
 
@@ -593,13 +777,26 @@ main {
         display: none;
     }
 
+    .journey-progress {
+        right: 14px;
+
+        height: 80px;
+    }
+
     .final {
         min-height: 100svh;
-        padding: 12vh 6vw;
+
+        padding:
+            12vh 6vw;
     }
 
     .final h2 {
-        font-size: clamp(64px, 20vw, 110px);
+        font-size:
+            clamp(
+                64px,
+                20vw,
+                110px
+            );
     }
 
 }
@@ -609,14 +806,20 @@ main {
    REDUCED MOTION
 ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (
+    prefers-reduced-motion: reduce
+) {
 
     *,
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        transition-duration:
+            0.01ms !important;
     }
 
 }
