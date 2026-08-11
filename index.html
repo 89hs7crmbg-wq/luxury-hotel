@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="A cinematic luxury hotel experience."
+    >
+
+    <title>The Hotel</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         PRELOADER
+    ========================================== -->
+
+    <div class="preloader" id="preloader">
+        <div class="preloader__line"></div>
+        <span class="preloader__text">THE HOTEL</span>
+    </div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header" id="header">
+
+        <a href="#hero" class="logo">
+            THE HOTEL
+        </a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Open menu"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN EXPERIENCE
+    ========================================== -->
+
+    <main>
+
+        <!--
+            HERO
+            Frame 00 — THE HOTEL
+        -->
+
+        <section class="hero" id="hero">
+
+            <div class="hero__image">
+                <img
+                    src="assets/images/00-the-hotel.webp"
+                    alt="The Hotel"
+                >
+            </div>
+
+            <div class="hero__content">
+
+                <p class="eyebrow">
+                    A PLACE BETWEEN WORLDS
+                </p>
+
+                <h1>
+                    THE<br>
+                    HOTEL
+                </h1>
+
+                <p class="hero__intro">
+                    An immersive journey through space,
+                    architecture and atmosphere.
+                </p>
+
+            </div>
+
+            <div class="scroll-indicator">
+                <span>SCROLL TO ENTER</span>
+                <span class="scroll-indicator__line"></span>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             CINEMATIC JOURNEY
+        ====================================== -->
+
+        <section class="journey" id="journey">
+
+            <!--
+                The 14 following frames will be
+                controlled by JavaScript.
+            -->
+
+            <div class="journey__stage">
+
+                <div class="journey__frame is-active">
+                    <img
+                        src="assets/images/01-arrival.webp"
+                        alt="Arrival"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/02-threshold.webp"
+                        alt="Threshold"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/03-lobby.webp"
+                        alt="Lobby"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/04-deeper-in.webp"
+                        alt="Deeper inside"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/05-elevator.webp"
+                        alt="Elevator"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/06-open.webp"
+                        alt="Open"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/07-inside.webp"
+                        alt="Inside"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/08-the-corridor.webp"
+                        alt="The corridor"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/09-the-door.webp"
+                        alt="The door"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/10-the-suite.webp"
+                        alt="The suite"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/11-the-bed.webp"
+                        alt="The bed"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/12-the-lounge.webp"
+                        alt="The lounge"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/13-the-view.webp"
+                        alt="The view"
+                    >
+                </div>
+
+                <div class="journey__frame">
+                    <img
+                        src="assets/images/14-the-bath.webp"
+                        alt="The bath"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 SCENE INFORMATION
+            ================================== -->
+
+            <div class="scene-info">
+
+                <div class="scene-info__number">
+                    <span id="sceneNumber">01</span>
+                    <span>/ 14</span>
+                </div>
+
+                <div class="scene-info__name" id="sceneName">
+                    ARRIVAL
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 SCENE TEXT
+            ================================== -->
+
+            <div class="scene-copy">
+
+                <p class="scene-copy__eyebrow">
+                    THE JOURNEY
+                </p>
+
+                <h2 id="sceneTitle">
+                    ARRIVAL
+                </h2>
+
+                <p id="sceneDescription">
+                    The beginning of the journey.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FINAL SECTION
+        ====================================== -->
+
+        <section class="final" id="final">
+
+            <div class="final__content">
+
+                <p class="eyebrow">
+                    THE EXPERIENCE
+                </p>
+
+                <h2>
+                    STAY<br>
+                    AWHILE
+                </h2>
+
+                <p>
+                    Some places are visited.
+                    Others are experienced.
+                </p>
+
+                <a href="#" class="final__button">
+                    RESERVE YOUR STAY
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
