@@ -10,42 +10,66 @@
 
     <meta
         name="description"
-        content="A cinematic journey through a luxury hotel."
+        content="Путешествие по пространству отеля."
     >
 
-    <title>The Hotel</title>
+    <meta
+        name="theme-color"
+        content="#080807"
+    >
+
+    <title>Отель</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- PRELOADER -->
+    <!-- =====================================
+         PRELOADER
+    ====================================== -->
+
     <div class="preloader" id="preloader">
+
         <div class="preloader__line"></div>
-        <span class="preloader__text">THE HOTEL</span>
+
+        <span class="preloader__text">
+            ЗАГРУЗКА
+        </span>
+
     </div>
 
 
-    <!-- HEADER -->
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
     <header class="header">
 
-        <a href="#hero" class="logo">
-            THE HOTEL
+        <a
+            href="#hero"
+            class="logo"
+            aria-label="На главную"
+        >
+            ОТЕЛЬ
         </a>
 
         <div class="header__right">
-            <span class="header__location">PARIS · FRANCE</span>
+
+            <span class="header__location">
+                РОССИЯ
+            </span>
 
             <button
                 class="menu-button"
                 id="menuButton"
                 type="button"
-                aria-label="Open menu"
+                aria-label="Открыть меню"
             >
                 <span></span>
                 <span></span>
             </button>
+
         </div>
 
     </header>
@@ -54,41 +78,53 @@
     <main>
 
         <!-- =====================================
-             HERO / FRAME 00
+             HERO / КАДР 00
         ====================================== -->
 
-        <section class="hero" id="hero">
+        <section
+            class="hero"
+            id="hero"
+        >
 
             <div class="hero__image">
+
                 <img
                     src="00-the-hotel.jpg"
-                    alt="The Hotel"
+                    alt="Отель"
+                    fetchpriority="high"
                 >
+
             </div>
 
             <div class="hero__overlay"></div>
 
+
             <div class="hero__content">
 
                 <p class="eyebrow">
-                    A PLACE BETWEEN WORLDS
+                    МЕСТО МЕЖДУ МИРОМ И ТИШИНОЙ
                 </p>
 
                 <h1>
-                    THE<br>
-                    HOTEL
+                    ОТЕЛЬ
                 </h1>
 
                 <p class="hero__intro">
-                    An immersive journey through
-                    architecture, space and atmosphere.
+                    Путешествие сквозь архитектуру,
+                    пространство и атмосферу.
                 </p>
 
             </div>
 
+
             <div class="scroll-indicator">
-                <span>SCROLL TO ENTER</span>
+
+                <span>
+                    ЛИСТАЙТЕ, ЧТОБЫ ВОЙТИ
+                </span>
+
                 <span class="scroll-indicator__line"></span>
+
             </div>
 
         </section>
@@ -98,267 +134,373 @@
              CINEMATIC JOURNEY
         ====================================== -->
 
-        <section class="journey" id="journey">
+        <section
+            class="journey"
+            id="journey"
+        >
 
-            <div class="journey__stage" id="journeyStage">
+            <div
+                class="journey__stage"
+                id="journeyStage"
+            >
 
-                <!-- 01 -->
+
+                <!-- =================================
+                     КАДР 01
+                ================================== -->
+
                 <div
                     class="journey__frame is-active"
                     data-index="1"
-                    data-name="ARRIVAL"
-                    data-title="ARRIVAL"
-                    data-description="The beginning of the journey."
+                    data-name="ПРИБЫТИЕ"
+                    data-title="ПРИБЫТИЕ"
+                    data-description="Путешествие начинается."
                 >
+
                     <img
                         src="01-arrival.jpg"
-                        alt="Arrival"
+                        alt="Прибытие в отель"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 02 -->
+                <!-- =================================
+                     КАДР 02
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="2"
-                    data-name="THRESHOLD"
-                    data-title="THRESHOLD"
-                    data-description="The moment the outside world disappears."
+                    data-name="ПОРОГ"
+                    data-title="ПОРОГ"
+                    data-description="Момент, когда внешний мир остаётся позади."
                 >
+
                     <img
                         src="02-threshold.jpg"
-                        alt="Threshold"
+                        alt="Вход в отель"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 03 -->
+                <!-- =================================
+                     КАДР 03
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="3"
-                    data-name="LOBBY"
-                    data-title="LOBBY"
-                    data-description="The first space of the hotel."
+                    data-name="ЛОББИ"
+                    data-title="ЛОББИ"
+                    data-description="Первое пространство отеля."
                 >
+
                     <img
                         src="03-lobby.jpg"
-                        alt="Lobby"
+                        alt="Лобби отеля"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 04 -->
+                <!-- =================================
+                     КАДР 04
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="4"
-                    data-name="DEEPER IN"
-                    data-title="DEEPER IN"
-                    data-description="The journey continues inward."
+                    data-name="ГЛУБЖЕ"
+                    data-title="ГЛУБЖЕ"
+                    data-description="Путешествие продолжается внутри."
                 >
+
                     <img
                         src="04-deeper-in.jpg"
-                        alt="Deeper inside"
+                        alt="Внутреннее пространство отеля"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 05 -->
+                <!-- =================================
+                     КАДР 05
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="5"
-                    data-name="ELEVATOR"
-                    data-title="ELEVATOR"
-                    data-description="Leaving the public spaces behind."
+                    data-name="ЛИФТ"
+                    data-title="ЛИФТ"
+                    data-description="Публичные пространства остаются позади."
                 >
+
                     <img
                         src="05-elevator.jpg"
-                        alt="Elevator"
+                        alt="Лифт"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 06 -->
+                <!-- =================================
+                     КАДР 06
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="6"
-                    data-name="OPEN"
-                    data-title="OPEN"
-                    data-description="A new level reveals itself."
+                    data-name="ОТКРЫВАЕТСЯ"
+                    data-title="ОТКРЫВАЕТСЯ"
+                    data-description="Новый уровень раскрывается перед вами."
                 >
+
                     <img
                         src="06-open.jpg"
-                        alt="Open elevator"
+                        alt="Открывающийся лифт"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 07 -->
+                <!-- =================================
+                     КАДР 07
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="7"
-                    data-name="INSIDE"
-                    data-title="INSIDE"
-                    data-description="The private part of the hotel begins."
+                    data-name="ВНУТРИ"
+                    data-title="ВНУТРИ"
+                    data-description="Начинается приватная часть путешествия."
                 >
+
                     <img
                         src="07-inside.jpg"
-                        alt="Inside"
+                        alt="Внутри отеля"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 08 -->
+                <!-- =================================
+                     КАДР 08
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="8"
-                    data-name="THE CORRIDOR"
-                    data-title="THE CORRIDOR"
-                    data-description="A quiet passage toward your room."
+                    data-name="КОРИДОР"
+                    data-title="КОРИДОР"
+                    data-description="Тихий путь к вашему номеру."
                 >
+
                     <img
                         src="08-the-corridor.jpg"
-                        alt="Hotel corridor"
+                        alt="Коридор отеля"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 09 -->
+                <!-- =================================
+                     КАДР 09
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="9"
-                    data-name="THE DOOR"
-                    data-title="THE DOOR"
-                    data-description="The final step before entering."
+                    data-name="ДВЕРЬ"
+                    data-title="ДВЕРЬ"
+                    data-description="Последний шаг перед входом."
                 >
+
                     <img
                         src="09-the-door.jpg"
-                        alt="Hotel room door"
+                        alt="Дверь номера"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 10 -->
+                <!-- =================================
+                     КАДР 10
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="10"
-                    data-name="THE SUITE"
-                    data-title="THE SUITE"
-                    data-description="Your private space."
+                    data-name="НОМЕР"
+                    data-title="НОМЕР"
+                    data-description="Ваше личное пространство."
                 >
+
                     <img
                         src="10-the-suite.jpg"
-                        alt="Luxury hotel suite"
+                        alt="Номер отеля"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 11 -->
+                <!-- =================================
+                     КАДР 11
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="11"
-                    data-name="THE BED"
-                    data-title="THE BED"
-                    data-description="A quieter side of the experience."
+                    data-name="СПАЛЬНЯ"
+                    data-title="СПАЛЬНЯ"
+                    data-description="Пространство для полного покоя."
                 >
+
                     <img
                         src="11-the-bed.jpg"
-                        alt="Luxury hotel bed"
+                        alt="Спальная зона"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 12 -->
+                <!-- =================================
+                     КАДР 12
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="12"
-                    data-name="THE LOUNGE"
-                    data-title="THE LOUNGE"
-                    data-description="A place to slow down."
+                    data-name="ГОСТИНАЯ"
+                    data-title="ГОСТИНАЯ"
+                    data-description="Место, где можно замедлиться."
                 >
+
                     <img
                         src="12-the-lounge.jpg"
-                        alt="Hotel lounge"
+                        alt="Гостиная"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 13 -->
+                <!-- =================================
+                     КАДР 13
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="13"
-                    data-name="THE VIEW"
-                    data-title="THE VIEW"
-                    data-description="The city becomes part of the room."
+                    data-name="ВИД"
+                    data-title="ВИД"
+                    data-description="Город становится частью пространства."
                 >
+
                     <img
                         src="13-the-view.jpg"
-                        alt="Hotel room view"
+                        alt="Вид из номера"
+                        loading="lazy"
                     >
+
                 </div>
 
 
-                <!-- 14 -->
+                <!-- =================================
+                     КАДР 14
+                ================================== -->
+
                 <div
                     class="journey__frame"
                     data-index="14"
-                    data-name="THE BATH"
-                    data-title="THE BATH"
-                    data-description="A final private retreat."
+                    data-name="ВАННАЯ"
+                    data-title="ВАННАЯ"
+                    data-description="Последнее приватное пространство."
                 >
+
                     <img
                         src="14-the-bath.jpg"
-                        alt="Luxury hotel bathroom"
+                        alt="Ванная комната"
+                        loading="lazy"
                     >
+
                 </div>
 
             </div>
 
 
-            <!-- SCENE COUNTER -->
+            <!-- =====================================
+                 ИНФОРМАЦИЯ О СЦЕНЕ
+            ====================================== -->
 
             <div class="scene-info">
 
                 <div class="scene-info__number">
-                    <span id="sceneNumber">01</span>
-                    <span>/ 14</span>
+
+                    <span id="sceneNumber">
+                        01
+                    </span>
+
+                    <span>
+                        / 14
+                    </span>
+
                 </div>
 
                 <div
                     class="scene-info__name"
                     id="sceneName"
                 >
-                    ARRIVAL
+                    ПРИБЫТИЕ
                 </div>
 
             </div>
 
 
-            <!-- SCENE TEXT -->
+            <!-- =====================================
+                 ТЕКСТ СЦЕНЫ
+            ====================================== -->
 
             <div class="scene-copy">
 
                 <p class="scene-copy__eyebrow">
-                    THE JOURNEY
+                    ПУТЕШЕСТВИЕ
                 </p>
 
                 <h2 id="sceneTitle">
-                    ARRIVAL
+                    ПРИБЫТИЕ
                 </h2>
 
                 <p id="sceneDescription">
-                    The beginning of the journey.
+                    Путешествие начинается.
                 </p>
 
             </div>
 
 
-            <!-- SCROLL PROGRESS -->
+            <!-- =====================================
+                 ПРОГРЕСС
+            ====================================== -->
 
             <div class="journey-progress">
+
                 <div
                     class="journey-progress__bar"
                     id="progressBar"
                 ></div>
+
             </div>
 
         </section>
@@ -373,24 +515,24 @@
             <div class="final__content">
 
                 <p class="eyebrow">
-                    THE EXPERIENCE
+                    ВПЕЧАТЛЕНИЕ
                 </p>
 
                 <h2>
-                    STAY<br>
-                    AWHILE
+                    ОСТАНЬТЕСЬ<br>
+                    ЕЩЁ
                 </h2>
 
                 <p>
-                    Some places are visited.
-                    Others are experienced.
+                    Некоторые места посещают.
+                    Другие проживают.
                 </p>
 
                 <a
                     href="#"
                     class="final__button"
                 >
-                    RESERVE YOUR STAY
+                    ЗАБРОНИРОВАТЬ НОМЕР
                 </a>
 
             </div>
@@ -399,6 +541,8 @@
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
 
