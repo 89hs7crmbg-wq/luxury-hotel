@@ -3,118 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#11110f">
+
+    <meta name="theme-color" content="#171713">
 
     <title>THE HOTEL — Сургут</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;500&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="site">
+<div class="app">
 
-    <!-- ФОТО -->
-    <main class="gallery">
+    <!-- =========================
+         ОСНОВНОЙ ЭКРАН
+    ========================== -->
 
-        <div class="image-wrap">
-            <img id="mainImage" src="IMG_8684.png" alt="THE HOTEL Сургут">
-        </div>
+    <main class="screen">
 
-        <div class="image-overlay"></div>
+        <!-- Верхняя панель -->
+        <header class="topbar">
 
-
-        <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
-        <header class="top">
-
-            <button class="burger" id="openMenu" aria-label="Меню">
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Открыть меню"
+            >
                 <span></span>
                 <span></span>
             </button>
 
-            <button class="logo" id="logoButton">
+            <button
+                class="brand"
+                id="brandButton"
+                type="button"
+            >
                 THE HOTEL
             </button>
 
-            <button class="booking-button" id="openBooking">
+            <button
+                class="book-button"
+                id="bookButton"
+                type="button"
+            >
                 БРОНИРОВАТЬ
             </button>
 
         </header>
 
 
-        <!-- ТЕКСТ -->
-        <section class="content">
+        <!-- Контент кадра -->
+        <section class="frame">
 
-            <div class="eyebrow">
-                <span id="category">ОТЕЛЬ</span>
-                <i></i>
-                <span id="sceneNumber">00</span>
+            <!-- Фото -->
+            <div class="photo-box">
+
+                <img
+                    id="photo"
+                    src="IMG_8684.png"
+                    alt="THE HOTEL, Сургут"
+                    draggable="false"
+                >
+
+                <div class="photo-number">
+                    <span id="frameNumber">00</span>
+                </div>
+
             </div>
 
-            <h1 id="title">THE HOTEL</h1>
 
-            <p id="description">
-                Пространство,<br>
-                созданное для тишины.
-            </p>
+            <!-- Текст под фотографией -->
+            <div class="story">
+
+                <div class="story-meta">
+
+                    <span id="category">
+                        ОТЕЛЬ
+                    </span>
+
+                    <span class="meta-line"></span>
+
+                    <span>
+                        СУРГУТ
+                    </span>
+
+                </div>
+
+
+                <h1 id="title">
+                    ВРЕМЯ<br>
+                    ОСТАНОВИТЬСЯ
+                </h1>
+
+
+                <p id="description">
+                    Место, где город
+                    наконец становится тише.
+                </p>
+
+            </div>
 
         </section>
 
 
-        <!-- СТРЕЛКИ -->
-        <div class="arrows">
+        <!-- Стрелки -->
+        <div class="navigation">
 
-            <button id="prev" aria-label="Предыдущий кадр">
-                ←
+            <button
+                id="previous"
+                type="button"
+                aria-label="Предыдущий кадр"
+            >
+                <span>←</span>
             </button>
 
-            <button id="next" aria-label="Следующий кадр">
-                →
+            <div class="progress">
+                <span id="currentFrame">01</span>
+                <span class="progress-line"></span>
+                <span>15</span>
+            </div>
+
+            <button
+                id="next"
+                type="button"
+                aria-label="Следующий кадр"
+            >
+                <span>→</span>
             </button>
 
         </div>
 
 
-        <!-- НОМЕР -->
-        <div class="counter">
-            <span id="current">01</span>
-            <span class="line"></span>
-            <span>15</span>
-        </div>
-
-
-        <!-- НИЖНИЙ BAR -->
+        <!-- Нижняя навигация -->
         <nav class="bottom-bar">
 
-            <button class="bar-item active" data-start="0">
+            <button
+                class="bar-item active"
+                type="button"
+                data-index="0"
+            >
                 <span>00</span>
-                <b>ОТЕЛЬ</b>
+                ОТЕЛЬ
             </button>
 
-            <button class="bar-item" data-start="1">
+            <button
+                class="bar-item"
+                type="button"
+                data-index="1"
+            >
                 <span>01</span>
-                <b>ПРИБЫТИЕ</b>
+                ПРИБЫТИЕ
             </button>
 
-            <button class="bar-item" data-start="3">
+            <button
+                class="bar-item"
+                type="button"
+                data-index="3"
+            >
                 <span>03</span>
-                <b>ПРОСТРАНСТВО</b>
+                ПРОСТРАНСТВО
             </button>
 
-            <button class="bar-item" data-start="8">
+            <button
+                class="bar-item"
+                type="button"
+                data-index="8"
+            >
                 <span>08</span>
-                <b>НОМЕРА</b>
+                НОМЕРА
             </button>
 
-            <button class="bar-item" data-start="11">
+            <button
+                class="bar-item"
+                type="button"
+                data-index="11"
+            >
                 <span>11</span>
-                <b>ДЕТАЛИ</b>
+                ДЕТАЛИ
             </button>
 
         </nav>
@@ -126,94 +200,118 @@
          МЕНЮ
     ========================== -->
 
-    <div class="panel menu-panel" id="menuPanel">
+    <aside
+        class="overlay menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    >
 
-        <div class="panel-inner">
+        <div class="overlay-content">
 
-            <div class="panel-top">
-                <span>THE HOTEL / СУРГУТ</span>
+            <div class="overlay-top">
 
-                <button id="closeMenu">
+                <span>
+                    THE HOTEL / СУРГУТ
+                </span>
+
+                <button
+                    id="closeMenu"
+                    type="button"
+                >
                     ЗАКРЫТЬ
                 </button>
+
             </div>
 
 
-            <div class="menu-heading">
-                <small>НАВИГАЦИЯ</small>
+            <div class="menu-title">
+
+                <span>НАВИГАЦИЯ</span>
 
                 <h2>
                     ВАШЕ<br>
                     ПРОСТРАНСТВО
                 </h2>
-            </div>
-
-
-            <div class="menu-list">
-
-                <button data-start="0">
-                    <span>00</span>
-                    <b>ОТЕЛЬ</b>
-                    <i>→</i>
-                </button>
-
-                <button data-start="1">
-                    <span>01</span>
-                    <b>ПРИБЫТИЕ</b>
-                    <i>→</i>
-                </button>
-
-                <button data-start="3">
-                    <span>03</span>
-                    <b>ПРОСТРАНСТВО</b>
-                    <i>→</i>
-                </button>
-
-                <button data-start="8">
-                    <span>08</span>
-                    <b>НОМЕРА</b>
-                    <i>→</i>
-                </button>
-
-                <button data-start="11">
-                    <span>11</span>
-                    <b>ДЕТАЛИ</b>
-                    <i>→</i>
-                </button>
 
             </div>
 
 
-            <div class="panel-bottom">
+            <div class="menu-links">
+
+                <button type="button" data-index="0">
+                    <small>00</small>
+                    <strong>ОТЕЛЬ</strong>
+                    <i>→</i>
+                </button>
+
+                <button type="button" data-index="1">
+                    <small>01</small>
+                    <strong>ПРИБЫТИЕ</strong>
+                    <i>→</i>
+                </button>
+
+                <button type="button" data-index="3">
+                    <small>03</small>
+                    <strong>ПРОСТРАНСТВО</strong>
+                    <i>→</i>
+                </button>
+
+                <button type="button" data-index="8">
+                    <small>08</small>
+                    <strong>НОМЕРА</strong>
+                    <i>→</i>
+                </button>
+
+                <button type="button" data-index="11">
+                    <small>11</small>
+                    <strong>ДЕТАЛИ</strong>
+                    <i>→</i>
+                </button>
+
+            </div>
+
+
+            <div class="overlay-footer">
                 <span>СУРГУТ / РОССИЯ</span>
                 <span>THE HOTEL</span>
             </div>
 
         </div>
 
-    </div>
+    </aside>
 
 
     <!-- =========================
          БРОНИРОВАНИЕ
     ========================== -->
 
-    <div class="panel booking-panel" id="bookingPanel">
+    <aside
+        class="overlay booking-overlay"
+        id="bookingOverlay"
+        aria-hidden="true"
+    >
 
-        <div class="booking-inner">
+        <div class="overlay-content">
 
-            <div class="panel-top">
-                <span>THE HOTEL / СУРГУТ</span>
+            <div class="overlay-top">
 
-                <button id="closeBooking">
+                <span>
+                    THE HOTEL / СУРГУТ
+                </span>
+
+                <button
+                    id="closeBooking"
+                    type="button"
+                >
                     ЗАКРЫТЬ
                 </button>
+
             </div>
 
 
-            <div class="booking-heading">
+            <div class="booking-title">
 
-                <small>БРОНИРОВАНИЕ</small>
+                <span>БРОНИРОВАНИЕ</span>
 
                 <h2>
                     ВАШЕ<br>
@@ -228,24 +326,27 @@
             </div>
 
 
-            <div class="booking-form">
+            <div class="booking-fields">
 
-                <button class="field">
-                    <span>ЗАСЕЛЕНИЕ</span>
-                    <b>ДД / ММ / ГГГГ</b>
+                <button type="button">
+                    <small>ЗАСЕЛЕНИЕ</small>
+                    <strong>ДД / ММ / ГГГГ</strong>
                 </button>
 
-                <button class="field">
-                    <span>ВЫЕЗД</span>
-                    <b>ДД / ММ / ГГГГ</b>
+                <button type="button">
+                    <small>ВЫЕЗД</small>
+                    <strong>ДД / ММ / ГГГГ</strong>
                 </button>
 
-                <button class="field">
-                    <span>ГОСТИ</span>
-                    <b>2 ГОСТЯ</b>
+                <button type="button">
+                    <small>ГОСТИ</small>
+                    <strong>2 ГОСТЯ</strong>
                 </button>
 
-                <button class="submit-booking">
+                <button
+                    class="request-button"
+                    type="button"
+                >
                     ОСТАВИТЬ ЗАПРОС
                     <span>→</span>
                 </button>
@@ -253,14 +354,14 @@
             </div>
 
 
-            <div class="panel-bottom">
+            <div class="overlay-footer">
                 <span>СУРГУТ / РОССИЯ</span>
                 <span>THE HOTEL</span>
             </div>
 
         </div>
 
-    </div>
+    </aside>
 
 </div>
 
