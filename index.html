@@ -2,21 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>THE HOTEL</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="app">
-
-    <!-- HEADER -->
 
     <header class="header">
 
@@ -30,7 +23,6 @@
 
         <button class="menu-button" id="menuButton">
             <span>МЕНЮ</span>
-
             <i>
                 <b></b>
                 <b></b>
@@ -40,32 +32,20 @@
     </header>
 
 
-    <!-- MAIN -->
-
     <main class="main">
 
-        <!-- IMAGE -->
+        <!-- ЛЕВАЯ ЧАСТЬ -->
 
         <section class="visual">
 
             <div class="image-wrap" id="imageWrap">
-
-                <img
-                    id="mainImage"
-                    src="IMG_8684.png"
-                    alt="THE HOTEL"
-                >
-
+                <img id="mainImage" src="IMG_8684.png" alt="THE HOTEL">
             </div>
 
             <div class="image-number">
-
                 <span id="currentNumber">01</span>
-
                 <span class="number-line"></span>
-
                 <span>15</span>
-
             </div>
 
             <div class="image-label">
@@ -75,7 +55,7 @@
         </section>
 
 
-        <!-- INFORMATION -->
+        <!-- ПРАВАЯ ЧАСТЬ -->
 
         <section class="info">
 
@@ -86,11 +66,25 @@
                 </span>
 
                 <span>
-                    55°45' СШ / 37°37' ВД
+                    МОСКВА / РОССИЯ
                 </span>
 
             </div>
 
+
+            <!-- БРОНИРОВАНИЕ -->
+
+            <button
+                class="booking-link"
+                id="bookingButton"
+                aria-label="Открыть бронирование"
+            >
+                <span>БРОНИРОВАНИЕ</span>
+                <i>↗</i>
+            </button>
+
+
+            <!-- ОСНОВНОЙ ТЕКСТ -->
 
             <div class="content">
 
@@ -119,7 +113,7 @@
             </div>
 
 
-            <!-- NAVIGATION -->
+            <!-- НИЖНЯЯ НАВИГАЦИЯ -->
 
             <nav class="navigation">
 
@@ -166,7 +160,7 @@
             </nav>
 
 
-            <!-- CONTROLS -->
+            <!-- СТРЕЛКИ -->
 
             <div class="controls">
 
@@ -178,16 +172,11 @@
                     ←
                 </button>
 
-
-                <button
-                    class="booking-trigger"
-                    id="bookingButton"
-                    aria-label="Открыть бронирование"
-                >
-                    <span>БРОНЬ</span>
-                    <i>↗</i>
-                </button>
-
+                <div class="controls-counter">
+                    <span id="controlCurrent">01</span>
+                    <span>/</span>
+                    <span>15</span>
+                </div>
 
                 <button
                     class="arrow-button"
@@ -204,7 +193,7 @@
     </main>
 
 
-    <!-- MENU -->
+    <!-- МЕНЮ -->
 
     <div
         class="menu-overlay"
@@ -214,58 +203,36 @@
         <div class="menu-inner">
 
             <div class="menu-top">
-
                 <span>НАВИГАЦИЯ</span>
-
                 <span>THE HOTEL / 2026</span>
-
             </div>
 
 
             <div class="menu-grid">
 
                 <button data-section="hotel">
-
                     <small>01</small>
-
                     <span>ОТЕЛЬ</span>
-
                 </button>
-
 
                 <button data-section="arrival">
-
                     <small>02</small>
-
                     <span>ПРИБЫТИЕ</span>
-
                 </button>
-
 
                 <button data-section="space">
-
                     <small>03</small>
-
                     <span>ПРОСТРАНСТВО</span>
-
                 </button>
-
 
                 <button data-section="rooms">
-
                     <small>04</small>
-
                     <span>НОМЕРА</span>
-
                 </button>
 
-
                 <button data-section="details">
-
                     <small>05</small>
-
                     <span>ДЕТАЛИ</span>
-
                 </button>
 
             </div>
@@ -288,7 +255,7 @@
     </div>
 
 
-    <!-- BOOKING -->
+    <!-- БРОНИРОВАНИЕ -->
 
     <div
         class="booking-panel"
@@ -319,43 +286,19 @@
             <div class="booking-form">
 
                 <div class="booking-field">
-
-                    <small>
-                        ЗАСЕЛЕНИЕ
-                    </small>
-
-                    <strong>
-                        ВЫБРАТЬ ДАТУ
-                    </strong>
-
+                    <small>ЗАСЕЛЕНИЕ</small>
+                    <strong>ВЫБРАТЬ ДАТУ</strong>
                 </div>
-
 
                 <div class="booking-field">
-
-                    <small>
-                        ВЫЕЗД
-                    </small>
-
-                    <strong>
-                        ВЫБРАТЬ ДАТУ
-                    </strong>
-
+                    <small>ВЫЕЗД</small>
+                    <strong>ВЫБРАТЬ ДАТУ</strong>
                 </div>
-
 
                 <div class="booking-field">
-
-                    <small>
-                        ГОСТИ
-                    </small>
-
-                    <strong>
-                        2 ГОСТЯ
-                    </strong>
-
+                    <small>ГОСТИ</small>
+                    <strong>2 ГОСТЯ</strong>
                 </div>
-
 
                 <button
                     class="request-button"
