@@ -1,100 +1,57 @@
-/* =========================================
-   THE HOTEL
-   CINEMATIC SCROLL ENGINE
-========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================
        ELEMENTS
     ====================================== */
 
-    const body = document.body;
+    const scenes = [
+        ...document.querySelectorAll(".scene")
+    ];
 
-    const preloader =
-        document.getElementById("preloader");
+    const progressDots = [
+        ...document.querySelectorAll(".progress__dot")
+    ];
 
-    const journey =
-        document.getElementById("journey");
+    const menu = document.getElementById("menu");
+    const menuButton = document.getElementById("menuButton");
+    const menuClose = document.getElementById("menuClose");
 
-    const frames =
-        Array.from(
-            document.querySelectorAll(
-                ".journey__frame"
-            )
-        );
-
-    const sceneNumber =
-        document.getElementById(
-            "sceneNumber"
-        );
-
-    const sceneName =
-        document.getElementById(
-            "sceneName"
-        );
-
-    const sceneTitle =
-        document.getElementById(
-            "sceneTitle"
-        );
-
-    const sceneDescription =
-        document.getElementById(
-            "sceneDescription"
-        );
-
-    const progressBar =
-        document.getElementById(
-            "progressBar"
-        );
+    const backTop = document.getElementById("backTop");
 
 
     /* =====================================
-       SETTINGS
+       SCENE OBSERVER
     ====================================== */
 
-    const totalScenes =
-        frames.length;
+    const observer = new IntersectionObserver(
+        (entries) => {
 
-    let currentScene = 0;
+            entries.forEach((entry) => {
 
-    let ticking = false;
+                if (!entry.isIntersecting) {
+                    return;
+                }
 
+                const scene =
+                    entry.target;
 
-    /* =====================================
-       PRELOADER
-    ====================================== */
+                const index =
+                    scene.dataset.index;
 
-    window.addEventListener(
-        "load",
-        () => {
+                activateScene(index);
 
-            setTimeout(() => {
+            });
 
-                preloader.classList.add(
-                    "is-hidden"
-                );
-
-                body.classList.remove(
-                    "is-loading"
-                );
-
-            }, 500);
-
+        },
+        {
+            threshold: 0.55
         }
     );
 
 
-    /* =====================================
-       INITIAL STATE
-    ====================================== */
-
-    if (frames.length > 0) {
-
-        activateScene(0);
-
-    }
+    scenes.forEach((scene) => {
+        observer.observe(scene);
+    });
 
 
     /* =====================================
@@ -103,345 +60,282 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function activateScene(index) {
 
-        if (
-            index < 0 ||
-            index >= totalScenes
-        ) {
-            return;
-        }
+        scenes.forEach((scene) => {
 
-
-        if (
-            index === currentScene &&
-            frames[index].classList.contains(
-                "is-active"
-            )
-        ) {
-
-            updateSceneInformation(
-                index
+            scene.classList.toggle(
+                "active",
+                scene.dataset.index === index
             );
 
-            return;
+        });
+
+
+        progressDots.forEach((dot) => {
+
+            dot.classList.toggle(
+                "active",
+                dot.textContent.trim() === index
+            );
+
+        });
+
+
+        if (index !== "00") {
+
+            backTop.classList.add(
+                "visible"
+            );
+
+        } else {
+
+            backTop.classList.remove(
+                "visible"
+            );
 
         }
-
-
-        frames.forEach(
-            (frame, frameIndex) => {
-
-                frame.classList.toggle(
-                    "is-active",
-                    frameIndex === index
-                );
-
-            }
-        );
-
-
-        currentScene = index;
-
-        updateSceneInformation(
-            index
-        );
 
     }
 
 
     /* =====================================
-       SCENE INFORMATION
+       NAVIGATION
     ====================================== */
 
-    function updateSceneInformation(
-        index
-    ) {
+    function goTo(targetId) {
 
-        const frame =
-            frames[index];
+        const target =
+            document.getElementById(
+                targetId
+            );
 
-        if (!frame) {
+        if (!target) {
             return;
         }
 
 
-        const number =
-            String(
-                Number(
-                    frame.dataset.index
-                )
-            ).padStart(2, "0");
+        closeMenu();
 
 
-        const name =
-            frame.dataset.name ||
-            "";
-
-
-        const title =
-            frame.dataset.title ||
-            name;
-
-
-        const description =
-            frame.dataset.description ||
-            "";
-
-
-        sceneNumber.textContent =
-            number;
-
-        sceneName.textContent =
-            name;
-
-        sceneTitle.textContent =
-            title;
-
-        sceneDescription.textContent =
-            description;
-
-
-        const progress =
-            totalScenes > 1
-                ? (index / (totalScenes - 1)) * 100
-                : 0;
-
-
-        progressBar.style.height =
-            `${progress}%`;
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
     }
 
 
     /* =====================================
-       CALCULATE SCROLL PROGRESS
+       PROGRESS BUTTONS
     ====================================== */
 
-    function updateJourney() {
+    progressDots.forEach((dot) => {
 
-        if (!journey) {
-            return;
-        }
-
-
-        const rect =
-            journey.getBoundingClientRect();
-
-
-        const viewportHeight =
-            window.innerHeight;
-
-
-        const totalDistance =
-            journey.offsetHeight -
-            viewportHeight;
-
-
-        if (totalDistance <= 0) {
-            return;
-        }
-
-
-        const distancePassed =
-            Math.min(
-                Math.max(
-                    -rect.top,
-                    0
-                ),
-                totalDistance
-            );
-
-
-        const progress =
-            distancePassed /
-            totalDistance;
-
-
-        /*
-            Convert scroll progress
-            into scene index.
-        */
-
-        const scenePosition =
-            progress *
-            totalScenes;
-
-
-        let nextScene =
-            Math.floor(
-                scenePosition
-            );
-
-
-        /*
-            Prevent going outside
-            the available frames.
-        */
-
-        nextScene =
-            Math.min(
-                Math.max(
-                    nextScene,
-                    0
-                ),
-                totalScenes - 1
-            );
-
-
-        activateScene(
-            nextScene
-        );
-
-
-        /*
-            Smooth progress indicator.
-        */
-
-        const visualProgress =
-            Math.min(
-                progress * 100,
-                100
-            );
-
-
-        progressBar.style.height =
-            `${visualProgress}%`;
-
-    }
-
-
-    /* =====================================
-       SCROLL HANDLER
-    ====================================== */
-
-    function handleScroll() {
-
-        if (ticking) {
-            return;
-        }
-
-
-        ticking = true;
-
-
-        requestAnimationFrame(
+        dot.addEventListener(
+            "click",
             () => {
 
-                updateJourney();
+                const target =
+                    dot.dataset.target;
 
-                ticking = false;
+                goTo(target);
 
             }
         );
 
-    }
+    });
 
 
-    window.addEventListener(
-        "scroll",
-        handleScroll,
-        {
-            passive: true
+    /* =====================================
+       MENU BUTTONS
+    ====================================== */
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+            menu.classList.add("open");
+
+            document.body.style.overflow =
+                "hidden";
+
         }
     );
 
 
-    window.addEventListener(
-        "resize",
-        updateJourney
+    menuClose.addEventListener(
+        "click",
+        closeMenu
     );
 
 
+    function closeMenu() {
+
+        menu.classList.remove(
+            "open"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
     /* =====================================
-       PREVENT BROKEN IMAGE STATES
+       MENU NAVIGATION
     ====================================== */
 
-    frames.forEach(
-        (frame) => {
+    menu
+        .querySelectorAll("[data-target]")
+        .forEach((button) => {
 
-            const image =
-                frame.querySelector(
-                    "img"
-                );
-
-            if (!image) {
-                return;
-            }
-
-
-            image.addEventListener(
-                "error",
+            button.addEventListener(
+                "click",
                 () => {
 
-                    console.warn(
-                        `Не удалось загрузить изображение: ${image.src}`
-                    );
+                    const target =
+                        button.dataset.target;
+
+                    goTo(target);
 
                 }
             );
 
+        });
+
+
+    /* =====================================
+       ESCAPE CLOSE
+    ====================================== */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Escape") {
+
+                closeMenu();
+
+            }
+
         }
     );
 
 
     /* =====================================
-       MENU BUTTON
+       BACK TO TOP
     ====================================== */
 
-    const menuButton =
-        document.getElementById(
-            "menuButton"
-        );
+    backTop.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
 
 
-    if (menuButton) {
+    /* =====================================
+       KEYBOARD NAVIGATION
+    ===================================== */
 
-        menuButton.addEventListener(
-            "click",
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            const current =
+                scenes.findIndex(
+                    (scene) =>
+                        scene.classList.contains(
+                            "active"
+                        )
+                );
+
+
+            if (
+                event.key === "ArrowDown" ||
+                event.key === "PageDown"
+            ) {
+
+                event.preventDefault();
+
+                const next =
+                    Math.min(
+                        current + 1,
+                        scenes.length - 1
+                    );
+
+                goTo(
+                    scenes[next].id
+                );
+
+            }
+
+
+            if (
+                event.key === "ArrowUp" ||
+                event.key === "PageUp"
+            ) {
+
+                event.preventDefault();
+
+                const previous =
+                    Math.max(
+                        current - 1,
+                        0
+                    );
+
+                goTo(
+                    scenes[previous].id
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       IMAGE PRELOADING
+    ====================================== */
+
+    scenes.forEach((scene) => {
+
+        const image =
+            scene.querySelector("img");
+
+        if (!image) {
+            return;
+        }
+
+        image.addEventListener(
+            "error",
             () => {
 
-                document.body.classList.toggle(
-                    "menu-open"
+                console.error(
+                    "Не удалось загрузить:",
+                    image.src
                 );
 
             }
         );
 
-    }
+    });
 
 
     /* =====================================
-       HERO SCROLL INDICATOR
+       INITIAL STATE
     ====================================== */
 
-    const scrollIndicator =
-        document.querySelector(
-            ".scroll-indicator"
+    if (scenes.length > 0) {
+
+        scenes[0].classList.add(
+            "active"
         );
-
-
-    if (scrollIndicator) {
-
-        scrollIndicator.addEventListener(
-            "click",
-            () => {
-
-                journey.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-        );
-
-        scrollIndicator.style.cursor =
-            "pointer";
 
     }
-
-
-    /* =====================================
-       SMOOTH SCROLL START
-    ====================================== */
-
-    updateJourney();
 
 });
