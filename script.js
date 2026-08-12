@@ -142,63 +142,75 @@ let current = 0;
 let isChanging = false;
 
 
-const image =
-    document.getElementById("mainImage");
+const image = document.getElementById("mainImage");
+const imageWrap = document.getElementById("imageWrap");
 
-const imageWrap =
-    document.getElementById("imageWrap");
+const currentNumber = document.getElementById("currentNumber");
+const controlCurrent = document.getElementById("controlCurrent");
 
-const currentNumber =
-    document.getElementById("currentNumber");
+const category = document.getElementById("category");
+const contentIndex = document.getElementById("contentIndex");
+const title = document.getElementById("title");
+const description = document.getElementById("description");
 
-const controlCurrent =
-    document.getElementById("controlCurrent");
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
 
-const category =
-    document.getElementById("category");
+const menuButton = document.getElementById("menuButton");
+const menuOverlay = document.getElementById("menuOverlay");
+const closeMenu = document.getElementById("closeMenu");
 
-const contentIndex =
-    document.getElementById("contentIndex");
+const bookingButton = document.getElementById("bookingButton");
+const bookingPanel = document.getElementById("bookingPanel");
+const closeBooking = document.getElementById("closeBooking");
 
-const title =
-    document.getElementById("title");
+const homeButton = document.getElementById("homeBtn");
 
-const description =
-    document.getElementById("description");
 
-const prevButton =
-    document.getElementById("prevButton");
+/* =================================
+   ПРЕДЗАГРУЗКА КАДРОВ
+================================= */
 
-const nextButton =
-    document.getElementById("nextButton");
+scenes.forEach(function(scene) {
 
-const menuButton =
-    document.getElementById("menuButton");
+    const preload = new Image();
 
-const menuOverlay =
-    document.getElementById("menuOverlay");
+    preload.src = scene.image;
 
-const closeMenu =
-    document.getElementById("closeMenu");
+});
 
-const bookingButton =
-    document.getElementById("bookingButton");
 
-const bookingPanel =
-    document.getElementById("bookingPanel");
+/* =================================
+   ОБНОВЛЕНИЕ ТЕКСТА
+================================= */
 
-const closeBooking =
-    document.getElementById("closeBooking");
+function updateText(scene, number) {
 
-const homeButton =
-    document.getElementById("homeBtn");
+    currentNumber.textContent = number;
+    controlCurrent.textContent = number;
+
+    category.textContent = scene.category;
+
+    contentIndex.textContent = scene.index;
+
+    title.textContent = scene.title;
+
+    description.textContent = scene.description;
+
+    updateNavigation(scene.section);
+
+}
 
 
 /* =================================
    ПОКАЗ КАДРА
 ================================= */
 
-function showScene(index) {
+function showScene(index, animate = true) {
+
+    if (isChanging && animate) {
+        return;
+    }
 
     if (index < 0) {
         index = scenes.length - 1;
@@ -208,47 +220,80 @@ function showScene(index) {
         index = 0;
     }
 
-    current = index;
-
-    const scene = scenes[current];
+    const scene = scenes[index];
 
     const number =
-        String(current + 1).padStart(2, "0");
+        String(index + 1).padStart(2, "0");
+
+
+    if (!animate) {
+
+        current = index;
+
+        image.src = scene.image;
+
+        updateText(scene, number);
+
+        return;
+    }
+
+
+    isChanging = true;
+
+    current = index;
 
 
     /*
-       Сначала обновляем данные.
-       Никаких setTimeout.
-       Поэтому один клик = один кадр.
+       Сначала мягко затемняем
+       текущую фотографию.
     */
 
-    image.src = scene.image;
-    image.alt = scene.category;
-
-    currentNumber.textContent = number;
-    controlCurrent.textContent = number;
-
-    category.textContent =
-        scene.category;
-
-    contentIndex.textContent =
-        scene.index;
-
-    title.textContent =
-        scene.title;
-
-    description.textContent =
-        scene.description;
+    image.classList.add("fade-out");
 
 
-    updateNavigation(
-        scene.section
-    );
+    setTimeout(function() {
+
+        /*
+           В этот момент картинка уже
+           практически исчезла.
+        */
+
+        image.src = scene.image;
+
+        updateText(scene, number);
+
+
+        /*
+           Возвращаем её обратно
+           плавным появлением.
+        */
+
+        requestAnimationFrame(function() {
+
+            requestAnimationFrame(function() {
+
+                image.classList.remove(
+                    "fade-out"
+                );
+
+            });
+
+        });
+
+
+        setTimeout(function() {
+
+            isChanging = false;
+
+        }, 480);
+
+    }, 220);
+
 }
 
 
 /* =================================
-   ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ
+   НАВИГАЦИЯ
 ================================= */
 
 function updateNavigation(section) {
@@ -263,11 +308,12 @@ function updateNavigation(section) {
             );
 
         });
+
 }
 
 
 /* =================================
-   НАЧАЛО РАЗДЕЛОВ
+   РАЗДЕЛЫ
 ================================= */
 
 const sectionStarts = {
@@ -295,11 +341,12 @@ function openSection(section) {
     showScene(
         sectionStarts[section]
     );
+
 }
 
 
 /* =================================
-   НИЖНЯЯ НАВИГАЦИЯ
+   НИЖНИЙ BAR
 ================================= */
 
 document
@@ -328,9 +375,7 @@ menuButton.addEventListener(
     "click",
     function() {
 
-        menuOverlay.classList.add(
-            "open"
-        );
+        menuOverlay.classList.add("open");
 
     }
 );
@@ -340,9 +385,7 @@ closeMenu.addEventListener(
     "click",
     function() {
 
-        menuOverlay.classList.remove(
-            "open"
-        );
+        menuOverlay.classList.remove("open");
 
     }
 );
@@ -398,15 +441,7 @@ prevButton.addEventListener(
             return;
         }
 
-        isChanging = true;
-
         showScene(current - 1);
-
-        setTimeout(function() {
-
-            isChanging = false;
-
-        }, 120);
 
     }
 );
@@ -424,15 +459,7 @@ nextButton.addEventListener(
             return;
         }
 
-        isChanging = true;
-
         showScene(current + 1);
-
-        setTimeout(function() {
-
-            isChanging = false;
-
-        }, 120);
 
     }
 );
@@ -446,9 +473,7 @@ bookingButton.addEventListener(
     "click",
     function() {
 
-        bookingPanel.classList.add(
-            "open"
-        );
+        bookingPanel.classList.add("open");
 
     }
 );
@@ -458,16 +483,14 @@ closeBooking.addEventListener(
     "click",
     function() {
 
-        bookingPanel.classList.remove(
-            "open"
-        );
+        bookingPanel.classList.remove("open");
 
     }
 );
 
 
 /* =================================
-   КНОПКА ЗАПРОСА
+   ЗАПРОС
 ================================= */
 
 document
@@ -513,6 +536,10 @@ document.addEventListener(
     "touchend",
     function(event) {
 
+        if (isChanging) {
+            return;
+        }
+
         const touchEndX =
             event.changedTouches[0].screenX;
 
@@ -525,11 +552,6 @@ document.addEventListener(
         const distanceY =
             touchEndY - touchStartY;
 
-
-        /*
-           Если движение больше вертикальное,
-           не переключаем фотографии.
-        */
 
         if (
             Math.abs(distanceX) < 50 ||
@@ -568,9 +590,7 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "ArrowRight"
-        ) {
+        if (event.key === "ArrowRight") {
 
             showScene(
                 current + 1
@@ -578,9 +598,7 @@ document.addEventListener(
 
         }
 
-        if (
-            event.key === "ArrowLeft"
-        ) {
+        if (event.key === "ArrowLeft") {
 
             showScene(
                 current - 1
@@ -588,9 +606,7 @@ document.addEventListener(
 
         }
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
             menuOverlay.classList.remove(
                 "open"
@@ -610,4 +626,4 @@ document.addEventListener(
    ЗАПУСК
 ================================= */
 
-showScene(0);
+showScene(0, false);
