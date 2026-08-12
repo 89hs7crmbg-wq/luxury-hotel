@@ -139,6 +139,7 @@ const scenes = [
 
 
 let current = 0;
+let isChanging = false;
 
 
 const image =
@@ -193,9 +194,9 @@ const homeButton =
     document.getElementById("homeBtn");
 
 
-/* ================================
+/* =================================
    ПОКАЗ КАДРА
-================================ */
+================================= */
 
 function showScene(index) {
 
@@ -211,62 +212,50 @@ function showScene(index) {
 
     const scene = scenes[current];
 
-    imageWrap.classList.add("change");
+    const number =
+        String(current + 1).padStart(2, "0");
 
 
-    setTimeout(function () {
+    /*
+       Сначала обновляем данные.
+       Никаких setTimeout.
+       Поэтому один клик = один кадр.
+    */
 
-        image.src = scene.image;
+    image.src = scene.image;
+    image.alt = scene.category;
 
-        image.alt = scene.category;
+    currentNumber.textContent = number;
+    controlCurrent.textContent = number;
 
-        const number =
-            String(current + 1).padStart(2, "0");
+    category.textContent =
+        scene.category;
 
-        currentNumber.textContent =
-            number;
+    contentIndex.textContent =
+        scene.index;
 
-        controlCurrent.textContent =
-            number;
+    title.textContent =
+        scene.title;
 
-        category.textContent =
-            scene.category;
+    description.textContent =
+        scene.description;
 
-        contentIndex.textContent =
-            scene.index;
 
-        /*
-           Заголовок теперь обычный текст.
-           Никаких принудительных <br>,
-           поэтому браузер переносит только
-           целые слова.
-        */
-
-        title.textContent =
-            scene.title;
-
-        description.textContent =
-            scene.description;
-
-        updateNavigation(
-            scene.section
-        );
-
-        imageWrap.classList.remove("change");
-
-    }, 250);
+    updateNavigation(
+        scene.section
+    );
 }
 
 
-/* ================================
-   НАВИГАЦИЯ
-================================ */
+/* =================================
+   ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ
+================================= */
 
 function updateNavigation(section) {
 
     document
         .querySelectorAll(".nav-item")
-        .forEach(function (item) {
+        .forEach(function(item) {
 
             item.classList.toggle(
                 "active",
@@ -277,20 +266,16 @@ function updateNavigation(section) {
 }
 
 
-/* ================================
+/* =================================
    НАЧАЛО РАЗДЕЛОВ
-================================ */
+================================= */
 
 const sectionStarts = {
 
     hotel: 0,
-
     arrival: 1,
-
     space: 3,
-
     rooms: 8,
-
     details: 11
 
 };
@@ -313,17 +298,17 @@ function openSection(section) {
 }
 
 
-/* ================================
-   НИЖНИЙ BAR
-================================ */
+/* =================================
+   НИЖНЯЯ НАВИГАЦИЯ
+================================= */
 
 document
     .querySelectorAll(".nav-item")
-    .forEach(function (item) {
+    .forEach(function(item) {
 
         item.addEventListener(
             "click",
-            function () {
+            function() {
 
                 openSection(
                     item.dataset.section
@@ -335,13 +320,13 @@ document
     });
 
 
-/* ================================
+/* =================================
    МЕНЮ
-================================ */
+================================= */
 
 menuButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         menuOverlay.classList.add(
             "open"
@@ -353,7 +338,7 @@ menuButton.addEventListener(
 
 closeMenu.addEventListener(
     "click",
-    function () {
+    function() {
 
         menuOverlay.classList.remove(
             "open"
@@ -367,11 +352,11 @@ document
     .querySelectorAll(
         ".menu-grid button[data-section]"
     )
-    .forEach(function (item) {
+    .forEach(function(item) {
 
         item.addEventListener(
             "click",
-            function () {
+            function() {
 
                 openSection(
                     item.dataset.section
@@ -387,13 +372,13 @@ document
     });
 
 
-/* ================================
+/* =================================
    ЛОГОТИП
-================================ */
+================================= */
 
 homeButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         openSection("hotel");
 
@@ -401,37 +386,65 @@ homeButton.addEventListener(
 );
 
 
-/* ================================
-   СТРЕЛКИ
-================================ */
+/* =================================
+   СТРЕЛКА НАЗАД
+================================= */
 
 prevButton.addEventListener(
     "click",
-    function () {
+    function() {
+
+        if (isChanging) {
+            return;
+        }
+
+        isChanging = true;
 
         showScene(current - 1);
 
+        setTimeout(function() {
+
+            isChanging = false;
+
+        }, 120);
+
     }
 );
 
+
+/* =================================
+   СТРЕЛКА ВПЕРЁД
+================================= */
 
 nextButton.addEventListener(
     "click",
-    function () {
+    function() {
+
+        if (isChanging) {
+            return;
+        }
+
+        isChanging = true;
 
         showScene(current + 1);
+
+        setTimeout(function() {
+
+            isChanging = false;
+
+        }, 120);
 
     }
 );
 
 
-/* ================================
+/* =================================
    БРОНИРОВАНИЕ
-================================ */
+================================= */
 
 bookingButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         bookingPanel.classList.add(
             "open"
@@ -443,7 +456,7 @@ bookingButton.addEventListener(
 
 closeBooking.addEventListener(
     "click",
-    function () {
+    function() {
 
         bookingPanel.classList.remove(
             "open"
@@ -453,15 +466,15 @@ closeBooking.addEventListener(
 );
 
 
-/* ================================
-   ЗАПРОС
-================================ */
+/* =================================
+   КНОПКА ЗАПРОСА
+================================= */
 
 document
     .getElementById("requestButton")
     .addEventListener(
         "click",
-        function () {
+        function() {
 
             alert(
                 "Форма отправки заявки будет подключена на следующем этапе."
@@ -471,19 +484,23 @@ document
     );
 
 
-/* ================================
+/* =================================
    СВАЙП
-================================ */
+================================= */
 
 let touchStartX = 0;
+let touchStartY = 0;
 
 
 document.addEventListener(
     "touchstart",
-    function (event) {
+    function(event) {
 
         touchStartX =
             event.changedTouches[0].screenX;
+
+        touchStartY =
+            event.changedTouches[0].screenY;
 
     },
     {
@@ -494,23 +511,35 @@ document.addEventListener(
 
 document.addEventListener(
     "touchend",
-    function (event) {
+    function(event) {
 
         const touchEndX =
             event.changedTouches[0].screenX;
 
-        const distance =
+        const touchEndY =
+            event.changedTouches[0].screenY;
+
+        const distanceX =
             touchEndX - touchStartX;
 
+        const distanceY =
+            touchEndY - touchStartY;
+
+
+        /*
+           Если движение больше вертикальное,
+           не переключаем фотографии.
+        */
 
         if (
-            Math.abs(distance) < 50
+            Math.abs(distanceX) < 50 ||
+            Math.abs(distanceX) < Math.abs(distanceY)
         ) {
             return;
         }
 
 
-        if (distance < 0) {
+        if (distanceX < 0) {
 
             showScene(
                 current + 1
@@ -531,13 +560,13 @@ document.addEventListener(
 );
 
 
-/* ================================
+/* =================================
    КЛАВИАТУРА
-================================ */
+================================= */
 
 document.addEventListener(
     "keydown",
-    function (event) {
+    function(event) {
 
         if (
             event.key === "ArrowRight"
@@ -577,8 +606,8 @@ document.addEventListener(
 );
 
 
-/* ================================
+/* =================================
    ЗАПУСК
-================================ */
+================================= */
 
 showScene(0);
