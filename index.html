@@ -2,369 +2,822 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
+
     <meta
         name="description"
         content="Иммерсивное путешествие по отелю."
     >
-    <meta
-        name="theme-color"
-        content="#080807"
-    >
-    <title>Отель</title>
+
+    <meta name="theme-color" content="#080808">
+
+    <title>THE HOTEL</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="is-loading">
-    <!-- =====================================
-         PRELOADER
-    ====================================== -->
-    <div class="preloader" id="preloader">
-        <div class="preloader__line"></div>
-        <span class="preloader__text">
-            ЗАГРУЗКА
-        </span>
-    </div>
-    <!-- =====================================
+
+<body>
+
+    <!-- =========================
          HEADER
-    ====================================== -->
+    ========================== -->
+
     <header class="header">
-        <a
-            href="#hero"
-            class="logo"
-            aria-label="На главную"
-        >
-            ОТЕЛЬ
+
+        <a href="#scene-00" class="brand">
+            THE HOTEL
         </a>
-        <div class="header__right">
-            <span class="header__location">
-                РОССИЯ
-            </span>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Открыть меню"
+            type="button"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <div class="menu" id="menu">
+
+        <div class="menu__top">
+            <span>НАВИГАЦИЯ</span>
+
             <button
-                class="menu-button"
-                id="menuButton"
+                class="menu__close"
+                id="menuClose"
                 type="button"
-                aria-label="Открыть меню"
+                aria-label="Закрыть меню"
             >
-                <span></span>
-                <span></span>
+                ×
             </button>
         </div>
-    </header>
-    <main>
-        <!-- =====================================
-             КАДР 00
-             ОБЩИЙ ВИД ОТЕЛЯ
-        ====================================== -->
-        <section
-            class="hero"
-            id="hero"
+
+        <div class="menu__list">
+
+            <button data-target="scene-00">
+                <span>00</span>
+                <strong>ОТЕЛЬ</strong>
+            </button>
+
+            <button data-target="scene-01">
+                <span>01</span>
+                <strong>ПРИБЫТИЕ</strong>
+            </button>
+
+            <button data-target="scene-02">
+                <span>02</span>
+                <strong>ЗА ПОРОГОМ</strong>
+            </button>
+
+            <button data-target="scene-03">
+                <span>03</span>
+                <strong>ЛОББИ</strong>
+            </button>
+
+            <button data-target="scene-04">
+                <span>04</span>
+                <strong>ПРОСТРАНСТВО</strong>
+            </button>
+
+            <button data-target="scene-05">
+                <span>05</span>
+                <strong>ВЫШЕ</strong>
+            </button>
+
+            <button data-target="scene-06">
+                <span>06</span>
+                <strong>ВАШ ЭТАЖ</strong>
+            </button>
+
+            <button data-target="scene-07">
+                <span>07</span>
+                <strong>ВНУТРИ</strong>
+            </button>
+
+            <button data-target="scene-08">
+                <span>08</span>
+                <strong>КОРИДОР</strong>
+            </button>
+
+            <button data-target="scene-09">
+                <span>09</span>
+                <strong>ДВЕРЬ</strong>
+            </button>
+
+            <button data-target="scene-10">
+                <span>10</span>
+                <strong>НОМЕР</strong>
+            </button>
+
+            <button data-target="scene-11">
+                <span>11</span>
+                <strong>СПАЛЬНЯ</strong>
+            </button>
+
+            <button data-target="scene-12">
+                <span>12</span>
+                <strong>ГОСТИНАЯ</strong>
+            </button>
+
+            <button data-target="scene-13">
+                <span>13</span>
+                <strong>ВИД</strong>
+            </button>
+
+            <button data-target="scene-14">
+                <span>14</span>
+                <strong>ВАННАЯ</strong>
+            </button>
+
+        </div>
+
+        <button
+            class="menu__booking"
+            data-target="booking"
         >
-            <div class="hero__image">
+            ЗАБРОНИРОВАТЬ НОМЕР
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         PROGRESS
+    ========================== -->
+
+    <nav class="progress" aria-label="Навигация по отелю">
+
+        <button
+            class="progress__dot active"
+            data-target="scene-00"
+            aria-label="Кадр 00"
+        >
+            00
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-01"
+            aria-label="Кадр 01"
+        >
+            01
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-02"
+            aria-label="Кадр 02"
+        >
+            02
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-03"
+            aria-label="Кадр 03"
+        >
+            03
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-04"
+            aria-label="Кадр 04"
+        >
+            04
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-05"
+            aria-label="Кадр 05"
+        >
+            05
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-06"
+            aria-label="Кадр 06"
+        >
+            06
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-07"
+            aria-label="Кадр 07"
+        >
+            07
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-08"
+            aria-label="Кадр 08"
+        >
+            08
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-09"
+            aria-label="Кадр 09"
+        >
+            09
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-10"
+            aria-label="Кадр 10"
+        >
+            10
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-11"
+            aria-label="Кадр 11"
+        >
+            11
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-12"
+            aria-label="Кадр 12"
+        >
+            12
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-13"
+            aria-label="Кадр 13"
+        >
+            13
+        </button>
+
+        <button
+            class="progress__dot"
+            data-target="scene-14"
+            aria-label="Кадр 14"
+        >
+            14
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         SCENES
+    ========================== -->
+
+    <main>
+
+
+        <!-- 00 -->
+
+        <section
+            class="scene scene--hero"
+            id="scene-00"
+            data-index="00"
+        >
+
+            <div class="scene__image">
+
                 <img
                     src="IMG_8684.png"
                     alt="Отель"
                     fetchpriority="high"
                 >
+
             </div>
-            <div class="hero__overlay"></div>
-            <div class="hero__content">
-                <p class="eyebrow">
-                    МЕСТО МЕЖДУ МИРОМ И ТИШИНОЙ
-                </p>
-                <h1>
-                    ОТЕЛЬ
-                </h1>
-                <p class="hero__intro">
-                    Путешествие сквозь архитектуру,
-                    пространство и атмосферу.
-                </p>
-            </div>
-            <div class="scroll-indicator">
-                <span>
-                    ЛИСТАЙТЕ, ЧТОБЫ ВОЙТИ
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--hero">
+
+                <span class="scene__eyebrow">
+                    РОСКОШЬ, КОТОРУЮ НЕ НУЖНО ОБЪЯСНЯТЬ
                 </span>
-                <span class="scroll-indicator__line"></span>
-            </div>
-        </section>
-        <!-- =====================================
-             ОСНОВНОЕ ПУТЕШЕСТВИЕ
-        ====================================== -->
-        <section
-            class="journey"
-            id="journey"
-        >
-            <div
-                class="journey__stage"
-                id="journeyStage"
-            >
-                <!-- КАДР 01 -->
-                <div
-                    class="journey__frame is-active"
-                    data-index="1"
-                    data-name="ПРИБЫТИЕ"
-                    data-title="ПРИБЫТИЕ"
-                    data-description="Путешествие начинается."
-                >
-                    <img
-                        src="IMG_8685.png"
-                        alt="Прибытие в отель"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 02 -->
-                <div
-                    class="journey__frame"
-                    data-index="2"
-                    data-name="ВХОД"
-                    data-title="ВХОД"
-                    data-description="Момент, когда внешний мир остаётся позади."
-                >
-                    <img
-                        src="IMG_8687.png"
-                        alt="Вход в отель"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 03 -->
-                <div
-                    class="journey__frame"
-                    data-index="3"
-                    data-name="ЛОББИ"
-                    data-title="ЛОББИ"
-                    data-description="Первое пространство отеля."
-                >
-                    <img
-                        src="IMG_8688.png"
-                        alt="Лобби отеля"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 04 -->
-                <div
-                    class="journey__frame"
-                    data-index="4"
-                    data-name="ГЛУБЖЕ"
-                    data-title="ГЛУБЖЕ"
-                    data-description="Путешествие продолжается внутри."
-                >
-                    <img
-                        src="IMG_8691.png"
-                        alt="Внутреннее пространство отеля"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 05 -->
-                <div
-                    class="journey__frame"
-                    data-index="5"
-                    data-name="ЛИФТ"
-                    data-title="ЛИФТ"
-                    data-description="Публичные пространства остаются позади."
-                >
-                    <img
-                        src="IMG_8692.png"
-                        alt="Лифт"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 06 -->
-                <div
-                    class="journey__frame"
-                    data-index="6"
-                    data-name="ОТКРЫВАЕТСЯ"
-                    data-title="ОТКРЫВАЕТСЯ"
-                    data-description="Новый уровень раскрывается перед вами."
-                >
-                    <img
-                        src="IMG_8693.png"
-                        alt="Открывающийся лифт"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 07 -->
-                <div
-                    class="journey__frame"
-                    data-index="7"
-                    data-name="ВНУТРИ"
-                    data-title="ВНУТРИ"
-                    data-description="Начинается приватная часть путешествия."
-                >
-                    <img
-                        src="IMG_8694.png"
-                        alt="Внутри отеля"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 08 -->
-                <div
-                    class="journey__frame"
-                    data-index="8"
-                    data-name="КОРИДОР"
-                    data-title="КОРИДОР"
-                    data-description="Тихий путь к вашему номеру."
-                >
-                    <img
-                        src="IMG_8695.png"
-                        alt="Коридор отеля"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 09 -->
-                <div
-                    class="journey__frame"
-                    data-index="9"
-                    data-name="ДВЕРЬ"
-                    data-title="ДВЕРЬ"
-                    data-description="Последний шаг перед входом."
-                >
-                    <img
-                        src="IMG_8697.png"
-                        alt="Дверь номера"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 10 -->
-                <div
-                    class="journey__frame"
-                    data-index="10"
-                    data-name="НОМЕР"
-                    data-title="НОМЕР"
-                    data-description="Ваше личное пространство."
-                >
-                    <img
-                        src="IMG_8698.png"
-                        alt="Номер отеля"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 11 -->
-                <div
-                    class="journey__frame"
-                    data-index="11"
-                    data-name="СПАЛЬНЯ"
-                    data-title="СПАЛЬНЯ"
-                    data-description="Пространство для полного покоя."
-                >
-                    <img
-                        src="IMG_8699.png"
-                        alt="Спальная зона"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 12 -->
-                <div
-                    class="journey__frame"
-                    data-index="12"
-                    data-name="ГОСТИНАЯ"
-                    data-title="ГОСТИНАЯ"
-                    data-description="Место, где можно замедлиться."
-                >
-                    <img
-                        src="IMG_8700.png"
-                        alt="Гостиная"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 13 -->
-                <div
-                    class="journey__frame"
-                    data-index="13"
-                    data-name="ВИД"
-                    data-title="ВИД"
-                    data-description="Город становится частью пространства."
-                >
-                    <img
-                        src="IMG_8702.png"
-                        alt="Вид из номера"
-                        loading="lazy"
-                    >
-                </div>
-                <!-- КАДР 14 -->
-                <div
-                    class="journey__frame"
-                    data-index="14"
-                    data-name="ВАННАЯ"
-                    data-title="ВАННАЯ"
-                    data-description="Последнее приватное пространство."
-                >
-                    <img
-                        src="IMG_8703.png"
-                        alt="Ванная комната"
-                        loading="lazy"
-                    >
-                </div>
-            </div>
-            <!-- =====================================
-                 ИНФОРМАЦИЯ О КАДРЕ
-            ====================================== -->
-            <div class="scene-info">
-                <div class="scene-info__number">
-                    <span id="sceneNumber">
-                        01
-                    </span>
-                    <span>
-                        / 14
-                    </span>
-                </div>
-                <div
-                    class="scene-info__name"
-                    id="sceneName"
-                >
-                    ПРИБЫТИЕ
-                </div>
-            </div>
-            <!-- =====================================
-                 ОПИСАНИЕ
-            ====================================== -->
-            <div class="scene-copy">
-                <p class="scene-copy__eyebrow">
-                    ПУТЕШЕСТВИЕ
-                </p>
-                <h2 id="sceneTitle">
-                    ПРИБЫТИЕ
-                </h2>
-                <p id="sceneDescription">
-                    Путешествие начинается.
-                </p>
-            </div>
-            <!-- =====================================
-                 ПРОГРЕСС
-            ====================================== -->
-            <div class="journey-progress">
-                <div
-                    class="journey-progress__bar"
-                    id="progressBar"
-                ></div>
-            </div>
-        </section>
-        <!-- =====================================
-             ФИНАЛ
-        ====================================== -->
-        <section class="final">
-            <div class="final__content">
-                <p class="eyebrow">
-                    ВПЕЧАТЛЕНИЕ
-                </p>
-                <h2>
-                    ОСТАНЬТЕСЬ<br>
-                    ЕЩЁ
-                </h2>
+
+                <h1>
+                    THE<br>HOTEL
+                </h1>
+
                 <p>
-                    Некоторые места посещают.
-                    Другие проживают.
+                    Пространство для тех,
+                    кто ценит время.
                 </p>
-                <a
-                    href="#"
-                    class="final__button"
-                >
-                    ЗАБРОНИРОВАТЬ НОМЕР
-                </a>
+
             </div>
+
+            <div class="scroll-hint">
+
+                <span>ЛИСТАЙТЕ, ЧТОБЫ ВОЙТИ</span>
+
+                <i></i>
+
+            </div>
+
         </section>
+
+
+        <!-- 01 -->
+
+        <section
+            class="scene"
+            id="scene-01"
+            data-index="01"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8685.png" alt="Прибытие">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">01 / 14</span>
+
+                <span class="scene__eyebrow">ПЕРВОЕ ВПЕЧАТЛЕНИЕ</span>
+
+                <h2>ПРИБЫТИЕ</h2>
+
+                <p>
+                    Всё начинается с первого шага.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 02 -->
+
+        <section
+            class="scene"
+            id="scene-02"
+            data-index="02"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8687.png" alt="Вход">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">02 / 14</span>
+
+                <span class="scene__eyebrow">ЗА ПОРОГОМ</span>
+
+                <h2>ВХОД</h2>
+
+                <p>
+                    Город остаётся позади.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 03 -->
+
+        <section
+            class="scene"
+            id="scene-03"
+            data-index="03"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8688.png" alt="Лобби">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">03 / 14</span>
+
+                <span class="scene__eyebrow">ПЕРВОЕ ПРОСТРАНСТВО</span>
+
+                <h2>ЛОББИ</h2>
+
+                <p>
+                    Архитектура встречает гостя.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 04 -->
+
+        <section
+            class="scene"
+            id="scene-04"
+            data-index="04"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8691.png" alt="Пространство">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">04 / 14</span>
+
+                <span class="scene__eyebrow">ДЕТАЛИ</span>
+
+                <h2>ПРОСТРАНСТВО</h2>
+
+                <p>
+                    Здесь всё имеет своё место.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 05 -->
+
+        <section
+            class="scene"
+            id="scene-05"
+            data-index="05"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8692.png" alt="Лифт">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">05 / 14</span>
+
+                <span class="scene__eyebrow">ДВИЖЕНИЕ ВВЕРХ</span>
+
+                <h2>ВЫШЕ</h2>
+
+                <p>
+                    Ваше путешествие продолжается.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 06 -->
+
+        <section
+            class="scene"
+            id="scene-06"
+            data-index="06"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8693.png" alt="Ваш этаж">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">06 / 14</span>
+
+                <span class="scene__eyebrow">ПРИБЫТИЕ НА ЭТАЖ</span>
+
+                <h2>ВАШ ЭТАЖ</h2>
+
+                <p>
+                    Тишина становится ближе.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 07 -->
+
+        <section
+            class="scene"
+            id="scene-07"
+            data-index="07"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8694.png" alt="Интерьер">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">07 / 14</span>
+
+                <span class="scene__eyebrow">ПРИВАТНОСТЬ</span>
+
+                <h2>ВНУТРИ</h2>
+
+                <p>
+                    Оставьте внешний мир за дверью.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 08 -->
+
+        <section
+            class="scene"
+            id="scene-08"
+            data-index="08"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8695.png" alt="Коридор">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">08 / 14</span>
+
+                <span class="scene__eyebrow">ЕЩЁ НЕСКОЛЬКО ШАГОВ</span>
+
+                <h2>КОРИДОР</h2>
+
+                <p>
+                    Почти дома.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 09 -->
+
+        <section
+            class="scene"
+            id="scene-09"
+            data-index="09"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8697.png" alt="Дверь номера">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">09 / 14</span>
+
+                <span class="scene__eyebrow">ПОСЛЕДНИЙ ШАГ</span>
+
+                <h2>ВАШ НОМЕР</h2>
+
+                <p>
+                    Всё начинается за этой дверью.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 10 -->
+
+        <section
+            class="scene"
+            id="scene-10"
+            data-index="10"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8698.png" alt="Номер">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">10 / 14</span>
+
+                <span class="scene__eyebrow">PRIVATE SPACE</span>
+
+                <h2>НОМЕР</h2>
+
+                <p>
+                    Ваше личное пространство.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 11 -->
+
+        <section
+            class="scene"
+            id="scene-11"
+            data-index="11"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8699.png" alt="Спальня">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">11 / 14</span>
+
+                <span class="scene__eyebrow">ПОКОЙ</span>
+
+                <h2>СПАЛЬНЯ</h2>
+
+                <p>
+                    Ночь принадлежит вам.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 12 -->
+
+        <section
+            class="scene"
+            id="scene-12"
+            data-index="12"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8700.png" alt="Гостиная">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">12 / 14</span>
+
+                <span class="scene__eyebrow">ЗАМЕДЛИТЕСЬ</span>
+
+                <h2>ГОСТИНАЯ</h2>
+
+                <p>
+                    Никуда не нужно спешить.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 13 -->
+
+        <section
+            class="scene"
+            id="scene-13"
+            data-index="13"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8702.png" alt="Вид">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content">
+
+                <span class="scene__number">13 / 14</span>
+
+                <span class="scene__eyebrow">ЗА ОКНОМ</span>
+
+                <h2>ВИД</h2>
+
+                <p>
+                    Город продолжает жить.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 14 -->
+
+        <section
+            class="scene"
+            id="scene-14"
+            data-index="14"
+        >
+
+            <div class="scene__image">
+                <img src="IMG_8703.png" alt="Ванная">
+            </div>
+
+            <div class="scene__shade"></div>
+
+            <div class="scene__content scene__content--right">
+
+                <span class="scene__number">14 / 14</span>
+
+                <span class="scene__eyebrow">ВРЕМЯ ДЛЯ СЕБЯ</span>
+
+                <h2>ВАННАЯ</h2>
+
+                <p>
+                    Остановитесь.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BOOKING
+        ========================== -->
+
+        <section
+            class="booking"
+            id="booking"
+        >
+
+            <span class="scene__eyebrow">
+                ВАШЕ ПУТЕШЕСТВИЕ
+            </span>
+
+            <h2>
+                ОСТАНЬТЕСЬ<br>
+                ЕЩЁ.
+            </h2>
+
+            <p>
+                Некоторые места посещают.
+                Другие проживают.
+            </p>
+
+            <a href="#" class="booking__button">
+                ЗАБРОНИРОВАТЬ НОМЕР
+            </a>
+
+        </section>
+
     </main>
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+
+    <button
+        class="back-top"
+        id="backTop"
+        type="button"
+        aria-label="Вернуться наверх"
+    >
+        ↑
+    </button>
+
+
     <script src="script.js"></script>
+
 </body>
 </html>
