@@ -5,7 +5,7 @@ const scenes = [
         section: "hotel",
         category: "ОТЕЛЬ",
         index: "00",
-        title: "THE<br>HOTEL",
+        title: "THE HOTEL",
         description: "Пространство,\nсозданное для\nтишины."
     },
 
@@ -14,7 +14,7 @@ const scenes = [
         section: "arrival",
         category: "ПРИБЫТИЕ",
         index: "01",
-        title: "ПЕРВОЕ<br>ВПЕЧАТЛЕНИЕ",
+        title: "ПЕРВОЕ ВПЕЧАТЛЕНИЕ",
         description: "Первые секунды\nначинаются ещё\nдо номера."
     },
 
@@ -23,7 +23,7 @@ const scenes = [
         section: "arrival",
         category: "ПРИБЫТИЕ",
         index: "02",
-        title: "ВХОД<br>В ТИШИНУ",
+        title: "ВХОД В ТИШИНУ",
         description: "Город остаётся\nпо ту сторону двери."
     },
 
@@ -32,7 +32,7 @@ const scenes = [
         section: "space",
         category: "ПРОСТРАНСТВО",
         index: "03",
-        title: "САМО<br>ПРОСТРАНСТВО",
+        title: "САМО ПРОСТРАНСТВО",
         description: "Архитектура,\nкоторая не требует\nобъяснений."
     },
 
@@ -41,7 +41,7 @@ const scenes = [
         section: "space",
         category: "ПРОСТРАНСТВО",
         index: "04",
-        title: "ВАЖНА<br>КАЖДАЯ ДЕТАЛЬ",
+        title: "ВАЖНА КАЖДАЯ ДЕТАЛЬ",
         description: "Материалы.\nСвет.\nПропорции."
     },
 
@@ -50,7 +50,7 @@ const scenes = [
         section: "space",
         category: "ПРОСТРАНСТВО",
         index: "05",
-        title: "ПУТЬ<br>ВВЕРХ",
+        title: "ПУТЬ ВВЕРХ",
         description: "Каждый переход\nстановится частью опыта."
     },
 
@@ -59,7 +59,7 @@ const scenes = [
         section: "space",
         category: "ПРОСТРАНСТВО",
         index: "06",
-        title: "МЕЖДУ<br>ПРОСТРАНСТВАМИ",
+        title: "МЕЖДУ ПРОСТРАНСТВАМИ",
         description: "Тишина\nстановится\nощутимой."
     },
 
@@ -68,7 +68,7 @@ const scenes = [
         section: "space",
         category: "ПРОСТРАНСТВО",
         index: "07",
-        title: "ЛИЧНОЕ<br>ПРОСТРАНСТВО",
+        title: "ЛИЧНОЕ ПРОСТРАНСТВО",
         description: "Пространство,\nкоторое остаётся\nтолько вашим."
     },
 
@@ -77,7 +77,7 @@ const scenes = [
         section: "rooms",
         category: "НОМЕРА",
         index: "08",
-        title: "ВАШ<br>НОМЕР",
+        title: "ВАШ НОМЕР",
         description: "Здесь начинается\nваше время."
     },
 
@@ -86,7 +86,7 @@ const scenes = [
         section: "rooms",
         category: "НОМЕРА",
         index: "09",
-        title: "ЛИЧНОЕ<br>ПРОСТРАНСТВО",
+        title: "ЛИЧНОЕ ПРОСТРАНСТВО",
         description: "Ничего лишнего.\nТолько необходимое."
     },
 
@@ -95,7 +95,7 @@ const scenes = [
         section: "rooms",
         category: "НОМЕРА",
         index: "10",
-        title: "ВРЕМЯ<br>ОСТАНОВИТЬСЯ",
+        title: "ВРЕМЯ ОСТАНОВИТЬСЯ",
         description: "Место,\nгде не нужно\nторопиться."
     },
 
@@ -104,7 +104,7 @@ const scenes = [
         section: "details",
         category: "ДЕТАЛИ",
         index: "11",
-        title: "ОСТАНОВИТЕСЬ<br>ЗДЕСЬ",
+        title: "ОСТАНОВИТЕСЬ ЗДЕСЬ",
         description: "Вечер.\nТишина.\nВаше пространство."
     },
 
@@ -113,7 +113,7 @@ const scenes = [
         section: "details",
         category: "ДЕТАЛИ",
         index: "12",
-        title: "ВАШ<br>МОМЕНТ",
+        title: "ВАШ МОМЕНТ",
         description: "Иногда роскошь\nвыглядит именно так."
     },
 
@@ -122,7 +122,7 @@ const scenes = [
         section: "details",
         category: "ДЕТАЛИ",
         index: "13",
-        title: "ГОРОД<br>СВЕРХУ",
+        title: "ГОРОД СВЕРХУ",
         description: "Город остаётся\nгде-то далеко внизу."
     },
 
@@ -131,23 +131,15 @@ const scenes = [
         section: "details",
         category: "ДЕТАЛИ",
         index: "14",
-        title: "ВАШЕ<br>ВРЕМЯ",
+        title: "ВАШЕ ВРЕМЯ",
         description: "Время,\nкоторое принадлежит\nтолько вам."
     }
 
 ];
 
 
-/* =========================================
-   СОСТОЯНИЕ
-========================================= */
-
 let current = 0;
 
-
-/* =========================================
-   ELEMENTS
-========================================= */
 
 const image =
     document.getElementById("mainImage");
@@ -201,9 +193,9 @@ const homeButton =
     document.getElementById("homeBtn");
 
 
-/* =========================================
+/* ================================
    ПОКАЗ КАДРА
-========================================= */
+================================ */
 
 function showScene(index) {
 
@@ -218,7 +210,6 @@ function showScene(index) {
     current = index;
 
     const scene = scenes[current];
-
 
     imageWrap.classList.add("change");
 
@@ -244,28 +235,32 @@ function showScene(index) {
         contentIndex.textContent =
             scene.index;
 
-        title.innerHTML =
+        /*
+           Заголовок теперь обычный текст.
+           Никаких принудительных <br>,
+           поэтому браузер переносит только
+           целые слова.
+        */
+
+        title.textContent =
             scene.title;
 
         description.textContent =
             scene.description;
 
-
         updateNavigation(
             scene.section
         );
 
-
         imageWrap.classList.remove("change");
 
     }, 250);
-
 }
 
 
-/* =========================================
+/* ================================
    НАВИГАЦИЯ
-========================================= */
+================================ */
 
 function updateNavigation(section) {
 
@@ -279,13 +274,12 @@ function updateNavigation(section) {
             );
 
         });
-
 }
 
 
-/* =========================================
-   РАЗДЕЛЫ
-========================================= */
+/* ================================
+   НАЧАЛО РАЗДЕЛОВ
+================================ */
 
 const sectionStarts = {
 
@@ -313,17 +307,15 @@ function openSection(section) {
         return;
     }
 
-
     showScene(
         sectionStarts[section]
     );
-
 }
 
 
-/* =========================================
-   НИЖНИЙ БАР
-========================================= */
+/* ================================
+   НИЖНИЙ BAR
+================================ */
 
 document
     .querySelectorAll(".nav-item")
@@ -343,9 +335,9 @@ document
     });
 
 
-/* =========================================
+/* ================================
    МЕНЮ
-========================================= */
+================================ */
 
 menuButton.addEventListener(
     "click",
@@ -395,9 +387,9 @@ document
     });
 
 
-/* =========================================
-   ДОМОЙ
-========================================= */
+/* ================================
+   ЛОГОТИП
+================================ */
 
 homeButton.addEventListener(
     "click",
@@ -409,9 +401,9 @@ homeButton.addEventListener(
 );
 
 
-/* =========================================
+/* ================================
    СТРЕЛКИ
-========================================= */
+================================ */
 
 prevButton.addEventListener(
     "click",
@@ -433,9 +425,9 @@ nextButton.addEventListener(
 );
 
 
-/* =========================================
+/* ================================
    БРОНИРОВАНИЕ
-========================================= */
+================================ */
 
 bookingButton.addEventListener(
     "click",
@@ -461,9 +453,9 @@ closeBooking.addEventListener(
 );
 
 
-/* =========================================
+/* ================================
    ЗАПРОС
-========================================= */
+================================ */
 
 document
     .getElementById("requestButton")
@@ -472,18 +464,19 @@ document
         function () {
 
             alert(
-                "Здесь будет форма отправки заявки на бронирование."
+                "Форма отправки заявки будет подключена на следующем этапе."
             );
 
         }
     );
 
 
-/* =========================================
+/* ================================
    СВАЙП
-========================================= */
+================================ */
 
 let touchStartX = 0;
+
 
 document.addEventListener(
     "touchstart",
@@ -538,9 +531,9 @@ document.addEventListener(
 );
 
 
-/* =========================================
+/* ================================
    КЛАВИАТУРА
-========================================= */
+================================ */
 
 document.addEventListener(
     "keydown",
@@ -556,7 +549,6 @@ document.addEventListener(
 
         }
 
-
         if (
             event.key === "ArrowLeft"
         ) {
@@ -566,7 +558,6 @@ document.addEventListener(
             );
 
         }
-
 
         if (
             event.key === "Escape"
@@ -586,8 +577,8 @@ document.addEventListener(
 );
 
 
-/* =========================================
-   ПЕРВЫЙ ЗАПУСК
-========================================= */
+/* ================================
+   ЗАПУСК
+================================ */
 
 showScene(0);
