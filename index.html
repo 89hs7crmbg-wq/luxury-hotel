@@ -13,8 +13,6 @@
 
 <div class="app">
 
-    <!-- HEADER -->
-
     <header class="header">
 
         <button class="brand" id="homeBtn">
@@ -22,22 +20,18 @@
         </button>
 
         <div class="header-center">
-            MOSCOW / RUSSIA
+            МОСКВА / РОССИЯ
         </div>
 
         <button class="menu-button" id="menuButton">
-            <span>MENU</span>
+            <span>МЕНЮ</span>
             <i></i>
         </button>
 
     </header>
 
 
-    <!-- MAIN -->
-
     <main class="main">
-
-        <!-- IMAGE AREA -->
 
         <section class="visual">
 
@@ -51,7 +45,6 @@
 
             </div>
 
-
             <div class="image-number">
 
                 <span id="currentNumber">01</span>
@@ -62,26 +55,23 @@
 
             </div>
 
-
             <div class="image-counter">
-                DISCOVER
+                ИССЛЕДОВАТЬ
             </div>
 
         </section>
 
-
-        <!-- INFORMATION -->
 
         <section class="info">
 
             <div class="info-top">
 
                 <span class="category" id="category">
-                    THE HOTEL
+                    ОТЕЛЬ
                 </span>
 
-                <span class="coordinates" id="coordinates">
-                    55°45' N / 37°37' E
+                <span class="coordinates">
+                    55°45' СШ / 37°37' ВД
                 </span>
 
             </div>
@@ -111,66 +101,65 @@
             </div>
 
 
-            <!-- NAVIGATION -->
-
             <nav class="navigation">
 
                 <button
                     class="nav-item active"
-                    data-index="0"
+                    data-section="hotel"
                 >
                     <span>01</span>
-                    HOTEL
+                    ОТЕЛЬ
                 </button>
 
                 <button
                     class="nav-item"
-                    data-index="1"
+                    data-section="arrival"
                 >
                     <span>02</span>
-                    ARRIVAL
+                    ПРИБЫТИЕ
                 </button>
 
                 <button
                     class="nav-item"
-                    data-index="2"
+                    data-section="space"
                 >
                     <span>03</span>
-                    SPACE
+                    ПРОСТРАНСТВО
                 </button>
 
                 <button
                     class="nav-item"
-                    data-index="3"
+                    data-section="rooms"
                 >
                     <span>04</span>
-                    ROOMS
+                    НОМЕРА
                 </button>
 
                 <button
                     class="nav-item"
-                    data-index="4"
+                    data-section="details"
                 >
                     <span>05</span>
-                    DETAILS
+                    ДЕТАЛИ
                 </button>
 
             </nav>
 
 
-            <!-- CONTROLS -->
-
             <div class="controls">
 
-                <button id="prevButton">
+                <button id="prevButton" aria-label="Предыдущий кадр">
                     ←
                 </button>
 
-                <span>
-                    EXPLORE
-                </span>
+                <button
+                    class="book-button"
+                    id="bookingButton"
+                >
+                    ЗАБРОНИРОВАТЬ
+                </button>
 
-                <button id="nextButton">
+                <button id="nextButton" aria-label="Следующий кадр">
                     →
                 </button>
 
@@ -181,43 +170,43 @@
     </main>
 
 
-    <!-- MENU -->
+    <!-- МЕНЮ -->
 
     <div class="menu-overlay" id="menuOverlay">
 
         <div class="menu-inner">
 
             <div class="menu-heading">
-                EXPLORE
+                НАВИГАЦИЯ
             </div>
 
-            <button data-menu="0">
+            <button data-section="hotel">
                 <span>01</span>
-                HOTEL
+                ОТЕЛЬ
             </button>
 
-            <button data-menu="1">
+            <button data-section="arrival">
                 <span>02</span>
-                ARRIVAL
+                ПРИБЫТИЕ
             </button>
 
-            <button data-menu="2">
+            <button data-section="space">
                 <span>03</span>
-                SPACE
+                ПРОСТРАНСТВО
             </button>
 
-            <button data-menu="3">
+            <button data-section="rooms">
                 <span>04</span>
-                ROOMS
+                НОМЕРА
             </button>
 
-            <button data-menu="4">
+            <button data-section="details">
                 <span>05</span>
-                DETAILS
+                ДЕТАЛИ
             </button>
 
             <button id="closeMenu">
-                CLOSE ×
+                ЗАКРЫТЬ ×
             </button>
 
         </div>
@@ -225,38 +214,38 @@
     </div>
 
 
-    <!-- BOOKING -->
+    <!-- БРОНИРОВАНИЕ -->
 
     <div class="booking-panel" id="bookingPanel">
 
         <button id="closeBooking">
-            CLOSE ×
+            ЗАКРЫТЬ ×
         </button>
 
         <div class="booking-content">
 
-            <span>PRIVATE STAY</span>
+            <span>ПРОЖИВАНИЕ</span>
 
             <h2>
-                BOOK<br>
-                YOUR<br>
-                ROOM
+                ВЫБЕРИТЕ<br>
+                СВОЙ<br>
+                НОМЕР
             </h2>
 
             <div class="booking-row">
 
                 <div>
-                    <small>CHECK IN</small>
+                    <small>ЗАСЕЛЕНИЕ</small>
                     <strong>— / — / —</strong>
                 </div>
 
                 <div>
-                    <small>CHECK OUT</small>
+                    <small>ВЫЕЗД</small>
                     <strong>— / — / —</strong>
                 </div>
 
-                <button>
-                    REQUEST
+                <button id="requestButton">
+                    ОСТАВИТЬ ЗАПРОС
                 </button>
 
             </div>
@@ -267,7 +256,6 @@
 
 
 </div>
-
 
 <script src="script.js"></script>
 
