@@ -19,25 +19,21 @@ body {
         sans-serif;
 
     color: #f3f0e9;
+
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
 }
 
 button {
     border: 0;
     outline: 0;
-
     background: none;
-
-    font: inherit;
-
     color: inherit;
-
+    font: inherit;
     cursor: pointer;
-
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -51,9 +47,9 @@ button {
 }
 
 
-/* =================================
+/* =========================================
    ОСНОВНОЙ ЭКРАН
-================================= */
+========================================= */
 
 .experience {
     position: relative;
@@ -84,15 +80,13 @@ button {
 
     object-fit: cover;
 
-    opacity: 1;
-
-    transform:
-        translateZ(0)
-        scale(1.001);
+    transform: translateZ(0);
 
     backface-visibility: hidden;
 
     will-change: opacity;
+
+    opacity: 1;
 
     transition:
         opacity .42s cubic-bezier(.4, 0, .2, 1);
@@ -113,30 +107,30 @@ button {
         linear-gradient(
             to bottom,
             rgba(0,0,0,.28),
-            transparent 25%,
+            transparent 27%,
             transparent 62%,
-            rgba(0,0,0,.58)
+            rgba(0,0,0,.62)
         );
 }
 
 
-/* =================================
+/* =========================================
    TOPBAR
-================================= */
+========================================= */
 
 .topbar {
     position: absolute;
+
+    z-index: 20;
 
     top: 0;
     left: 0;
     right: 0;
 
-    z-index: 10;
-
-    height: 92px;
+    height: 82px;
 
     padding:
-        0 34px;
+        0 30px;
 
     display: grid;
 
@@ -148,8 +142,8 @@ button {
 .menu-button {
     justify-self: start;
 
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
 
@@ -169,15 +163,15 @@ button {
     background: #fff;
 
     transition:
-        transform .3s ease;
+        transform .25s ease;
 }
 
 .menu-button:hover span:first-child {
-    transform: translateX(4px);
+    transform: translateX(3px);
 }
 
 .menu-button:hover span:last-child {
-    transform: translateX(-4px);
+    transform: translateX(-3px);
 }
 
 .brand {
@@ -200,11 +194,10 @@ button {
 .booking-button {
     justify-self: end;
 
-    min-width: 72px;
     height: 32px;
 
     padding:
-        0 15px;
+        0 16px;
 
     border:
         1px solid rgba(255,255,255,.65);
@@ -213,13 +206,14 @@ button {
 
     font-size: 7px;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
+
+    white-space: nowrap;
 
     transition:
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease,
-        transform .3s ease;
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
 }
 
 .booking-button:hover {
@@ -227,15 +221,13 @@ button {
 
     color: #171715;
 
-    border-color: #fff;
-
     transform: translateY(-1px);
 }
 
 
-/* =================================
-   ИНФОРМАЦИЯ
-================================= */
+/* =========================================
+   ИНФОРМАЦИЯ КАДРА
+========================================= */
 
 .scene-info {
     position: absolute;
@@ -243,9 +235,10 @@ button {
     z-index: 5;
 
     left: 7vw;
+    right: 7vw;
     bottom: 18vh;
 
-    max-width: 550px;
+    max-width: 650px;
 }
 
 .scene-meta {
@@ -255,20 +248,20 @@ button {
 
     gap: 12px;
 
-    margin-bottom: 18px;
+    margin-bottom: 17px;
 
     font-size: 7px;
 
-    letter-spacing: .22em;
+    letter-spacing: .2em;
 
-    color: rgba(255,255,255,.72);
+    color: rgba(255,255,255,.76);
 }
 
 .scene-line {
-    width: 35px;
+    width: 32px;
     height: 1px;
 
-    background: rgba(255,255,255,.5);
+    background: rgba(255,255,255,.45);
 }
 
 #title {
@@ -280,23 +273,27 @@ button {
         serif;
 
     font-size:
-        clamp(45px, 6.3vw, 100px);
+        clamp(42px, 6vw, 92px);
 
-    line-height: .85;
+    line-height: .86;
 
     font-weight: 400;
 
     letter-spacing: -.035em;
 
-    white-space: nowrap;
+    white-space: normal;
 
-    text-wrap: nowrap;
+    overflow-wrap: normal;
+
+    word-break: normal;
+
+    hyphens: none;
 }
 
 #description {
-    max-width: 250px;
+    max-width: 260px;
 
-    margin-top: 25px;
+    margin-top: 22px;
 
     white-space: pre-line;
 
@@ -304,23 +301,21 @@ button {
 
     line-height: 1.55;
 
-    letter-spacing: .02em;
-
     color: rgba(255,255,255,.78);
 }
 
 
-/* =================================
+/* =========================================
    СЧЁТЧИК
-================================= */
+========================================= */
 
 .counter {
     position: absolute;
 
-    z-index: 6;
+    z-index: 7;
 
     right: 34px;
-    bottom: 20vh;
+    bottom: 18vh;
 
     display: flex;
 
@@ -343,26 +338,30 @@ button {
 }
 
 
-/* =================================
+/* =========================================
    СТРЕЛКИ
-================================= */
+========================================= */
 
 .arrows {
     position: absolute;
 
-    z-index: 7;
+    z-index: 8;
 
     right: 34px;
-    bottom: 28vh;
+    bottom: 27vh;
 
     display: flex;
 
-    gap: 5px;
+    align-items: center;
+
+    gap: 10px;
 }
 
 .arrows button {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
 
     display: flex;
 
@@ -370,11 +369,13 @@ button {
     justify-content: center;
 
     border:
-        1px solid rgba(255,255,255,.35);
+        1px solid rgba(255,255,255,.4);
 
     border-radius: 50%;
 
-    font-size: 16px;
+    font-size: 15px;
+
+    line-height: 1;
 
     color: #fff;
 
@@ -396,29 +397,32 @@ button {
 }
 
 
-/* =================================
-   НИЖНЯЯ НАВИГАЦИЯ
-================================= */
+/* =========================================
+   НИЖНИЙ BAR
+========================================= */
 
 .bottom-nav {
     position: absolute;
 
-    z-index: 10;
+    z-index: 15;
 
     left: 0;
     right: 0;
     bottom: 0;
 
-    height: 76px;
+    width: 100%;
+
+    height: 74px;
 
     padding:
-        0 7vw;
+        0 5vw;
 
-    display: flex;
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
 
     align-items: center;
-
-    justify-content: space-between;
 
     border-top:
         1px solid rgba(255,255,255,.18);
@@ -426,8 +430,8 @@ button {
     background:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.25)
+            rgba(0,0,0,.03),
+            rgba(0,0,0,.28)
         );
 
     backdrop-filter: blur(8px);
@@ -437,11 +441,20 @@ button {
 .nav-item {
     position: relative;
 
-    padding: 20px 0;
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
 
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .16em;
 
     color: rgba(255,255,255,.5);
 
@@ -454,9 +467,9 @@ button {
 
     position: absolute;
 
-    left: 0;
-    right: 0;
-    bottom: 13px;
+    left: 20%;
+    right: 20%;
+    bottom: 12px;
 
     height: 1px;
 
@@ -465,14 +478,12 @@ button {
     transform:
         scaleX(0);
 
-    transform-origin: center;
-
     transition:
         transform .25s ease;
 }
 
-.nav-item:hover,
-.nav-item.active {
+.nav-item.active,
+.nav-item:hover {
     color: #fff;
 }
 
@@ -482,9 +493,9 @@ button {
 }
 
 
-/* =================================
-   MENU
-================================= */
+/* =========================================
+   МЕНЮ
+========================================= */
 
 .menu-overlay {
     position: fixed;
@@ -497,11 +508,11 @@ button {
 
     opacity: 0;
 
-    transition:
-        opacity .4s ease,
-        visibility .4s ease;
-
     background: #1b1a18;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
 }
 
 .menu-overlay.open {
@@ -515,36 +526,37 @@ button {
     height: 100%;
 
     padding:
-        34px 7vw
-        28px;
+        30px 7vw
+        24px;
 
     display: flex;
 
     flex-direction: column;
+
+    overflow: hidden;
 }
 
 .menu-top {
     display: flex;
 
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    flex: 0 0 auto;
 
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
-    color: #8d887f;
+    color: #89847b;
 }
 
 .close-menu {
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
-    color: #8d887f;
-
-    transition:
-        color .25s ease;
+    color: #89847b;
 }
 
 .close-menu:hover {
@@ -554,42 +566,56 @@ button {
 .menu-heading {
     margin-top: auto;
 
-    margin-bottom: 55px;
+    margin-bottom: 42px;
+
+    flex: 0 0 auto;
 }
 
 .menu-heading span {
     display: block;
 
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 
     font-size: 6px;
 
     letter-spacing: .2em;
 
-    color: #8d887f;
+    color: #89847b;
 }
 
 .menu-heading h2 {
+    max-width: 100%;
+
     font-family:
         "Cormorant Garamond",
         Georgia,
         serif;
 
     font-size:
-        clamp(55px, 8vw, 110px);
+        clamp(46px, 7vw, 96px);
 
     line-height: .82;
 
     font-weight: 400;
 
     letter-spacing: -.04em;
+
+    white-space: normal;
+
+    overflow-wrap: normal;
+
+    word-break: normal;
+
+    hyphens: none;
 }
 
-.menu-grid {
-    display: grid;
 
-    grid-template-columns:
-        repeat(5, 1fr);
+/* СПИСОК МЕНЮ */
+
+.menu-list {
+    width: 100%;
+
+    flex: 0 0 auto;
 
     border-top:
         1px solid rgba(255,255,255,.16);
@@ -598,80 +624,116 @@ button {
         1px solid rgba(255,255,255,.16);
 }
 
-.menu-grid button {
-    min-height: 120px;
+.menu-list button {
+    width: 100%;
+
+    min-height: 64px;
 
     padding:
-        20px;
+        0 8px;
 
-    display: flex;
+    display: grid;
 
-    flex-direction: column;
+    grid-template-columns:
+        45px minmax(0, 1fr) 30px;
 
-    justify-content: space-between;
-
-    align-items: flex-start;
+    align-items: center;
 
     text-align: left;
 
-    border-right:
-        1px solid rgba(255,255,255,.16);
+    border-bottom:
+        1px solid rgba(255,255,255,.11);
 
     color: #fff;
 
     transition:
-        background .3s ease;
+        padding .25s ease,
+        background .25s ease;
 }
 
-.menu-grid button:first-child {
-    border-left:
-        1px solid rgba(255,255,255,.16);
+.menu-list button:last-child {
+    border-bottom: 0;
 }
 
-.menu-grid button:hover {
+.menu-list button:hover {
+    padding-left: 15px;
+
     background:
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.045);
 }
 
-.menu-grid small {
+.menu-list span {
     font-size: 6px;
 
-    letter-spacing: .15em;
+    letter-spacing: .12em;
 
-    color: #8d887f;
+    color: #89847b;
 }
 
-.menu-grid strong {
+.menu-list strong {
+    min-width: 0;
+
     font-family:
         "Cormorant Garamond",
         Georgia,
         serif;
 
-    font-size: 24px;
+    font-size:
+        clamp(20px, 3vw, 29px);
 
     line-height: 1;
 
     font-weight: 400;
+
+    letter-spacing: -.01em;
+
+    white-space: normal;
+
+    overflow-wrap: normal;
+
+    word-break: normal;
+}
+
+.menu-list b {
+    justify-self: end;
+
+    font-size: 13px;
+
+    font-weight: 300;
+
+    color: #89847b;
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+.menu-list button:hover b {
+    transform: translateX(4px);
+
+    color: #fff;
 }
 
 .menu-footer {
-    margin-top: 24px;
+    padding-top: 18px;
 
     display: flex;
 
     justify-content: space-between;
 
+    flex: 0 0 auto;
+
     font-size: 5px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
     color: #777168;
 }
 
 
-/* =================================
-   BOOKING
-================================= */
+/* =========================================
+   БРОНИРОВАНИЕ
+========================================= */
 
 .booking-panel {
     position: fixed;
@@ -685,16 +747,16 @@ button {
     opacity: 0;
 
     transform:
-        translateY(20px);
+        translateY(15px);
 
     background: #d9d3c7;
 
     color: #24231f;
 
     transition:
-        opacity .4s ease,
-        transform .4s ease,
-        visibility .4s ease;
+        opacity .35s ease,
+        transform .35s ease,
+        visibility .35s ease;
 }
 
 .booking-panel.open {
@@ -713,7 +775,8 @@ button {
     margin: 0 auto;
 
     padding:
-        34px 0;
+        30px 0
+        25px;
 
     display: flex;
 
@@ -728,7 +791,7 @@ button {
 
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
     color: #777168;
 }
@@ -736,12 +799,9 @@ button {
 .close-booking {
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
     color: #777168;
-
-    transition:
-        color .25s ease;
 }
 
 .close-booking:hover {
@@ -749,17 +809,19 @@ button {
 }
 
 .booking-heading {
-    margin: auto 0 45px;
+    margin:
+        auto 0
+        42px;
 }
 
 .booking-label {
     display: block;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
-    font-size: 7px;
+    font-size: 6px;
 
-    letter-spacing: .24em;
+    letter-spacing: .22em;
 
     color: #777168;
 }
@@ -771,9 +833,9 @@ button {
         serif;
 
     font-size:
-        clamp(78px, 11vw, 158px);
+        clamp(72px, 10vw, 150px);
 
-    line-height: .72;
+    line-height: .73;
 
     font-weight: 400;
 
@@ -785,9 +847,9 @@ button {
 .booking-heading p {
     max-width: 280px;
 
-    margin-top: 30px;
+    margin-top: 26px;
 
-    font-size: 9px;
+    font-size: 8px;
 
     line-height: 1.55;
 
@@ -810,11 +872,11 @@ button {
 }
 
 .booking-field {
-    min-height: 82px;
+    min-height: 78px;
 
     padding:
-        20px 22px
-        14px 0;
+        18px 20px
+        12px 0;
 
     display: flex;
 
@@ -833,13 +895,13 @@ button {
 }
 
 .booking-field + .booking-field {
-    padding-left: 22px;
+    padding-left: 20px;
 }
 
 .booking-field span {
-    font-size: 6px;
+    font-size: 5px;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
 
     color: #777168;
 }
@@ -850,7 +912,7 @@ button {
         Georgia,
         serif;
 
-    font-size: 23px;
+    font-size: 21px;
 
     line-height: 1;
 
@@ -863,52 +925,42 @@ button {
     color: #8a847a;
 }
 
-.booking-field:hover strong {
-    color: #777168;
-}
-
 .request-button {
-    min-width: 190px;
+    min-width: 180px;
 
-    min-height: 82px;
+    min-height: 78px;
 
-    margin-left: 22px;
+    margin-left: 20px;
 
     padding:
-        0 20px;
+        0 18px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 25px;
+    gap: 20px;
 
     border:
         1px solid #777168;
 
-    background: transparent;
-
     color: #24231f;
 
-    font-size: 6px;
+    font-size: 5px;
 
-    letter-spacing: .17em;
+    letter-spacing: .16em;
 
     transition:
-        background .3s ease,
-        color .3s ease,
-        transform .3s ease;
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
 }
 
 .request-button b {
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 300;
-
-    transition:
-        transform .3s ease;
 }
 
 .request-button:hover {
@@ -920,13 +972,8 @@ button {
         translateY(-2px);
 }
 
-.request-button:hover b {
-    transform:
-        translateX(4px);
-}
-
 .booking-footer {
-    padding-top: 18px;
+    padding-top: 16px;
 
     display: flex;
 
@@ -934,38 +981,36 @@ button {
 
     font-size: 5px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
     color: #777168;
 }
 
 
-/* =================================
-   АДАПТИВ
-================================= */
+/* =========================================
+   МОБИЛЬНЫЕ
+========================================= */
 
 @media (max-width: 800px) {
 
     .topbar {
-        height: 75px;
+        height: 72px;
 
         padding:
-            0 18px;
+            0 17px;
     }
 
     .brand {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .booking-button {
-        min-width: 65px;
-
-        height: 30px;
+        height: 29px;
 
         padding:
-            0 12px;
+            0 13px;
 
-        font-size: 6px;
+        font-size: 5px;
     }
 
     .scene-info {
@@ -973,163 +1018,197 @@ button {
         right: 7vw;
 
         bottom: 19vh;
-
-        max-width: none;
     }
 
     .scene-meta {
-        margin-bottom: 14px;
+        font-size: 5px;
 
-        font-size: 6px;
+        margin-bottom: 13px;
     }
 
     #title {
         max-width: 100%;
 
         font-size:
-            clamp(40px, 12vw, 70px);
+            clamp(38px, 11.5vw, 65px);
 
-        white-space: normal;
-
-        overflow-wrap: normal;
-
-        word-break: normal;
-
-        hyphens: none;
+        line-height: .87;
     }
 
     #description {
         max-width: 190px;
 
-        margin-top: 18px;
+        margin-top: 17px;
 
-        font-size: 8px;
+        font-size: 7px;
     }
 
     .counter {
         right: 18px;
 
-        bottom: 17vh;
-
-        font-size: 6px;
-    }
-
-    .arrows {
-        right: 18px;
-
-        bottom: 24vh;
-    }
-
-    .arrows button {
-        width: 38px;
-        height: 38px;
-
-        font-size: 14px;
-    }
-
-    .bottom-nav {
-        height: 68px;
-
-        padding:
-            0 18px;
-
-        gap: 15px;
-
-        overflow-x: auto;
-
-        justify-content: flex-start;
-
-        scrollbar-width: none;
-    }
-
-    .bottom-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .nav-item {
-        flex:
-            0 0 auto;
+        bottom: 17.5vh;
 
         font-size: 5px;
     }
 
+    .arrows {
+        right: 17px;
+
+        bottom: 25vh;
+
+        gap: 8px;
+    }
+
+    .arrows button {
+        width: 39px;
+        height: 39px;
+
+        flex-basis: 39px;
+
+        font-size: 13px;
+    }
+
+
+    /* НИЖНИЙ BAR */
+
+    .bottom-nav {
+        height: 66px;
+
+        padding:
+            0 10px;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+
+        gap: 0;
+
+        overflow: hidden;
+    }
+
+    .nav-item {
+        min-width: 0;
+
+        padding:
+            0 2px;
+
+        font-size: 4.5px;
+
+        letter-spacing: .08em;
+
+        text-align: center;
+    }
+
+    .nav-item::after {
+        left: 18%;
+        right: 18%;
+
+        bottom: 10px;
+    }
+
+
+    /* МЕНЮ */
+
     .menu-panel {
         padding:
-            22px 18px
-            18px;
+            21px 18px
+            17px;
+    }
+
+    .menu-top {
+        font-size: 5px;
     }
 
     .menu-heading {
-        margin-top: auto;
+        margin-bottom: 25px;
+    }
 
-        margin-bottom: 30px;
+    .menu-heading span {
+        margin-bottom: 13px;
+
+        font-size: 5px;
     }
 
     .menu-heading h2 {
+        max-width: 95%;
+
         font-size:
-            clamp(48px, 14vw, 75px);
+            clamp(42px, 12vw, 66px);
+
+        line-height: .84;
     }
 
-    .menu-grid {
+    .menu-list button {
+        min-height: 58px;
+
         grid-template-columns:
-            repeat(2, 1fr);
+            30px minmax(0, 1fr) 24px;
     }
 
-    .menu-grid button {
-        min-height: 90px;
+    .menu-list strong {
+        font-size:
+            clamp(18px, 5.4vw, 25px);
 
-        padding:
-            14px;
+        white-space: normal;
+
+        line-height: .95;
     }
 
-    .menu-grid button:nth-child(2),
-    .menu-grid button:nth-child(4) {
-        border-right: 0;
+    .menu-list span {
+        font-size: 5px;
     }
 
-    .menu-grid button:nth-child(3),
-    .menu-grid button:nth-child(4),
-    .menu-grid button:nth-child(5) {
-        border-top:
-            1px solid rgba(255,255,255,.16);
+    .menu-list b {
+        font-size: 11px;
     }
 
-    .menu-grid strong {
-        font-size: 20px;
+    .menu-footer {
+        padding-top: 12px;
+
+        font-size: 4px;
     }
+
+
+    /* БРОНЬ */
 
     .booking-content {
         width: 88%;
 
         padding:
-            22px 0
-            18px;
+            20px 0
+            17px;
+    }
+
+    .booking-top {
+        font-size: 5px;
     }
 
     .booking-heading {
         margin:
-            auto 0 28px;
+            auto 0
+            25px;
     }
 
     .booking-label {
-        margin-bottom: 18px;
+        margin-bottom: 16px;
 
         font-size: 5px;
     }
 
     .booking-heading h2 {
         font-size:
-            clamp(70px, 19vw, 105px);
+            clamp(65px, 18vw, 100px);
 
-        line-height: .73;
+        line-height: .74;
     }
 
     .booking-heading p {
         max-width: 210px;
 
-        margin-top: 20px;
+        margin-top: 18px;
 
-        font-size: 8px;
+        font-size: 7px;
     }
 
     .booking-form {
@@ -1138,15 +1217,15 @@ button {
     }
 
     .booking-field {
-        min-height: 64px;
+        min-height: 60px;
 
         padding:
-            10px 12px
-            10px 0;
+            9px 10px
+            9px 0;
     }
 
     .booking-field + .booking-field {
-        padding-left: 12px;
+        padding-left: 10px;
     }
 
     .booking-field:nth-child(2) {
@@ -1156,35 +1235,31 @@ button {
     .booking-field:nth-child(3) {
         border-top:
             1px solid rgba(36,35,31,.2);
-
-        padding-top: 14px;
     }
 
     .booking-field strong {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .request-button {
         grid-column:
             1 / -1;
 
-        min-height: 55px;
+        min-height: 52px;
 
         margin:
-            15px 0 0;
+            13px 0 0;
 
         padding:
-            0 15px;
+            0 14px;
+
+        font-size: 5px;
     }
 
     .booking-footer {
-        padding-top: 12px;
+        padding-top: 10px;
 
-        font-size: 4.5px;
-    }
-
-    .close-booking {
-        font-size: 5px;
+        font-size: 4px;
     }
 }
 
@@ -1192,23 +1267,26 @@ button {
 @media (max-width: 380px) {
 
     .brand {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .booking-button {
-        min-width: 60px;
-
         padding:
             0 10px;
     }
 
     #title {
-        font-size:
-            37px;
+        font-size: 36px;
     }
 
-    .bottom-nav {
-        gap: 11px;
+    .nav-item {
+        font-size: 4px;
+
+        letter-spacing: .05em;
+    }
+
+    .menu-list strong {
+        font-size: 18px;
     }
 
 }
