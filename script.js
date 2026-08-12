@@ -2,7 +2,8 @@ const scenes = [
 
     {
         image: "IMG_8684.png",
-        category: "THE HOTEL",
+        section: "hotel",
+        category: "ОТЕЛЬ",
         index: "00",
         title: "THE<br>HOTEL",
         description: "Пространство,\nсозданное для\nтишины."
@@ -10,113 +11,127 @@ const scenes = [
 
     {
         image: "IMG_8685.png",
-        category: "ARRIVAL",
+        section: "arrival",
+        category: "ПРИБЫТИЕ",
         index: "01",
-        title: "FIRST<br>IMPRESSION",
+        title: "ПЕРВОЕ<br>ВПЕЧАТЛЕНИЕ",
         description: "Первые секунды\nначинаются ещё\nдо номера."
     },
 
     {
         image: "IMG_8687.png",
-        category: "ARRIVAL",
+        section: "arrival",
+        category: "ПРИБЫТИЕ",
         index: "02",
-        title: "ENTER<br>QUIETLY",
+        title: "ВХОД<br>В ТИШИНУ",
         description: "Город остаётся\nпо ту сторону\ndвери."
     },
 
     {
         image: "IMG_8688.png",
-        category: "SPACE",
+        section: "space",
+        category: "ПРОСТРАНСТВО",
         index: "03",
-        title: "THE<br>SPACE",
+        title: "САМО<br>ПРОСТРАНСТВО",
         description: "Архитектура,\nкоторая не требует\nобъяснений."
     },
 
     {
         image: "IMG_8691.png",
-        category: "SPACE",
+        section: "space",
+        category: "ПРОСТРАНСТВО",
         index: "04",
-        title: "DETAILS<br>MATTER",
+        title: "ВАЖНА<br>КАЖДАЯ ДЕТАЛЬ",
         description: "Материалы.\nСвет.\nПропорции."
     },
 
     {
         image: "IMG_8692.png",
-        category: "SPACE",
+        section: "space",
+        category: "ПРОСТРАНСТВО",
         index: "05",
-        title: "MOVE<br>UP",
+        title: "ПУТЬ<br>ВВЕРХ",
         description: "Каждый переход\nстановится частью\nопыта."
     },
 
     {
         image: "IMG_8693.png",
-        category: "SPACE",
+        section: "space",
+        category: "ПРОСТРАНСТВО",
         index: "06",
-        title: "BETWEEN<br>PLACES",
+        title: "МЕЖДУ<br>ПРОСТРАНСТВАМИ",
         description: "Тишина\nстановится\nощутимой."
     },
 
     {
         image: "IMG_8694.png",
-        category: "SPACE",
+        section: "space",
+        category: "ПРОСТРАНСТВО",
         index: "07",
-        title: "PRIVATE<br>FLOOR",
+        title: "ЛИЧНОЕ<br>ПРОСТРАНСТВО",
         description: "Пространство,\nкоторое остаётся\nтолько вашим."
     },
 
     {
         image: "IMG_8695.png",
-        category: "ROOMS",
+        section: "rooms",
+        category: "НОМЕРА",
         index: "08",
-        title: "YOUR<br>ROOM",
+        title: "ВАШ<br>НОМЕР",
         description: "Здесь начинается\nваше время."
     },
 
     {
         image: "IMG_8697.png",
-        category: "ROOMS",
+        section: "rooms",
+        category: "НОМЕРА",
         index: "09",
-        title: "PRIVATE<br>SPACE",
+        title: "ЛИЧНОЕ<br>ПРОСТРАНСТВО",
         description: "Ничего лишнего.\nТолько необходимое."
     },
 
     {
         image: "IMG_8698.png",
-        category: "ROOMS",
+        section: "rooms",
+        category: "НОМЕРА",
         index: "10",
-        title: "SLOW<br>DOWN",
+        title: "ВРЕМЯ<br>ОСТАНОВИТЬСЯ",
         description: "Место,\nгде не нужно\nторопиться."
     },
 
     {
         image: "IMG_8699.png",
-        category: "DETAILS",
+        section: "details",
+        category: "ДЕТАЛИ",
         index: "11",
-        title: "REST<br>HERE",
+        title: "ОСТАНОВИТЕСЬ<br>ЗДЕСЬ",
         description: "Вечер.\nТишина.\nВаше пространство."
     },
 
     {
         image: "IMG_8700.png",
-        category: "DETAILS",
+        section: "details",
+        category: "ДЕТАЛИ",
         index: "12",
-        title: "YOUR<br>MOMENT",
+        title: "ВАШ<br>МОМЕНТ",
         description: "Иногда роскошь\nвыглядит именно\nтак."
     },
 
     {
         image: "IMG_8702.png",
-        category: "THE VIEW",
+        section: "details",
+        category: "ДЕТАЛИ",
         index: "13",
-        title: "ABOVE<br>THE CITY",
+        title: "ГОРОД<br>СВЕРХУ",
         description: "Город остаётся\nгде-то далеко\nвнизу."
     },
 
     {
         image: "IMG_8703.png",
-        category: "DETAILS",
+        section: "details",
+        category: "ДЕТАЛИ",
         index: "14",
-        title: "YOUR<br>TIME",
+        title: "ВАШЕ<br>ВРЕМЯ",
         description: "Время,\nкоторое принадлежит\nтолько вам."
     }
 
@@ -125,8 +140,14 @@ const scenes = [
 
 let current = 0;
 
-const mainImage = document.getElementById("mainImage");
-const imageWrap = document.getElementById("imageWrap");
+
+/* ELEMENTS */
+
+const mainImage =
+    document.getElementById("mainImage");
+
+const imageWrap =
+    document.getElementById("imageWrap");
 
 const currentNumber =
     document.getElementById("currentNumber");
@@ -152,18 +173,47 @@ const prevButton =
 const nextButton =
     document.getElementById("nextButton");
 
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+const closeMenu =
+    document.getElementById("closeMenu");
+
+const bookingButton =
+    document.getElementById("bookingButton");
+
+const bookingPanel =
+    document.getElementById("bookingPanel");
+
+const closeBooking =
+    document.getElementById("closeBooking");
+
+
+/* =========================
+   ПОКАЗ КАДРА
+========================= */
 
 function showScene(index) {
 
-    current = (index + scenes.length) % scenes.length;
+    current =
+        (index + scenes.length) %
+        scenes.length;
 
-    const scene = scenes[current];
+    const scene =
+        scenes[current];
 
     imageWrap.classList.add("change");
 
     setTimeout(() => {
 
-        mainImage.src = scene.image;
+        mainImage.src =
+            scene.image;
+
+        mainImage.alt =
+            scene.category;
 
         category.textContent =
             scene.category;
@@ -180,121 +230,103 @@ function showScene(index) {
         description.textContent =
             scene.description;
 
-        navItems.forEach(item => {
+        updateNavigation(
+            scene.section
+        );
 
-            item.classList.remove("active");
+        imageWrap.classList.remove(
+            "change"
+        );
 
-        });
-
-        const categoryIndex =
-            getCategoryIndex(scene.category);
-
-        if (navItems[categoryIndex]) {
-
-            navItems[categoryIndex]
-                .classList.add("active");
-
-        }
-
-        imageWrap.classList.remove("change");
-
-    }, 350);
+    }, 300);
 }
 
 
-function getCategoryIndex(categoryName) {
+/* =========================
+   НАВИГАЦИЯ ПО РАЗДЕЛАМ
+========================= */
 
-    if (categoryName === "THE HOTEL") {
-        return 0;
-    }
+function updateNavigation(section) {
 
-    if (categoryName === "ARRIVAL") {
-        return 1;
-    }
+    navItems.forEach(item => {
 
-    if (categoryName === "SPACE") {
-        return 2;
-    }
+        item.classList.toggle(
+            "active",
+            item.dataset.section === section
+        );
 
-    if (categoryName === "ROOMS") {
-        return 3;
-    }
+    });
 
-    return 4;
 }
 
 
-prevButton.addEventListener("click", () => {
+/* =========================
+   ПЕРВЫЙ КАДР РАЗДЕЛА
+========================= */
 
-    showScene(current - 1);
+function openSection(section) {
 
-});
+    const index =
+        scenes.findIndex(
+            scene =>
+                scene.section === section
+        );
+
+    if (index === -1) {
+        return;
+    }
+
+    showScene(index);
+
+}
 
 
-nextButton.addEventListener("click", () => {
-
-    showScene(current + 1);
-
-});
-
+/* =========================
+   НИЖНЯЯ НАВИГАЦИЯ
+========================= */
 
 navItems.forEach(item => {
 
-    item.addEventListener("click", () => {
+    item.addEventListener(
+        "click",
+        () => {
 
-        const categoryIndex =
-            Number(item.dataset.index);
-
-        const targetCategories = [
-            "THE HOTEL",
-            "ARRIVAL",
-            "SPACE",
-            "ROOMS",
-            "DETAILS"
-        ];
-
-        const target =
-            targetCategories[categoryIndex];
-
-        const found =
-            scenes.findIndex(
-                scene => scene.category === target
+            openSection(
+                item.dataset.section
             );
 
-        if (found !== -1) {
-
-            showScene(found);
-
         }
-
-    });
+    );
 
 });
 
 
 /* =========================
-   KEYBOARD
+   СТРЕЛКИ
 ========================= */
 
-document.addEventListener("keydown", event => {
-
-    if (event.key === "ArrowRight") {
-
-        showScene(current + 1);
-
-    }
-
-    if (event.key === "ArrowLeft") {
+prevButton.addEventListener(
+    "click",
+    () => {
 
         showScene(current - 1);
 
     }
+);
 
-});
+
+nextButton.addEventListener(
+    "click",
+    () => {
+
+        showScene(current + 1);
+
+    }
+);
 
 
 /* =========================
-   SWIPE
+   СВАЙП
 ========================= */
 
 let touchStartX = 0;
@@ -304,7 +336,8 @@ document.addEventListener(
     event => {
 
         touchStartX =
-            event.changedTouches[0].screenX;
+            event.changedTouches[0]
+                .screenX;
 
     },
     {
@@ -318,7 +351,8 @@ document.addEventListener(
     event => {
 
         const touchEndX =
-            event.changedTouches[0].screenX;
+            event.changedTouches[0]
+                .screenX;
 
         const distance =
             touchEndX - touchStartX;
@@ -345,104 +379,156 @@ document.addEventListener(
 
 
 /* =========================
-   MENU
+   МЕНЮ
 ========================= */
 
-const menuButton =
-    document.getElementById("menuButton");
+menuButton.addEventListener(
+    "click",
+    () => {
 
-const menuOverlay =
-    document.getElementById("menuOverlay");
+        menuOverlay.classList.add(
+            "open"
+        );
 
-const closeMenu =
-    document.getElementById("closeMenu");
-
-menuButton.addEventListener("click", () => {
-
-    menuOverlay.classList.add("open");
-
-});
+    }
+);
 
 
-closeMenu.addEventListener("click", () => {
+closeMenu.addEventListener(
+    "click",
+    () => {
 
-    menuOverlay.classList.remove("open");
+        menuOverlay.classList.remove(
+            "open"
+        );
 
-});
+    }
+);
 
 
 document
-    .querySelectorAll("[data-menu]")
+    .querySelectorAll(
+        "[data-section]"
+    )
     .forEach(button => {
 
-        button.addEventListener("click", () => {
+        if (
+            button.classList.contains(
+                "nav-item"
+            )
+        ) {
+            return;
+        }
 
-            const index =
-                Number(button.dataset.menu);
+        button.addEventListener(
+            "click",
+            () => {
 
-            const categories = [
-                "THE HOTEL",
-                "ARRIVAL",
-                "SPACE",
-                "ROOMS",
-                "DETAILS"
-            ];
-
-            const found =
-                scenes.findIndex(
-                    scene =>
-                        scene.category ===
-                        categories[index]
+                openSection(
+                    button.dataset.section
                 );
 
-            if (found !== -1) {
-
-                showScene(found);
+                menuOverlay.classList.remove(
+                    "open"
+                );
 
             }
-
-            menuOverlay.classList.remove("open");
-
-        });
+        );
 
     });
 
 
 /* =========================
-   HOME
+   ЛОГОТИП
 ========================= */
 
 document
     .getElementById("homeBtn")
-    .addEventListener("click", () => {
+    .addEventListener(
+        "click",
+        () => {
 
-        showScene(0);
+            openSection("hotel");
 
-    });
+        }
+    );
 
 
 /* =========================
-   BOOKING
+   БРОНИРОВАНИЕ
 ========================= */
 
-const bookingPanel =
-    document.getElementById("bookingPanel");
+bookingButton.addEventListener(
+    "click",
+    () => {
 
-const closeBooking =
-    document.getElementById("closeBooking");
+        bookingPanel.classList.add(
+            "open"
+        );
 
-
-document
-    .querySelector(".brand")
-    .addEventListener("dblclick", () => {
-
-        bookingPanel.classList.add("open");
-
-    });
+    }
+);
 
 
-closeBooking.addEventListener("click", () => {
+closeBooking.addEventListener(
+    "click",
+    () => {
 
-    bookingPanel.classList.remove("open");
+        bookingPanel.classList.remove(
+            "open"
+        );
 
-});
+    }
+);
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+        menuOverlay.classList.remove(
+            "open"
+        );
+
+        bookingPanel.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================
+   КЛАВИАТУРА
+========================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            showScene(current + 1);
+
+        }
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            showScene(current - 1);
+
+        }
+
+    }
+);
