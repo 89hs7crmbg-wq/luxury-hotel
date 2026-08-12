@@ -2,171 +2,146 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>THE HOTEL</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>THE HOTEL — Сургут</title>
+
+    <meta
+        name="description"
+        content="THE HOTEL — пространство тишины и личного времени в Сургуте."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="app">
+    <main class="site">
 
-    <header class="header">
+        <!-- ================================
+             ОСНОВНОЙ ЭКРАН
+        ================================= -->
 
-        <button class="brand" id="homeBtn">
-            THE HOTEL
-        </button>
-
-        <button
-            class="booking-header"
-            id="bookingButton"
-        >
-            БРОНИРОВАНИЕ
-        </button>
-
-        <button class="menu-button" id="menuButton">
-            <span>МЕНЮ</span>
-
-            <i>
-                <b></b>
-                <b></b>
-            </i>
-        </button>
-
-    </header>
-
-
-    <main class="main">
-
-        <section class="visual">
+        <section class="experience" id="experience">
 
             <div class="image-wrap" id="imageWrap">
+
                 <img
-                    id="mainImage"
                     src="IMG_8684.png"
                     alt="THE HOTEL"
+                    id="mainImage"
                 >
+
+                <div class="image-overlay"></div>
+
             </div>
 
-            <div class="image-number">
-                <span id="currentNumber">01</span>
 
-                <span class="number-line"></span>
+            <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
 
-                <span>15</span>
+            <header class="topbar">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    aria-label="Открыть меню"
+                >
+                    <span></span>
+                    <span></span>
+                </button>
+
+
+                <button
+                    class="brand"
+                    id="homeBtn"
+                >
+                    THE HOTEL
+                </button>
+
+
+                <button
+                    class="booking-button"
+                    id="bookingButton"
+                >
+                    БРОНЬ
+                </button>
+
+            </header>
+
+
+            <!-- ИНФОРМАЦИЯ О КАДРЕ -->
+
+            <div class="scene-info">
+
+                <div class="scene-meta">
+
+                    <span id="category">
+                        ОТЕЛЬ
+                    </span>
+
+                    <span class="scene-line"></span>
+
+                    <span id="contentIndex">
+                        00
+                    </span>
+
+                </div>
+
+
+                <h1 id="title">
+                    THE HOTEL
+                </h1>
+
+
+                <p id="description">
+                    Пространство,
+                    созданное для
+                    тишины.
+                </p>
+
             </div>
 
-            <div class="image-label">
-                ИССЛЕДОВАТЬ
-            </div>
 
-        </section>
+            <!-- СЧЁТЧИК -->
 
+            <div class="counter">
 
-        <section class="info">
-
-            <div class="info-top">
-
-                <span id="category">
-                    ОТЕЛЬ
+                <span id="currentNumber">
+                    01
                 </span>
+
+                <span class="counter-line"></span>
 
                 <span>
-                    СУРГУТ / РОССИЯ
+                    15
                 </span>
 
             </div>
 
 
-            <div class="content">
+            <!-- СТРЕЛКИ -->
 
-                <div
-                    class="content-index"
-                    id="contentIndex"
-                >
-                    00
-                </div>
-
-                <div class="content-main">
-
-                    <h1 id="title">
-                        THE HOTEL
-                    </h1>
-
-                    <p id="description">
-                        Пространство,
-                        созданное для
-                        тишины.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <nav class="navigation">
+            <div class="arrows">
 
                 <button
-                    class="nav-item active"
-                    data-section="hotel"
-                >
-                    <span>01</span>
-                    <strong>ОТЕЛЬ</strong>
-                </button>
-
-                <button
-                    class="nav-item"
-                    data-section="arrival"
-                >
-                    <span>02</span>
-                    <strong>ПРИБЫТИЕ</strong>
-                </button>
-
-                <button
-                    class="nav-item"
-                    data-section="space"
-                >
-                    <span>03</span>
-                    <strong>ПРОСТРАНСТВО</strong>
-                </button>
-
-                <button
-                    class="nav-item"
-                    data-section="rooms"
-                >
-                    <span>04</span>
-                    <strong>НОМЕРА</strong>
-                </button>
-
-                <button
-                    class="nav-item"
-                    data-section="details"
-                >
-                    <span>05</span>
-                    <strong>ДЕТАЛИ</strong>
-                </button>
-
-            </nav>
-
-
-            <div class="controls">
-
-                <button
-                    class="arrow-button"
                     id="prevButton"
                     aria-label="Предыдущий кадр"
                 >
                     ←
                 </button>
 
-                <div class="controls-counter">
-                    <span id="controlCurrent">01</span>
-                    <span>/</span>
-                    <span>15</span>
-                </div>
-
                 <button
-                    class="arrow-button"
                     id="nextButton"
                     aria-label="Следующий кадр"
                 >
@@ -175,136 +150,286 @@
 
             </div>
 
+
+            <!-- НИЖНИЙ BAR -->
+
+            <nav class="bottom-nav">
+
+                <button
+                    class="nav-item active"
+                    data-section="hotel"
+                >
+                    ОТЕЛЬ
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="arrival"
+                >
+                    ПРИБЫТИЕ
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="space"
+                >
+                    ПРОСТРАНСТВО
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="rooms"
+                >
+                    НОМЕРА
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="details"
+                >
+                    ДЕТАЛИ
+                </button>
+
+            </nav>
+
         </section>
+
+
+        <!-- ================================
+             МЕНЮ
+        ================================= -->
+
+        <div
+            class="menu-overlay"
+            id="menuOverlay"
+        >
+
+            <div class="menu-panel">
+
+                <div class="menu-top">
+
+                    <span>
+                        THE HOTEL / СУРГУТ
+                    </span>
+
+                    <button
+                        class="close-menu"
+                        id="closeMenu"
+                    >
+                        ЗАКРЫТЬ
+                    </button>
+
+                </div>
+
+
+                <div class="menu-heading">
+
+                    <span>
+                        НАВИГАЦИЯ
+                    </span>
+
+                    <h2>
+                        ПРОСТРАНСТВО<br>
+                        ВАШЕГО ВРЕМЕНИ
+                    </h2>
+
+                </div>
+
+
+                <div class="menu-grid">
+
+                    <button
+                        data-section="hotel"
+                    >
+                        <small>00</small>
+                        <strong>ОТЕЛЬ</strong>
+                    </button>
+
+                    <button
+                        data-section="arrival"
+                    >
+                        <small>01</small>
+                        <strong>ПРИБЫТИЕ</strong>
+                    </button>
+
+                    <button
+                        data-section="space"
+                    >
+                        <small>03</small>
+                        <strong>ПРОСТРАНСТВО</strong>
+                    </button>
+
+                    <button
+                        data-section="rooms"
+                    >
+                        <small>08</small>
+                        <strong>НОМЕРА</strong>
+                    </button>
+
+                    <button
+                        data-section="details"
+                    >
+                        <small>11</small>
+                        <strong>ДЕТАЛИ</strong>
+                    </button>
+
+                </div>
+
+
+                <div class="menu-footer">
+
+                    <span>
+                        СУРГУТ / РОССИЯ
+                    </span>
+
+                    <span>
+                        THE HOTEL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================
+             БРОНИРОВАНИЕ
+        ================================= -->
+
+        <div
+            class="booking-panel"
+            id="bookingPanel"
+        >
+
+            <div class="booking-content">
+
+                <div class="booking-top">
+
+                    <span>
+                        THE HOTEL / СУРГУТ
+                    </span>
+
+                    <button
+                        class="close-booking"
+                        id="closeBooking"
+                    >
+                        ЗАКРЫТЬ
+                    </button>
+
+                </div>
+
+
+                <div class="booking-heading">
+
+                    <span class="booking-label">
+                        БРОНИРОВАНИЕ
+                    </span>
+
+                    <h2>
+                        ВАШЕ<br>
+                        ВРЕМЯ
+                    </h2>
+
+                    <p>
+                        Выберите даты проживания,
+                        количество гостей и отправьте
+                        запрос на бронирование.
+                    </p>
+
+                </div>
+
+
+                <div class="booking-form">
+
+                    <button
+                        class="booking-field"
+                        type="button"
+                    >
+
+                        <span>
+                            ЗАСЕЛЕНИЕ
+                        </span>
+
+                        <strong>
+                            <i>ДД</i> / <i>ММ</i> / <i>ГГГГ</i>
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="booking-field"
+                        type="button"
+                    >
+
+                        <span>
+                            ВЫЕЗД
+                        </span>
+
+                        <strong>
+                            <i>ДД</i> / <i>ММ</i> / <i>ГГГГ</i>
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="booking-field"
+                        type="button"
+                    >
+
+                        <span>
+                            ГОСТИ
+                        </span>
+
+                        <strong>
+                            2 ГОСТЯ
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="request-button"
+                        id="requestButton"
+                        type="button"
+                    >
+
+                        <span>
+                            ОСТАВИТЬ ЗАПРОС
+                        </span>
+
+                        <b>
+                            →
+                        </b>
+
+                    </button>
+
+                </div>
+
+
+                <div class="booking-footer">
+
+                    <span>
+                        СУРГУТ / РОССИЯ
+                    </span>
+
+                    <span>
+                        THE HOTEL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </main>
 
 
-    <div
-        class="menu-overlay"
-        id="menuOverlay"
-    >
-
-        <div class="menu-inner">
-
-            <div class="menu-top">
-
-                <span>НАВИГАЦИЯ</span>
-
-                <span>
-                    THE HOTEL / 2026
-                </span>
-
-            </div>
-
-
-            <div class="menu-grid">
-
-                <button data-section="hotel">
-                    <small>01</small>
-                    <span>ОТЕЛЬ</span>
-                </button>
-
-                <button data-section="arrival">
-                    <small>02</small>
-                    <span>ПРИБЫТИЕ</span>
-                </button>
-
-                <button data-section="space">
-                    <small>03</small>
-                    <span>ПРОСТРАНСТВО</span>
-                </button>
-
-                <button data-section="rooms">
-                    <small>04</small>
-                    <span>НОМЕРА</span>
-                </button>
-
-                <button data-section="details">
-                    <small>05</small>
-                    <span>ДЕТАЛИ</span>
-                </button>
-
-            </div>
-
-
-            <div class="menu-bottom">
-
-                <span>
-                    СУРГУТ / РОССИЯ
-                </span>
-
-                <button id="closeMenu">
-                    ЗАКРЫТЬ
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="booking-panel"
-        id="bookingPanel"
-    >
-
-        <button
-            id="closeBooking"
-            class="close-booking"
-        >
-            ЗАКРЫТЬ
-        </button>
-
-
-        <div class="booking-content">
-
-            <span class="booking-label">
-                ПРОЖИВАНИЕ
-            </span>
-
-            <h2>
-                ВЫБЕРИТЕ<br>
-                СВОЁ<br>
-                ВРЕМЯ
-            </h2>
-
-
-            <div class="booking-form">
-
-                <div class="booking-field">
-                    <small>ЗАСЕЛЕНИЕ</small>
-                    <strong>ВЫБРАТЬ ДАТУ</strong>
-                </div>
-
-                <div class="booking-field">
-                    <small>ВЫЕЗД</small>
-                    <strong>ВЫБРАТЬ ДАТУ</strong>
-                </div>
-
-                <div class="booking-field">
-                    <small>ГОСТИ</small>
-                    <strong>2 ГОСТЯ</strong>
-                </div>
-
-                <button
-                    class="request-button"
-                    id="requestButton"
-                >
-                    ОСТАВИТЬ ЗАПРОС
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
+               
