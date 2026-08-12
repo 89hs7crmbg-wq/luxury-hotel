@@ -13,10 +13,10 @@ body {
 body {
     overflow: hidden;
 
-    background: #0d1012;
-    color: #e9e7e1;
+    background: #d8d2c7;
+    color: #202321;
 
-    font-family: "Manrope", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     -webkit-font-smoothing: antialiased;
 }
@@ -26,7 +26,7 @@ button {
     -webkit-appearance: none;
 
     border: 0;
-    outline: none;
+    outline: 0;
 
     background: none;
     color: inherit;
@@ -46,13 +46,19 @@ button {
 
     overflow: hidden;
 
-    background: #0d1012;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #e4dfd5 0%,
+            #d8d2c7 52%,
+            #cec7bb 100%
+        );
 }
 
 
-/* =========================
+/* =========================================
    TOP
-========================= */
+========================================= */
 
 .top {
     position: absolute;
@@ -63,11 +69,11 @@ button {
     left: 0;
     right: 0;
 
-    height: 76px;
+    height: 82px;
 
     padding:
         env(safe-area-inset-top)
-        32px
+        42px
         0;
 
     display: grid;
@@ -78,34 +84,35 @@ button {
 }
 
 .burger {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
 
     display: flex;
+
     flex-direction: column;
     justify-content: center;
 
-    gap: 6px;
+    gap: 7px;
 }
 
 .burger span {
+    width: 27px;
+    height: 1.5px;
+
     display: block;
 
-    width: 25px;
-    height: 1px;
-
-    background: #e9e7e1;
+    background: #202321;
 }
 
 .hotel-name {
     justify-self: center;
 
-    font-family: "DM Sans", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
 
-    letter-spacing: .16em;
+    letter-spacing: .19em;
 
     white-space: nowrap;
 }
@@ -113,66 +120,83 @@ button {
 .booking-button {
     justify-self: end;
 
-    min-width: 112px;
-    height: 35px;
+    height: 38px;
 
-    padding: 0 15px;
+    padding: 0 18px;
 
-    border: 1px solid rgba(233,231,225,.42);
+    border: 1px solid rgba(32,35,33,.45);
 
     border-radius: 2px;
 
-    font-size: 8px;
+    font-size: 9px;
+    font-weight: 600;
 
-    letter-spacing: .13em;
+    letter-spacing: .12em;
 
     white-space: nowrap;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
 }
 
 .booking-button:active {
-    background: #e9e7e1;
-    color: #0d1012;
+    background: #202321;
+    color: #e4dfd5;
 }
 
 
-/* =========================
+/* =========================================
    MAIN
-========================= */
+========================================= */
 
 .main {
+    position: relative;
+
     width: 100%;
     height: 100%;
 
     padding:
-        92px
-        7.5%
-        112px;
+        106px
+        8%
+        108px;
 }
 
 .gallery {
+    position: relative;
+
     width: 100%;
     height: 100%;
 
     display: flex;
+
     flex-direction: column;
+
+    align-items: center;
 
     justify-content: center;
 }
 
 
-/* =========================
+/* =========================================
    PHOTO
-========================= */
+========================================= */
 
 .photo-wrap {
     position: relative;
 
-    width: 100%;
-    height: min(53vh, 560px);
+    width: min(78vw, 1180px);
+
+    height: min(52vh, 570px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
-    background: #171b1d;
+    background: #c8c1b6;
 }
 
 .photo-wrap img {
@@ -181,112 +205,188 @@ button {
 
     display: block;
 
-    object-fit: cover;
+    /*
+       ВАЖНО:
+       Фотография не режется.
+       Она вписывается целиком.
+    */
+    object-fit: contain;
+
+    background: #c8c1b6;
 
     opacity: 1;
 
     transition:
-        opacity .22s ease,
-        transform .45s ease;
+        opacity .18s ease;
 }
 
 .photo-wrap img.fade {
     opacity: 0;
-    transform: scale(1.012);
 }
 
 .photo-counter {
     position: absolute;
 
-    right: 20px;
-    bottom: 18px;
+    right: 18px;
+    bottom: 16px;
 
     display: flex;
+
     align-items: center;
 
     gap: 8px;
 
-    font-size: 8px;
+    padding: 7px 9px;
 
-    letter-spacing: .15em;
+    background: rgba(20,22,21,.62);
 
-    color: rgba(255,255,255,.85);
+    color: #fff;
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
 }
 
 .counter-line {
-    width: 30px;
+    width: 26px;
     height: 1px;
 
-    background: rgba(255,255,255,.5);
+    background: rgba(255,255,255,.6);
 }
 
 
-/* =========================
-   CONTENT
-========================= */
+/* =========================================
+   SIDE ARROWS
+========================================= */
+
+.arrows {
+    position: absolute;
+
+    z-index: 30;
+
+    left: 0;
+    right: 0;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    pointer-events: none;
+
+    padding:
+        0
+        max(2%, calc((100vw - 1180px) / 2 - 72px));
+}
+
+.arrows button {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: auto;
+
+    border: 1px solid rgba(32,35,33,.35);
+
+    border-radius: 50%;
+
+    background: rgba(228,223,213,.9);
+
+    color: #202321;
+
+    font-size: 21px;
+
+    line-height: 1;
+
+    transition:
+        background .18s ease,
+        transform .18s ease;
+}
+
+.arrows button:active {
+    background: #202321;
+
+    color: #e4dfd5;
+
+    transform: scale(.92);
+}
+
+
+/* =========================================
+   TEXT BLOCK
+========================================= */
 
 .content {
-    width: 100%;
+    width: min(78vw, 1180px);
 
-    padding: 19px 22px 18px;
-
-    background: #171b1d;
-
-    border-top: 1px solid rgba(233,231,225,.12);
+    padding: 20px 4px 0;
 }
 
 .eyebrow {
     display: flex;
+
     align-items: center;
 
     gap: 10px;
 
-    margin-bottom: 18px;
+    margin-bottom: 13px;
 
-    font-size: 8px;
+    color: #777269;
 
-    letter-spacing: .15em;
+    font-size: 9px;
 
-    color: #8f9596;
+    font-weight: 600;
+
+    letter-spacing: .14em;
 }
 
 .dot {
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
 
     border-radius: 50%;
 
-    background: #73797a;
+    background: #8c867c;
 }
 
 .frame-code {
     margin-left: auto;
 
-    color: #555c5e;
+    color: #8c867c;
 }
 
 .text-grid {
     display: grid;
 
-    grid-template-columns: minmax(0, 1.8fr) minmax(160px, .7fr);
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(180px, 260px);
 
     align-items: end;
 
-    gap: 35px;
+    gap: 50px;
 }
 
 .text-grid h1 {
-    font-family: "DM Sans", sans-serif;
+    color: #202321;
 
-    font-size: clamp(40px, 5.2vw, 72px);
+    font-family: Arial, Helvetica, sans-serif;
 
-    font-weight: 400;
+    font-size: clamp(42px, 5.5vw, 76px);
 
-    line-height: .9;
+    font-weight: 500;
+
+    line-height: .88;
 
     letter-spacing: -.055em;
-
-    white-space: normal;
 
     word-break: keep-all;
 
@@ -296,69 +396,21 @@ button {
 }
 
 .text-grid p {
-    max-width: 220px;
+    max-width: 230px;
 
-    padding-bottom: 3px;
+    padding-bottom: 4px;
 
-    font-size: 10px;
+    color: #777269;
+
+    font-size: 11px;
 
     line-height: 1.55;
-
-    color: #8f9596;
 }
 
 
-/* =========================
-   ARROWS
-========================= */
-
-.arrows {
-    position: absolute;
-
-    z-index: 20;
-
-    right: 7.5%;
-    bottom: 126px;
-
-    display: flex;
-
-    gap: 9px;
-}
-
-.arrows button {
-    width: 47px;
-    height: 47px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(233,231,225,.32);
-
-    border-radius: 50%;
-
-    background: #0d1012;
-
-    font-size: 17px;
-
-    transition:
-        background .18s ease,
-        color .18s ease,
-        transform .18s ease;
-}
-
-.arrows button:active {
-    background: #e9e7e1;
-    color: #0d1012;
-
-    transform: scale(.94);
-}
-
-
-/* =========================
-   BOTTOM NAV
-========================= */
+/* =========================================
+   BOTTOM BAR
+========================================= */
 
 .bottom-nav {
     position: absolute;
@@ -369,18 +421,21 @@ button {
     right: 0;
     bottom: 0;
 
-    height: 76px;
+    height: 82px;
 
-    padding-bottom: env(safe-area-inset-bottom);
+    padding:
+        0
+        max(24px, 4vw)
+        env(safe-area-inset-bottom);
 
     display: grid;
 
     grid-template-columns:
         repeat(5, minmax(0, 1fr));
 
-    background: #090b0c;
+    background: rgba(224,218,207,.96);
 
-    border-top: 1px solid rgba(233,231,225,.14);
+    border-top: 1px solid rgba(32,35,33,.18);
 }
 
 .nav-item {
@@ -393,11 +448,13 @@ button {
     align-items: center;
     justify-content: center;
 
-    gap: 9px;
+    gap: 11px;
 
-    color: #666d6f;
+    color: #777269;
 
-    font-size: 9px;
+    font-size: 11px;
+
+    font-weight: 600;
 
     letter-spacing: .08em;
 
@@ -405,9 +462,11 @@ button {
 }
 
 .nav-item span {
-    font-size: 7px;
+    color: #9b958b;
 
-    color: #414749;
+    font-size: 8px;
+
+    letter-spacing: .08em;
 }
 
 .nav-item::after {
@@ -415,13 +474,13 @@ button {
 
     position: absolute;
 
-    left: 28%;
-    right: 28%;
-    bottom: 10px;
+    left: 30%;
+    right: 30%;
+    bottom: 12px;
 
-    height: 1px;
+    height: 2px;
 
-    background: #e9e7e1;
+    background: #202321;
 
     transform: scaleX(0);
 
@@ -429,11 +488,7 @@ button {
 }
 
 .nav-item.active {
-    color: #e9e7e1;
-}
-
-.nav-item.active span {
-    color: #8f9596;
+    color: #202321;
 }
 
 .nav-item.active::after {
@@ -441,9 +496,9 @@ button {
 }
 
 
-/* =========================
+/* =========================================
    PANELS
-========================= */
+========================================= */
 
 .panel {
     position: fixed;
@@ -459,8 +514,8 @@ button {
     pointer-events: none;
 
     transition:
-        opacity .22s ease,
-        visibility .22s ease;
+        opacity .2s ease,
+        visibility .2s ease;
 }
 
 .panel.open {
@@ -472,25 +527,28 @@ button {
 }
 
 .menu-panel {
-    background: #101416;
+    background: #d8d2c7;
+
+    color: #202321;
 }
 
 .booking-panel {
-    background: #e2ded5;
+    background: #e5dfd4;
 
-    color: #171b1d;
+    color: #202321;
 }
 
 .panel-inner {
-    width: 86%;
+    width: min(1180px, 88%);
+
     height: 100%;
 
     margin: 0 auto;
 
     padding:
-        calc(22px + env(safe-area-inset-top))
+        calc(24px + env(safe-area-inset-top))
         0
-        calc(18px + env(safe-area-inset-bottom));
+        calc(20px + env(safe-area-inset-bottom));
 
     display: flex;
 
@@ -498,100 +556,106 @@ button {
 }
 
 .panel-head {
-    flex: 0 0 auto;
-
     display: flex;
 
-    justify-content: space-between;
     align-items: center;
 
-    font-size: 7px;
+    justify-content: space-between;
 
-    letter-spacing: .15em;
+    color: #777269;
 
-    color: #737b7d;
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: .14em;
 }
 
 .panel-head button {
-    font-size: 7px;
+    color: #202321;
 
-    letter-spacing: .15em;
+    font-size: 8px;
 
-    color: inherit;
+    font-weight: 600;
+
+    letter-spacing: .14em;
 }
 
 
-/* =========================
+/* =========================================
    MENU
-========================= */
+========================================= */
 
 .menu-heading {
-    margin-top: 55px;
+    margin-top: 45px;
 
-    margin-bottom: 34px;
+    margin-bottom: 28px;
 }
 
 .menu-heading > span,
 .booking-heading > span {
     display: block;
 
-    margin-bottom: 14px;
+    margin-bottom: 13px;
 
-    font-size: 7px;
+    color: #777269;
 
-    letter-spacing: .16em;
+    font-size: 8px;
 
-    color: #737b7d;
+    font-weight: 600;
+
+    letter-spacing: .14em;
 }
 
 .menu-heading h2,
 .booking-heading h2 {
-    font-family: "DM Sans", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
-    font-weight: 400;
+    font-weight: 500;
 
     line-height: .88;
 
-    letter-spacing: -.06em;
+    letter-spacing: -.055em;
 
     word-break: keep-all;
 }
 
 .menu-heading h2 {
-    font-size: clamp(50px, 8vw, 90px);
+    font-size: clamp(52px, 7vw, 92px);
 }
 
 .menu-list {
-    border-top: 1px solid rgba(233,231,225,.15);
+    border-top: 1px solid rgba(32,35,33,.2);
 }
 
 .menu-list button {
     width: 100%;
-    min-height: 64px;
+
+    min-height: 66px;
 
     display: grid;
 
-    grid-template-columns: 40px minmax(0, 1fr) 25px;
+    grid-template-columns: 45px minmax(0,1fr) 30px;
 
     align-items: center;
 
-    border-bottom: 1px solid rgba(233,231,225,.1);
+    border-bottom: 1px solid rgba(32,35,33,.16);
 
     text-align: left;
 }
 
 .menu-list small {
-    font-size: 7px;
+    color: #777269;
 
-    color: #737b7d;
+    font-size: 8px;
 }
 
 .menu-list strong {
-    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
 
-    font-size: 21px;
+    font-weight: 500;
 
-    font-weight: 400;
+    letter-spacing: .01em;
 
     white-space: nowrap;
 }
@@ -599,11 +663,11 @@ button {
 .menu-list i {
     justify-self: end;
 
+    font-size: 18px;
+
     font-style: normal;
 
-    font-size: 16px;
-
-    color: #737b7d;
+    color: #777269;
 }
 
 .panel-foot {
@@ -613,63 +677,68 @@ button {
 
     justify-content: space-between;
 
-    font-size: 6px;
+    color: #777269;
 
-    letter-spacing: .14em;
+    font-size: 7px;
 
-    color: #737b7d;
+    font-weight: 600;
+
+    letter-spacing: .13em;
 }
 
 
-/* =========================
+/* =========================================
    BOOKING
-========================= */
+========================================= */
 
 .booking-heading {
-    margin-top: 55px;
+    margin-top: 45px;
 
-    margin-bottom: 34px;
+    margin-bottom: 30px;
 }
 
 .booking-heading h2 {
-    font-size: clamp(58px, 9vw, 105px);
+    font-size: clamp(55px, 8vw, 100px);
 }
 
 .booking-heading p {
-    max-width: 320px;
+    max-width: 350px;
 
     margin-top: 20px;
 
-    font-size: 10px;
+    color: #777269;
 
-    line-height: 1.55;
+    font-size: 11px;
 
-    color: #73706a;
+    line-height: 1.5;
 }
 
 .booking-form {
     display: grid;
 
     grid-template-columns:
-        1fr 1fr 1fr 200px;
+        1fr
+        1fr
+        1fr
+        220px;
 
-    border-top: 1px solid rgba(23,27,29,.2);
+    border-top: 1px solid rgba(32,35,33,.2);
 }
 
 .booking-form > button {
-    min-height: 82px;
+    min-height: 84px;
 
-    padding: 12px 15px 12px 0;
+    padding: 13px 15px 13px 0;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: space-between;
-
     align-items: flex-start;
 
-    border-right: 1px solid rgba(23,27,29,.2);
+    justify-content: space-between;
+
+    border-right: 1px solid rgba(32,35,33,.2);
 
     text-align: left;
 }
@@ -679,19 +748,17 @@ button {
 }
 
 .booking-form small {
-    font-size: 6px;
+    color: #777269;
 
-    letter-spacing: .15em;
+    font-size: 7px;
 
-    color: #73706a;
+    letter-spacing: .13em;
 }
 
 .booking-form strong {
-    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
 
-    font-size: 15px;
-
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .booking-form .send-booking {
@@ -705,134 +772,131 @@ button {
 
     justify-content: space-between;
 
-    border: 1px solid #73706a;
+    border: 1px solid rgba(32,35,33,.45);
 
-    font-size: 7px;
+    font-size: 8px;
 
-    letter-spacing: .13em;
+    font-weight: 600;
+
+    letter-spacing: .11em;
 }
 
-.send-booking span {
-    font-size: 16px;
-}
 
-
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
 @media (max-width: 700px) {
 
     .top {
         height: 68px;
 
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
     .hotel-name {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .booking-button {
-        min-width: 96px;
-
         height: 32px;
 
-        padding: 0 10px;
+        padding: 0 11px;
 
-        font-size: 6px;
+        font-size: 7px;
     }
 
     .main {
         padding:
             78px
-            5.5%
+            5%
             98px;
     }
 
-    .gallery {
-        justify-content: center;
-    }
-
     .photo-wrap {
-        height: 48vh;
+        width: 100%;
 
-        min-height: 260px;
+        height: 45vh;
+
+        min-height: 245px;
     }
 
     .content {
-        padding: 14px 15px 15px;
+        width: 100%;
+
+        padding-top: 15px;
     }
 
     .eyebrow {
-        margin-bottom: 14px;
+        font-size: 7px;
 
-        font-size: 6px;
+        margin-bottom: 12px;
     }
 
     .text-grid {
-        grid-template-columns: 1fr;
-
-        gap: 10px;
+        display: block;
     }
 
     .text-grid h1 {
-        font-size: clamp(35px, 9.5vw, 52px);
+        font-size: clamp(36px, 10vw, 54px);
 
         line-height: .9;
     }
 
     .text-grid p {
+        margin-top: 12px;
+
         max-width: 260px;
 
-        font-size: 8px;
+        font-size: 9px;
     }
 
     .arrows {
-        right: 5.5%;
-        bottom: 105px;
+        padding:
+            0
+            5%;
 
-        gap: 7px;
+        top: 43%;
+
+        transform: translateY(-50%);
     }
 
     .arrows button {
-        width: 40px;
-        height: 40px;
+        width: 43px;
+        height: 43px;
 
-        font-size: 14px;
+        font-size: 17px;
     }
 
     .bottom-nav {
-        height: 70px;
+        height: 72px;
+
+        padding-left: 3px;
+        padding-right: 3px;
     }
 
     .nav-item {
         gap: 4px;
 
-        font-size: 5.7px;
+        font-size: 7px;
 
-        letter-spacing: .04em;
+        letter-spacing: .035em;
     }
 
     .nav-item span {
-        display: none;
+        font-size: 6px;
     }
 
     .nav-item::after {
-        left: 22%;
-        right: 22%;
+        left: 18%;
+        right: 18%;
+
         bottom: 8px;
     }
 
-
-    /* MENU MOBILE */
-
     .panel-inner {
-        width: 88%;
-
-        padding-top:
-            calc(18px + env(safe-area-inset-top));
+        width: 90%;
     }
 
     .menu-heading,
@@ -843,37 +907,32 @@ button {
     }
 
     .menu-heading h2 {
-        font-size: clamp(48px, 14vw, 68px);
+        font-size: 52px;
     }
 
     .menu-list button {
-        min-height: 57px;
+        min-height: 58px;
 
         grid-template-columns:
-            30px minmax(0, 1fr) 22px;
+            30px
+            minmax(0,1fr)
+            25px;
     }
 
     .menu-list strong {
-        font-size: 17px;
-    }
-
-    .menu-list small {
-        font-size: 6px;
+        font-size: 16px;
     }
 
     .menu-list i {
-        font-size: 13px;
+        font-size: 14px;
     }
 
-
-    /* BOOKING MOBILE */
-
     .booking-heading h2 {
-        font-size: clamp(55px, 17vw, 85px);
+        font-size: 60px;
     }
 
     .booking-heading p {
-        font-size: 8px;
+        font-size: 9px;
     }
 
     .booking-form {
@@ -895,11 +954,11 @@ button {
     }
 
     .booking-form > button:nth-child(3) {
-        border-top: 1px solid rgba(23,27,29,.2);
+        border-top: 1px solid rgba(32,35,33,.2);
     }
 
     .booking-form strong {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .booking-form .send-booking {
@@ -907,25 +966,72 @@ button {
 
         margin: 10px 0 0;
 
-        min-height: 52px;
+        min-height: 50px;
 
         padding: 0 12px;
-
-        border: 1px solid #73706a;
     }
 }
 
 
-@media (max-height: 700px) and (max-width: 700px) {
+/* =========================================
+   SMALL PHONES
+========================================= */
 
-    .main {
-        padding-top: 72px;
+@media (max-width: 390px) {
+
+    .hotel-name {
+        font-size: 10px;
+
+        letter-spacing: .14em;
+    }
+
+    .booking-button {
+        padding: 0 8px;
+
+        font-size: 6px;
     }
 
     .photo-wrap {
-        height: 43vh;
+        height: 42vh;
+    }
 
-        min-height: 220px;
+    .text-grid h1 {
+        font-size: 33px;
+    }
+
+    .nav-item {
+        font-size: 6px;
+    }
+}
+
+
+/* =========================================
+   LANDSCAPE PHONE
+========================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+
+    .main {
+        padding-top: 72px;
+        padding-bottom: 88px;
+    }
+
+    .photo-wrap {
+        height: 55vh;
+    }
+
+    .content {
+        padding-top: 10px;
+    }
+
+    .eyebrow {
+        margin-bottom: 7px;
+    }
+
+    .text-grid {
+        grid-template-columns:
+            minmax(0,1fr)
+            200px;
     }
 
     .text-grid h1 {
@@ -933,10 +1039,14 @@ button {
     }
 
     .text-grid p {
-        font-size: 7px;
+        font-size: 8px;
+    }
+
+    .bottom-nav {
+        height: 62px;
     }
 
     .arrows {
-        bottom: 100px;
+        top: 43%;
     }
 }
