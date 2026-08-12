@@ -142,33 +142,64 @@ let current = 0;
 let isChanging = false;
 
 
-const image = document.getElementById("mainImage");
-const imageWrap = document.getElementById("imageWrap");
+/* =================================
+   ЭЛЕМЕНТЫ
+================================= */
 
-const currentNumber = document.getElementById("currentNumber");
-const controlCurrent = document.getElementById("controlCurrent");
+const image =
+    document.getElementById("mainImage");
 
-const category = document.getElementById("category");
-const contentIndex = document.getElementById("contentIndex");
-const title = document.getElementById("title");
-const description = document.getElementById("description");
+const currentNumber =
+    document.getElementById("currentNumber");
 
-const prevButton = document.getElementById("prevButton");
-const nextButton = document.getElementById("nextButton");
+const controlCurrent =
+    document.getElementById("controlCurrent");
 
-const menuButton = document.getElementById("menuButton");
-const menuOverlay = document.getElementById("menuOverlay");
-const closeMenu = document.getElementById("closeMenu");
+const category =
+    document.getElementById("category");
 
-const bookingButton = document.getElementById("bookingButton");
-const bookingPanel = document.getElementById("bookingPanel");
-const closeBooking = document.getElementById("closeBooking");
+const contentIndex =
+    document.getElementById("contentIndex");
 
-const homeButton = document.getElementById("homeBtn");
+const title =
+    document.getElementById("title");
+
+const description =
+    document.getElementById("description");
+
+const prevButton =
+    document.getElementById("prevButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+const closeMenu =
+    document.getElementById("closeMenu");
+
+const bookingButton =
+    document.getElementById("bookingButton");
+
+const bookingPanel =
+    document.getElementById("bookingPanel");
+
+const closeBooking =
+    document.getElementById("closeBooking");
+
+const homeButton =
+    document.getElementById("homeBtn");
+
+const requestButton =
+    document.getElementById("requestButton");
 
 
 /* =================================
-   ПРЕДЗАГРУЗКА КАДРОВ
+   ПРЕДЗАГРУЗКА
 ================================= */
 
 scenes.forEach(function(scene) {
@@ -181,29 +212,55 @@ scenes.forEach(function(scene) {
 
 
 /* =================================
-   ОБНОВЛЕНИЕ ТЕКСТА
+   НАВИГАЦИЯ
 ================================= */
 
-function updateText(scene, number) {
+function updateNavigation(section) {
 
-    currentNumber.textContent = number;
-    controlCurrent.textContent = number;
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(function(item) {
 
-    category.textContent = scene.category;
+            item.classList.toggle(
+                "active",
+                item.dataset.section === section
+            );
 
-    contentIndex.textContent = scene.index;
-
-    title.textContent = scene.title;
-
-    description.textContent = scene.description;
-
-    updateNavigation(scene.section);
+        });
 
 }
 
 
 /* =================================
-   ПОКАЗ КАДРА
+   ОБНОВЛЕНИЕ ТЕКСТА
+================================= */
+
+function updateSceneText(scene, number) {
+
+    currentNumber.textContent =
+        number;
+
+    category.textContent =
+        scene.category;
+
+    contentIndex.textContent =
+        scene.index;
+
+    title.textContent =
+        scene.title;
+
+    description.textContent =
+        scene.description;
+
+    updateNavigation(
+        scene.section
+    );
+
+}
+
+
+/* =================================
+   ПЕРЕКЛЮЧЕНИЕ КАДРА
 ================================= */
 
 function showScene(index, animate = true) {
@@ -212,27 +269,36 @@ function showScene(index, animate = true) {
         return;
     }
 
+
     if (index < 0) {
         index = scenes.length - 1;
     }
+
 
     if (index >= scenes.length) {
         index = 0;
     }
 
-    const scene = scenes[index];
+
+    const scene =
+        scenes[index];
 
     const number =
-        String(index + 1).padStart(2, "0");
+        String(index + 1)
+            .padStart(2, "0");
 
 
     if (!animate) {
 
         current = index;
 
-        image.src = scene.image;
+        image.src =
+            scene.image;
 
-        updateText(scene, number);
+        updateSceneText(
+            scene,
+            number
+        );
 
         return;
     }
@@ -243,30 +309,21 @@ function showScene(index, animate = true) {
     current = index;
 
 
-    /*
-       Сначала мягко затемняем
-       текущую фотографию.
-    */
-
-    image.classList.add("fade-out");
+    image.classList.add(
+        "fade-out"
+    );
 
 
     setTimeout(function() {
 
-        /*
-           В этот момент картинка уже
-           практически исчезла.
-        */
+        image.src =
+            scene.image;
 
-        image.src = scene.image;
+        updateSceneText(
+            scene,
+            number
+        );
 
-        updateText(scene, number);
-
-
-        /*
-           Возвращаем её обратно
-           плавным появлением.
-        */
 
         requestAnimationFrame(function() {
 
@@ -288,26 +345,6 @@ function showScene(index, animate = true) {
         }, 480);
 
     }, 220);
-
-}
-
-
-/* =================================
-   НАВИГАЦИЯ
-================================= */
-
-function updateNavigation(section) {
-
-    document
-        .querySelectorAll(".nav-item")
-        .forEach(function(item) {
-
-            item.classList.toggle(
-                "active",
-                item.dataset.section === section
-            );
-
-        });
 
 }
 
@@ -337,6 +374,7 @@ function openSection(section) {
     ) {
         return;
     }
+
 
     showScene(
         sectionStarts[section]
@@ -375,7 +413,9 @@ menuButton.addEventListener(
     "click",
     function() {
 
-        menuOverlay.classList.add("open");
+        menuOverlay.classList.add(
+            "open"
+        );
 
     }
 );
@@ -385,7 +425,9 @@ closeMenu.addEventListener(
     "click",
     function() {
 
-        menuOverlay.classList.remove("open");
+        menuOverlay.classList.remove(
+            "open"
+        );
 
     }
 );
@@ -441,7 +483,9 @@ prevButton.addEventListener(
             return;
         }
 
-        showScene(current - 1);
+        showScene(
+            current - 1
+        );
 
     }
 );
@@ -459,7 +503,9 @@ nextButton.addEventListener(
             return;
         }
 
-        showScene(current + 1);
+        showScene(
+            current + 1
+        );
 
     }
 );
@@ -473,7 +519,9 @@ bookingButton.addEventListener(
     "click",
     function() {
 
-        bookingPanel.classList.add("open");
+        bookingPanel.classList.add(
+            "open"
+        );
 
     }
 );
@@ -483,7 +531,9 @@ closeBooking.addEventListener(
     "click",
     function() {
 
-        bookingPanel.classList.remove("open");
+        bookingPanel.classList.remove(
+            "open"
+        );
 
     }
 );
@@ -493,18 +543,16 @@ closeBooking.addEventListener(
    ЗАПРОС
 ================================= */
 
-document
-    .getElementById("requestButton")
-    .addEventListener(
-        "click",
-        function() {
+requestButton.addEventListener(
+    "click",
+    function() {
 
-            alert(
-                "Форма отправки заявки будет подключена на следующем этапе."
-            );
+        alert(
+            "Форма отправки заявки будет подключена на следующем этапе."
+        );
 
-        }
-    );
+    }
+);
 
 
 /* =================================
@@ -540,11 +588,13 @@ document.addEventListener(
             return;
         }
 
+
         const touchEndX =
             event.changedTouches[0].screenX;
 
         const touchEndY =
             event.changedTouches[0].screenY;
+
 
         const distanceX =
             touchEndX - touchStartX;
@@ -555,7 +605,8 @@ document.addEventListener(
 
         if (
             Math.abs(distanceX) < 50 ||
-            Math.abs(distanceX) < Math.abs(distanceY)
+            Math.abs(distanceX) <
+            Math.abs(distanceY)
         ) {
             return;
         }
@@ -590,7 +641,9 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "ArrowRight") {
+        if (
+            event.key === "ArrowRight"
+        ) {
 
             showScene(
                 current + 1
@@ -598,7 +651,10 @@ document.addEventListener(
 
         }
 
-        if (event.key === "ArrowLeft") {
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
 
             showScene(
                 current - 1
@@ -606,7 +662,10 @@ document.addEventListener(
 
         }
 
-        if (event.key === "Escape") {
+
+        if (
+            event.key === "Escape"
+        ) {
 
             menuOverlay.classList.remove(
                 "open"
@@ -626,4 +685,7 @@ document.addEventListener(
    ЗАПУСК
 ================================= */
 
-showScene(0, false);
+showScene(
+    0,
+    false
+);
