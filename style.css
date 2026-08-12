@@ -13,66 +13,215 @@ body {
 body {
     overflow: hidden;
 
-    background: #11110f;
-    color: #f3f0e9;
+    background: #171713;
+    color: #f3f0e8;
 
     font-family: "DM Sans", sans-serif;
 
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 button {
+    appearance: none;
+    -webkit-appearance: none;
+
     border: 0;
     outline: 0;
-    background: transparent;
+
+    background: none;
+
     color: inherit;
+
     font: inherit;
+
     cursor: pointer;
 
     -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+}
+
+img {
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 
-/* =====================================
-   ОСНОВНОЙ ЭКРАН
-===================================== */
+/* =========================================
+   APP
+========================================= */
 
-.site {
+.app {
     width: 100%;
     height: 100dvh;
+
     overflow: hidden;
+
+    background: #171713;
 }
 
-.gallery {
+
+/* =========================================
+   ОСНОВНОЙ ЭКРАН
+========================================= */
+
+.screen {
     position: relative;
 
     width: 100%;
     height: 100%;
 
     overflow: hidden;
-
-    background: #11110f;
 }
 
 
-/* =====================================
-   ФОТО
-===================================== */
+/* =========================================
+   TOPBAR
+========================================= */
 
-.image-wrap {
+.topbar {
     position: absolute;
 
-    top: 7.5%;
-    right: 5.5%;
-    bottom: 15.5%;
-    left: 5.5%;
+    z-index: 20;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 76px;
+
+    padding:
+        env(safe-area-inset-top)
+        28px
+        0;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+}
+
+.menu-button {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 6px;
+}
+
+.menu-button span {
+    display: block;
+
+    width: 23px;
+    height: 1px;
+
+    background: #f3f0e8;
+
+    transition: transform .2s ease;
+}
+
+.menu-button:active span:first-child {
+    transform: translateX(3px);
+}
+
+.menu-button:active span:last-child {
+    transform: translateX(-3px);
+}
+
+
+.brand {
+    justify-self: center;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 17px;
+
+    font-weight: 400;
+
+    letter-spacing: .14em;
+
+    white-space: nowrap;
+}
+
+
+.book-button {
+    justify-self: end;
+
+    height: 35px;
+
+    padding: 0 18px;
+
+    border: 1px solid rgba(243,240,232,.65);
+
+    border-radius: 100px;
+
+    background: rgba(23,23,19,.32);
+
+    font-size: 7px;
+
+    letter-spacing: .15em;
+
+    white-space: nowrap;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.book-button:active {
+    background: #f3f0e8;
+    color: #171713;
+}
+
+
+/* =========================================
+   FRAME
+========================================= */
+
+.frame {
+    position: absolute;
+
+    top: 82px;
+    right: 7%;
+    bottom: 94px;
+    left: 7%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    min-height: 0;
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-box {
+    position: relative;
+
+    width: 100%;
+
+    height: 57%;
+
+    min-height: 0;
 
     overflow: hidden;
 
-    background: #1a1916;
+    background: #24231f;
 }
 
-#mainImage {
+.photo-box img {
     width: 100%;
     height: 100%;
 
@@ -85,242 +234,155 @@ button {
     transform: scale(1);
 
     transition:
-        opacity .28s ease,
-        transform .45s ease;
+        opacity .22s ease,
+        transform .5s cubic-bezier(.22,.61,.36,1);
 }
 
-#mainImage.fade {
+.photo-box img.changing {
     opacity: 0;
-    transform: scale(1.015);
+
+    transform: scale(1.01);
 }
 
-.image-overlay {
+.photo-number {
     position: absolute;
 
-    top: 7.5%;
-    right: 5.5%;
-    bottom: 15.5%;
-    left: 5.5%;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.20),
-            transparent 28%,
-            transparent 55%,
-            rgba(0,0,0,.48)
-        );
-}
-
-
-/* =====================================
-   ВЕРХ
-===================================== */
-
-.top {
-    position: absolute;
-
-    z-index: 30;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 76px;
-
-    padding: 0 28px;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto 1fr;
-
-    align-items: center;
-}
-
-.burger {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-
-    gap: 6px;
-}
-
-.burger span {
-    display: block;
-
-    width: 24px;
-    height: 1px;
-
-    background: #fff;
-
-    transition: transform .2s ease;
-}
-
-.burger:hover span:first-child {
-    transform: translateX(3px);
-}
-
-.burger:hover span:last-child {
-    transform: translateX(-3px);
-}
-
-.logo {
-    justify-self: center;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 17px;
-    font-weight: 400;
-
-    letter-spacing: .14em;
-
-    white-space: nowrap;
-}
-
-.booking-button {
-    justify-self: end;
-
-    height: 34px;
-
-    padding: 0 18px;
-
-    border: 1px solid rgba(255,255,255,.65);
-
-    border-radius: 100px;
-
-    background: rgba(0,0,0,.12);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    font-size: 7px;
-    letter-spacing: .16em;
-
-    white-space: nowrap;
-
-    transition:
-        background .2s ease,
-        color .2s ease;
-}
-
-.booking-button:hover {
-    background: #fff;
-    color: #11110f;
-}
-
-
-/* =====================================
-   ТЕКСТ
-===================================== */
-
-.content {
-    position: absolute;
-
-    z-index: 20;
-
-    left: 9%;
-
-    bottom: 20%;
-
-    max-width: 48%;
-}
-
-.eyebrow {
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    margin-bottom: 14px;
+    right: 16px;
+    top: 16px;
 
     font-size: 7px;
 
     letter-spacing: .18em;
 
-    color: rgba(255,255,255,.75);
-}
-
-.eyebrow i {
-    width: 30px;
-    height: 1px;
-
-    background: rgba(255,255,255,.55);
-}
-
-#title {
-    max-width: 100%;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(42px, 5.5vw, 78px);
-
-    line-height: .91;
-
-    font-weight: 400;
-
-    letter-spacing: -.035em;
-
-    word-break: keep-all;
-    overflow-wrap: normal;
-    hyphens: none;
-}
-
-#description {
-    margin-top: 18px;
-
-    max-width: 260px;
-
-    font-size: 9px;
-
-    line-height: 1.55;
-
     color: rgba(255,255,255,.78);
 }
 
 
-/* =====================================
-   СТРЕЛКИ
-===================================== */
+/* =========================================
+   STORY
+========================================= */
 
-.arrows {
-    position: absolute;
+.story {
+    flex: 1;
 
-    z-index: 25;
+    min-height: 0;
 
-    right: 8.5%;
-    bottom: 20%;
+    padding:
+        19px
+        24px
+        17px;
+
+    background: #cfc7b9;
+
+    color: #22211d;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.8fr 1fr;
+
+    grid-template-rows: auto 1fr;
+
+    column-gap: 30px;
+}
+
+.story-meta {
+    grid-column: 1 / -1;
 
     display: flex;
 
+    align-items: center;
+
     gap: 10px;
+
+    margin-bottom: 5px;
+
+    font-size: 6px;
+
+    letter-spacing: .16em;
+
+    color: #716b61;
 }
 
-.arrows button {
-    width: 46px;
-    height: 46px;
+.meta-line {
+    width: 28px;
+    height: 1px;
+
+    background: #9d968a;
+}
+
+
+.story h1 {
+    align-self: end;
+
+    grid-column: 1 / 3;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(42px, 6vw, 78px);
+
+    line-height: .86;
+
+    font-weight: 400;
+
+    letter-spacing: -.045em;
+
+    word-break: keep-all;
+
+    overflow-wrap: normal;
+
+    hyphens: none;
+}
+
+.story p {
+    align-self: end;
+
+    max-width: 170px;
+
+    padding-bottom: 3px;
+
+    font-size: 8px;
+
+    line-height: 1.55;
+
+    color: #625d54;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation {
+    position: absolute;
+
+    z-index: 15;
+
+    right: 7%;
+    bottom: 104px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.navigation button {
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border: 1px solid rgba(255,255,255,.65);
+    border: 1px solid rgba(243,240,232,.5);
 
     border-radius: 50%;
 
-    background: rgba(0,0,0,.10);
+    background: rgba(23,23,19,.35);
 
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    font-size: 16px;
+    font-size: 15px;
 
     transition:
         background .2s ease,
@@ -328,109 +390,101 @@ button {
         transform .2s ease;
 }
 
-.arrows button:hover {
-    background: #fff;
-    color: #11110f;
+.navigation button:active {
+    background: #f3f0e8;
+    color: #171713;
 
-    transform: translateY(-2px);
+    transform: scale(.94);
 }
 
-
-/* =====================================
-   СЧЁТЧИК
-===================================== */
-
-.counter {
+.progress {
     position: absolute;
 
-    z-index: 25;
+    right: 0;
 
-    right: 9%;
-    bottom: 27%;
+    bottom: 54px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    font-size: 7px;
+    font-size: 6px;
 
-    letter-spacing: .14em;
+    letter-spacing: .15em;
 
-    color: rgba(255,255,255,.75);
+    color: rgba(243,240,232,.65);
+
+    white-space: nowrap;
 }
 
-.counter .line {
-    width: 28px;
+.progress-line {
+    width: 25px;
     height: 1px;
 
-    background: rgba(255,255,255,.45);
+    background: rgba(243,240,232,.45);
 }
 
 
-/* =====================================
-   НИЖНИЙ BAR
-===================================== */
+/* =========================================
+   BOTTOM BAR
+========================================= */
 
 .bottom-bar {
     position: absolute;
 
-    z-index: 40;
+    z-index: 30;
 
     left: 0;
     right: 0;
     bottom: 0;
 
     width: 100%;
-    height: 72px;
+
+    height: 76px;
+
+    padding-bottom: env(safe-area-inset-bottom);
 
     display: grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(5, minmax(0, 1fr));
 
-    border-top: 1px solid rgba(255,255,255,.18);
+    background: #11110f;
 
-    background: rgba(15,15,13,.88);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(243,240,232,.16);
 }
 
 .bar-item {
     position: relative;
 
-    width: 100%;
-    height: 100%;
-
     min-width: 0;
+
+    height: 100%;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 9px;
+    gap: 7px;
 
-    color: rgba(255,255,255,.48);
+    color: rgba(243,240,232,.43);
 
-    font-size: 7px;
+    font-size: 6px;
 
-    letter-spacing: .10em;
+    letter-spacing: .08em;
 
     white-space: nowrap;
 
-    transition: color .2s ease;
+    touch-action: manipulation;
 }
 
 .bar-item span {
     font-size: 5px;
-    color: rgba(255,255,255,.32);
-}
 
-.bar-item b {
-    font-weight: 400;
+    color: rgba(243,240,232,.25);
 }
 
 .bar-item::after {
@@ -438,22 +492,21 @@ button {
 
     position: absolute;
 
-    left: 25%;
-    right: 25%;
-    bottom: 10px;
+    left: 24%;
+    right: 24%;
+    bottom: 9px;
 
     height: 1px;
 
-    background: #fff;
+    background: #f3f0e8;
 
     transform: scaleX(0);
 
     transition: transform .2s ease;
 }
 
-.bar-item.active,
-.bar-item:hover {
-    color: #fff;
+.bar-item.active {
+    color: #f3f0e8;
 }
 
 .bar-item.active::after {
@@ -461,11 +514,11 @@ button {
 }
 
 
-/* =====================================
-   ПАНЕЛИ
-===================================== */
+/* =========================================
+   OVERLAYS
+========================================= */
 
-.panel {
+.overlay {
     position: fixed;
 
     z-index: 100;
@@ -476,169 +529,165 @@ button {
 
     opacity: 0;
 
-    transform: translateY(18px);
+    pointer-events: none;
 
     transition:
-        opacity .28s ease,
-        transform .28s ease,
-        visibility .28s ease;
+        opacity .25s ease,
+        visibility .25s ease;
 }
 
-.panel.open {
+.overlay.open {
     visibility: visible;
 
     opacity: 1;
 
-    transform: translateY(0);
+    pointer-events: auto;
 }
 
-.menu-panel {
-    background: #181815;
+.menu-overlay {
+    background: #191916;
 }
 
-.booking-panel {
-    background: #d8d1c4;
+.booking-overlay {
+    background: #d4ccbe;
+
     color: #24231f;
 }
 
-.panel-inner,
-.booking-inner {
-    width: min(1120px, 88%);
-
+.overlay-content {
+    width: 86%;
     height: 100%;
 
-    margin: auto;
+    margin: 0 auto;
 
-    padding: 26px 0 20px;
+    padding:
+        calc(22px + env(safe-area-inset-top))
+        0
+        calc(18px + env(safe-area-inset-bottom));
 
     display: flex;
+
     flex-direction: column;
 }
 
-.panel-top {
+.overlay-top {
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     font-size: 6px;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
 
-    color: #817b72;
+    color: #80796f;
 }
 
-.panel-top button {
+.overlay-top button {
     font-size: 6px;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
 
-    color: #817b72;
-}
-
-.panel-top button:hover {
-    color: #fff;
+    color: #80796f;
 }
 
 
-/* =====================================
-   МЕНЮ
-===================================== */
+/* =========================================
+   MENU
+========================================= */
 
-.menu-heading {
+.menu-title {
     margin-top: auto;
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-.menu-heading small {
+.menu-title > span,
+.booking-title > span {
     display: block;
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 
     font-size: 6px;
 
-    letter-spacing: .2em;
+    letter-spacing: .18em;
 
-    color: #817b72;
+    color: #80796f;
 }
 
-.menu-heading h2 {
+.menu-title h2,
+.booking-title h2 {
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(48px, 7vw, 92px);
 
     font-weight: 400;
 
-    line-height: .86;
+    line-height: .84;
 
     letter-spacing: -.045em;
 
     word-break: keep-all;
 }
 
-.menu-list {
-    width: 100%;
-
-    border-top: 1px solid rgba(255,255,255,.15);
-    border-bottom: 1px solid rgba(255,255,255,.15);
+.menu-title h2 {
+    font-size: clamp(48px, 8vw, 92px);
 }
 
-.menu-list button {
+.menu-links {
+    border-top: 1px solid rgba(243,240,232,.14);
+
+    border-bottom: 1px solid rgba(243,240,232,.14);
+}
+
+.menu-links button {
     width: 100%;
-    min-height: 62px;
+
+    min-height: 56px;
 
     display: grid;
 
-    grid-template-columns: 45px minmax(0,1fr) 30px;
+    grid-template-columns: 35px minmax(0,1fr) 25px;
 
     align-items: center;
 
-    border-bottom: 1px solid rgba(255,255,255,.09);
+    border-bottom: 1px solid rgba(243,240,232,.08);
 
     text-align: left;
-
-    transition: padding .2s ease;
 }
 
-.menu-list button:last-child {
+.menu-links button:last-child {
     border-bottom: 0;
 }
 
-.menu-list button:hover {
-    padding-left: 8px;
+.menu-links small {
+    font-size: 5px;
+
+    color: #80796f;
 }
 
-.menu-list span {
-    font-size: 6px;
-    color: #817b72;
-}
-
-.menu-list b {
+.menu-links strong {
     font-family: "Playfair Display", serif;
 
-    font-size: 24px;
+    font-size: 21px;
 
     font-weight: 400;
 
     line-height: 1;
 
-    word-break: keep-all;
+    white-space: nowrap;
 }
 
-.menu-list i {
+.menu-links i {
     justify-self: end;
 
-    font-size: 15px;
+    font-size: 13px;
 
     font-style: normal;
 
-    color: #817b72;
+    color: #80796f;
 }
 
-.panel-bottom {
-    padding-top: 13px;
+.overlay-footer {
+    padding-top: 12px;
 
     display: flex;
 
@@ -646,59 +695,39 @@ button {
 
     font-size: 5px;
 
-    letter-spacing: .18em;
+    letter-spacing: .16em;
 
-    color: #817b72;
+    color: #80796f;
 }
 
 
-/* =====================================
-   БРОНИРОВАНИЕ
-===================================== */
+/* =========================================
+   BOOKING
+========================================= */
 
-.booking-heading {
+.booking-title {
     margin-top: auto;
 
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-.booking-heading small {
-    display: block;
-
-    margin-bottom: 18px;
-
-    font-size: 6px;
-
-    letter-spacing: .2em;
-
-    color: #746e65;
+.booking-title h2 {
+    font-size: clamp(68px, 10vw, 130px);
 }
 
-.booking-heading h2 {
-    font-family: "Playfair Display", serif;
+.booking-title p {
+    max-width: 250px;
 
-    font-size: clamp(70px, 10vw, 140px);
-
-    font-weight: 400;
-
-    line-height: .78;
-
-    letter-spacing: -.055em;
-}
-
-.booking-heading p {
-    max-width: 280px;
-
-    margin-top: 20px;
+    margin-top: 18px;
 
     font-size: 8px;
 
-    line-height: 1.55;
+    line-height: 1.5;
 
-    color: #746e65;
+    color: #6e675d;
 }
 
-.booking-form {
+.booking-fields {
     display: grid;
 
     grid-template-columns:
@@ -707,10 +736,10 @@ button {
     border-top: 1px solid rgba(36,35,31,.2);
 }
 
-.field {
-    min-height: 82px;
+.booking-fields > button {
+    min-height: 78px;
 
-    padding: 14px 18px 12px 0;
+    padding: 12px 15px 12px 0;
 
     display: flex;
 
@@ -725,154 +754,156 @@ button {
     text-align: left;
 }
 
-.field:nth-child(n+2) {
-    padding-left: 18px;
+.booking-fields > button:nth-child(n+2) {
+    padding-left: 15px;
 }
 
-.field span {
+.booking-fields small {
     font-size: 5px;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
 
     color: #746e65;
 }
 
-.field b {
+.booking-fields strong {
     font-family: "Playfair Display", serif;
 
-    font-size: 18px;
+    font-size: 16px;
 
     font-weight: 400;
 }
 
-.submit-booking {
-    min-height: 82px;
-
-    margin-left: 18px;
+.booking-fields .request-button {
+    margin-left: 15px;
 
     padding: 0 15px;
 
+    border: 1px solid #746e65;
+
     display: flex;
 
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: row;
 
-    border: 1px solid #746e65;
+    align-items: center;
+
+    justify-content: space-between;
 
     font-size: 6px;
 
-    letter-spacing: .15em;
+    letter-spacing: .14em;
 }
 
-.submit-booking span {
+.request-button span {
     font-size: 15px;
 }
 
-.submit-booking:hover {
-    background: #24231f;
-    color: #d8d1c4;
-}
 
-
-/* =====================================
-   МОБИЛЬНЫЕ
-===================================== */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
 
-    .top {
-        height: 68px;
+    .topbar {
+        height: 65px;
 
-        padding: 0 15px;
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
-    .logo {
-        font-size: 14px;
+    .brand {
+        font-size: 13px;
     }
 
-    .booking-button {
+    .book-button {
         height: 31px;
 
         padding: 0 12px;
 
         font-size: 5px;
-
-        letter-spacing: .12em;
     }
 
 
-    .image-wrap {
-        top: 7%;
-        left: 5%;
-        right: 5%;
-        bottom: 17%;
-    }
-
-    .image-overlay {
-        top: 7%;
-        left: 5%;
-        right: 5%;
-        bottom: 17%;
+    .frame {
+        top: 72px;
+        right: 6%;
+        bottom: 88px;
+        left: 6%;
     }
 
 
-    .content {
-        left: 9%;
-
-        bottom: 20%;
-
-        max-width: 70%;
+    .photo-box {
+        height: 53%;
     }
 
-    .eyebrow {
+
+    .story {
+        padding:
+            15px
+            17px
+            13px;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            auto 1fr;
+    }
+
+    .story-meta {
+        margin-bottom: 3px;
+
         font-size: 5px;
     }
 
-    #title {
-        font-size: clamp(36px, 10vw, 58px);
+    .story h1 {
+        grid-column: 1 / -1;
 
-        line-height: .9;
+        align-self: center;
+
+        font-size: clamp(35px, 9.8vw, 54px);
+
+        line-height: .88;
     }
 
-    #description {
-        margin-top: 14px;
-
-        font-size: 7px;
+    .story p {
+        display: none;
     }
 
 
-    .arrows {
-        right: 7%;
+    .navigation {
+        right: 6%;
 
-        bottom: 25%;
+        bottom: 101px;
+
+        gap: 8px;
     }
 
-    .arrows button {
-        width: 40px;
-        height: 40px;
+    .navigation button {
+        width: 38px;
+        height: 38px;
 
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    .counter {
-        right: 8%;
-
-        bottom: 31%;
+    .progress {
+        bottom: 49px;
 
         font-size: 5px;
     }
 
 
     .bottom-bar {
-        height: 67px;
+        height: 70px;
     }
 
     .bar-item {
         gap: 0;
 
-        font-size: 4.4px;
+        font-size: 4.2px;
 
-        letter-spacing: .035em;
+        letter-spacing: .025em;
     }
 
     .bar-item span {
@@ -880,114 +911,98 @@ button {
     }
 
     .bar-item::after {
-        left: 22%;
-        right: 22%;
         bottom: 8px;
     }
 
 
-    /* МЕНЮ */
-
-    .panel-inner,
-    .booking-inner {
+    .overlay-content {
         width: 88%;
-
-        padding-top: 20px;
     }
 
-    .menu-heading {
-        margin-bottom: 22px;
+    .menu-title {
+        margin-bottom: 20px;
     }
 
-    .menu-heading h2 {
-        font-size: clamp(42px, 12vw, 66px);
+    .menu-title h2 {
+        font-size: clamp(42px, 12vw, 65px);
     }
 
-    .menu-list button {
-        min-height: 56px;
+    .menu-links button {
+        min-height: 52px;
 
         grid-template-columns:
-            28px minmax(0,1fr) 24px;
+            28px minmax(0,1fr) 22px;
     }
 
-    .menu-list b {
-        font-size: 18px;
-    }
-
-    .menu-list i {
-        font-size: 12px;
+    .menu-links strong {
+        font-size: 17px;
     }
 
 
-    /* БРОНЬ */
-
-    .booking-heading {
-        margin-bottom: 24px;
+    .booking-title h2 {
+        font-size: clamp(62px, 18vw, 95px);
     }
 
-    .booking-heading h2 {
-        font-size: clamp(62px, 18vw, 98px);
-    }
-
-    .booking-form {
+    .booking-fields {
         grid-template-columns: 1fr 1fr;
     }
 
-    .field {
-        min-height: 62px;
+    .booking-fields > button {
+        min-height: 61px;
 
-        padding: 10px 10px 10px 0;
+        padding: 9px 8px 9px 0;
     }
 
-    .field:nth-child(n+2) {
-        padding-left: 10px;
+    .booking-fields > button:nth-child(n+2) {
+        padding-left: 8px;
     }
 
-    .field:nth-child(2) {
+    .booking-fields > button:nth-child(2) {
         border-right: 0;
     }
 
-    .field:nth-child(3) {
+    .booking-fields > button:nth-child(3) {
         border-top: 1px solid rgba(36,35,31,.2);
     }
 
-    .field b {
-        font-size: 15px;
+    .booking-fields strong {
+        font-size: 13px;
     }
 
-    .submit-booking {
+    .booking-fields .request-button {
         grid-column: 1 / -1;
 
-        min-height: 55px;
+        min-height: 52px;
 
-        margin: 12px 0 0;
+        margin: 10px 0 0;
 
-        font-size: 5px;
+        padding: 0 12px;
+
+        border: 1px solid #746e65;
     }
 }
 
 
-@media (max-width: 380px) {
+@media (max-height: 700px) and (max-width: 700px) {
 
-    .logo {
-        font-size: 12px;
+    .frame {
+        top: 68px;
+        bottom: 83px;
     }
 
-    .booking-button {
-        padding: 0 9px;
-
-        font-size: 4px;
+    .photo-box {
+        height: 50%;
     }
 
-    #title {
-        font-size: 34px;
+    .story h1 {
+        font-size: 32px;
     }
 
-    .bar-item {
-        font-size: 3.8px;
+    .navigation {
+        bottom: 96px;
     }
 
-    .menu-list b {
-        font-size: 17px;
+    .bottom-bar {
+        height: 65px;
     }
 }
