@@ -3,114 +3,40 @@
 ========================================= */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
 }
 
 body {
-    background: #080807;
-    color: #f2eee7;
-
+    background: #080808;
+    color: #f4f1eb;
     font-family:
         Arial,
         Helvetica,
         sans-serif;
-
     overflow-x: hidden;
 }
 
-body.is-loading {
-    overflow: hidden;
+button,
+a {
+    font: inherit;
 }
 
-img {
-    display: block;
-    width: 100%;
+button {
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 a {
     color: inherit;
     text-decoration: none;
-}
-
-button {
-    font: inherit;
-}
-
-
-/* =========================================
-   PRELOADER
-========================================= */
-
-.preloader {
-    position: fixed;
-    inset: 0;
-
-    z-index: 9999;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background: #080807;
-
-    transition:
-        opacity 0.9s ease,
-        visibility 0.9s ease;
-}
-
-.preloader.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.preloader__line {
-    width: 90px;
-    height: 1px;
-
-    background: #f2eee7;
-
-    transform-origin: left;
-
-    animation:
-        loadingLine 1.6s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        infinite;
-}
-
-.preloader__text {
-    margin-top: 18px;
-
-    font-size: 9px;
-
-    letter-spacing: 0.35em;
-
-    text-transform: uppercase;
-
-    opacity: 0.6;
-}
-
-@keyframes loadingLine {
-
-    0% {
-        transform: scaleX(0);
-    }
-
-    50% {
-        transform: scaleX(1);
-    }
-
-    100% {
-        transform: scaleX(0);
-        transform-origin: right;
-    }
 }
 
 
@@ -120,118 +46,452 @@ button {
 
 .header {
     position: fixed;
-
+    z-index: 100;
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 90px;
-
-    padding: 0 5vw;
-
-    z-index: 100;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    padding:
+        24px
+        28px;
+
+    mix-blend-mode: normal;
+
     pointer-events: none;
-
-    mix-blend-mode: difference;
 }
 
-.logo {
+.header > * {
     pointer-events: auto;
-
-    font-size: 11px;
-
-    font-weight: 500;
-
-    letter-spacing: 0.28em;
-
-    text-transform: uppercase;
 }
 
-.header__right {
-    display: flex;
-    align-items: center;
-
-    gap: 30px;
-}
-
-.header__location {
-    font-size: 8px;
-
-    letter-spacing: 0.2em;
-
-    text-transform: uppercase;
-
-    opacity: 0.65;
+.brand {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
 }
 
 .menu-button {
-    width: 42px;
-    height: 42px;
-
-    padding: 0;
+    width: 44px;
+    height: 44px;
 
     display: flex;
     flex-direction: column;
-
-    align-items: flex-end;
     justify-content: center;
-
+    align-items: center;
     gap: 6px;
 
-    background: transparent;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 50%;
 
-    border: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,.18);
 
-    cursor: pointer;
+    transition:
+        background .3s ease,
+        transform .3s ease;
+}
 
-    pointer-events: auto;
+.menu-button:hover {
+    background: rgba(255,255,255,.12);
+    transform: scale(1.05);
 }
 
 .menu-button span {
     display: block;
 
-    width: 24px;
+    width: 15px;
     height: 1px;
 
-    background: #ffffff;
-
-    transition:
-        width 0.4s ease,
-        transform 0.4s ease;
-}
-
-.menu-button span:last-child {
-    width: 16px;
-}
-
-.menu-button:hover span:last-child {
-    width: 24px;
+    background: #fff;
 }
 
 
 /* =========================================
-   GENERAL
+   MENU
 ========================================= */
 
-main {
-    position: relative;
+.menu {
+    position: fixed;
+    z-index: 200;
+
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding:
+        28px
+        max(28px, 5vw)
+        30px;
+
+    background: rgba(8,8,8,.97);
+
+    transform: translateY(-100%);
+
+    transition:
+        transform .55s cubic-bezier(.77,0,.18,1);
+
+    overflow-y: auto;
 }
 
-.eyebrow {
-    font-size: 9px;
+.menu.open {
+    transform: translateY(0);
+}
 
+.menu__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 30px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.14);
+
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: rgba(255,255,255,.55);
+}
+
+.menu__close {
+    width: 44px;
+    height: 44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+    border-radius: 50%;
+
+    font-size: 26px;
     line-height: 1;
+}
 
-    letter-spacing: 0.3em;
+.menu__list {
+    display: grid;
 
-    text-transform: uppercase;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    opacity: 0.65;
+    gap: 0;
+
+    margin-top: 20px;
+}
+
+.menu__list button {
+    display: grid;
+
+    grid-template-columns: 35px 1fr;
+
+    align-items: center;
+
+    min-height: 58px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.1);
+
+    transition:
+        padding-left .3s ease,
+        color .3s ease;
+}
+
+.menu__list button span {
+    font-size: 10px;
+    color: rgba(255,255,255,.4);
+}
+
+.menu__list button strong {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .08em;
+}
+
+.menu__list button:hover {
+    padding-left: 8px;
+    color: #cfc5b5;
+}
+
+.menu__booking {
+    margin-top: auto;
+    padding-top: 30px;
+
+    font-size: 12px;
+    letter-spacing: .16em;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress {
+    position: fixed;
+
+    z-index: 90;
+
+    right: 22px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.progress::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    bottom: 8px;
+
+    width: 1px;
+
+    background:
+        rgba(255,255,255,.22);
+
+    z-index: -1;
+}
+
+.progress__dot {
+    position: relative;
+
+    width: 26px;
+    height: 22px;
+
+    font-size: 8px;
+    letter-spacing: .04em;
+
+    color:
+        rgba(255,255,255,.42);
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+.progress__dot::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.45);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        width .3s ease,
+        height .3s ease,
+        background .3s ease;
+}
+
+.progress__dot {
+    font-size: 0;
+}
+
+.progress__dot.active {
+    color: #fff;
+}
+
+.progress__dot.active::before {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+}
+
+
+/* =========================================
+   SCENES
+========================================= */
+
+.scene {
+    position: relative;
+
+    min-height: 100svh;
+
+    height: 100svh;
+
+    overflow: hidden;
+
+    scroll-snap-align: start;
+}
+
+.scene__image {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+}
+
+.scene__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.055);
+
+    transition:
+        transform 1.5s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.scene.active .scene__image img {
+    transform:
+        scale(1);
+}
+
+.scene__shade {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.63) 0%,
+            rgba(0,0,0,.2) 48%,
+            rgba(0,0,0,.12) 100%
+        );
+
+    pointer-events: none;
+}
+
+.scene:nth-child(even)
+.scene__shade {
+    background:
+        linear-gradient(
+            270deg,
+            rgba(0,0,0,.63) 0%,
+            rgba(0,0,0,.2) 48%,
+            rgba(0,0,0,.12) 100%
+        );
+}
+
+
+/* =========================================
+   SCENE CONTENT
+========================================= */
+
+.scene__content {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 8vw;
+    bottom: 14vh;
+
+    width: min(460px, 68vw);
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        opacity .8s ease .15s,
+        transform .9s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.scene.active .scene__content {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+.scene__content--right {
+    left: auto;
+    right: 8vw;
+
+    text-align: right;
+}
+
+.scene__number {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 10px;
+
+    letter-spacing: .15em;
+
+    color:
+        rgba(255,255,255,.55);
+}
+
+.scene__eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: .2em;
+
+    color:
+        rgba(255,255,255,.7);
+}
+
+.scene h2 {
+    font-size:
+        clamp(42px, 7vw, 100px);
+
+    line-height: .88;
+
+    font-weight: 400;
+
+    letter-spacing: -.04em;
+}
+
+.scene p {
+    max-width: 320px;
+
+    margin-top: 20px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color:
+        rgba(255,255,255,.72);
+}
+
+.scene__content--right p {
+    margin-left: auto;
 }
 
 
@@ -239,470 +499,231 @@ main {
    HERO
 ========================================= */
 
-.hero {
-    position: relative;
-
-    width: 100%;
-    height: 100svh;
-
-    min-height: 650px;
-
-    overflow: hidden;
-
-    background: #080807;
-}
-
-.hero__image {
-    position: absolute;
-
-    inset: 0;
-
-    overflow: hidden;
-}
-
-.hero__image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    transform: scale(1.01);
-}
-
-.hero__overlay {
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.12),
-            rgba(0, 0, 0, 0.03) 45%,
-            rgba(0, 0, 0, 0.68)
-        );
-}
-
-.hero__content {
-    position: absolute;
-
-    left: 5vw;
-    bottom: 13vh;
-
-    z-index: 2;
-
-    max-width: 700px;
-}
-
-.hero h1 {
-    margin-top: 22px;
-
-    font-size:
-        clamp(
-            72px,
-            13vw,
-            190px
-        );
-
-    line-height: 0.78;
-
-    font-weight: 300;
-
-    letter-spacing: -0.065em;
-}
-
-.hero__intro {
-    max-width: 290px;
-
-    margin-top: 38px;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-    color:
-        rgba(
-            242,
-            238,
-            231,
-            0.7
-        );
-}
-
-.scroll-indicator {
-    position: absolute;
-
-    right: 5vw;
-    bottom: 7vh;
-
-    z-index: 3;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 16px;
-
-    font-size: 8px;
-
-    letter-spacing: 0.25em;
-
-    text-transform: uppercase;
-
-    opacity: 0.7;
-}
-
-.scroll-indicator__line {
-    width: 55px;
-    height: 1px;
-
-    background: currentColor;
-}
-
-
-/* =========================================
-   JOURNEY
-========================================= */
-
-.journey {
-    position: relative;
-
-    width: 100%;
-
-    height: 1400vh;
-
-    background: #080807;
-}
-
-.journey__stage {
-    position: sticky;
-
-    top: 0;
-
-    width: 100%;
-    height: 100svh;
-
-    min-height: 650px;
-
-    overflow: hidden;
-
-    background: #080807;
-}
-
-.journey__frame {
-    position: absolute;
-
-    inset: 0;
-
-    opacity: 0;
-
-    transform: scale(1.06);
-
-    will-change:
-        opacity,
-        transform;
-
-    transition:
-        opacity 1s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        ),
-
-        transform 1.5s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        );
-}
-
-.journey__frame.is-active {
-    opacity: 1;
-
+.scene--hero .scene__image img {
     transform: scale(1);
 }
 
-.journey__frame img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center;
+.scene--hero.active .scene__image img {
+    transform: scale(1.025);
 }
 
-.journey__frame::after {
-    content: "";
+.scene__content--hero {
+    left: 7vw;
+    bottom: 20vh;
 
+    width: auto;
+}
+
+.scene__content--hero h1 {
+    font-size:
+        clamp(72px, 14vw, 190px);
+
+    line-height: .78;
+
+    font-weight: 400;
+
+    letter-spacing: -.07em;
+}
+
+.scene__content--hero p {
+    margin-top: 28px;
+
+    font-size: 15px;
+
+    color:
+        rgba(255,255,255,.78);
+}
+
+.scroll-hint {
     position: absolute;
 
-    inset: 0;
+    z-index: 10;
 
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.06),
-            transparent 48%,
-            rgba(0, 0, 0, 0.45)
-        );
-}
-
-
-/* =========================================
-   SCENE INFO
-========================================= */
-
-.scene-info {
-    position: fixed;
-
-    left: 5vw;
-    bottom: 5vh;
-
-    z-index: 30;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    pointer-events: none;
-
-    mix-blend-mode: difference;
-}
-
-.scene-info__number {
-    display: flex;
-
-    gap: 7px;
-
-    font-size: 9px;
-
-    letter-spacing: 0.2em;
-}
-
-.scene-info__number span:last-child {
-    opacity: 0.4;
-}
-
-.scene-info__name {
-    font-size: 9px;
-
-    letter-spacing: 0.25em;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================
-   SCENE COPY
-========================================= */
-
-.scene-copy {
-    position: fixed;
-
-    right: 5vw;
-    bottom: 5vh;
-
-    z-index: 30;
-
-    width: min(
-        300px,
-        30vw
-    );
-
-    text-align: right;
-
-    pointer-events: none;
-
-    mix-blend-mode: difference;
-}
-
-.scene-copy h2 {
-    margin-top: 11px;
-
-    font-size:
-        clamp(
-            30px,
-            4vw,
-            60px
-        );
-
-    line-height: 0.9;
-
-    font-weight: 300;
-
-    letter-spacing: -0.04em;
-}
-
-.scene-copy p:last-child {
-    margin-top: 15px;
-
-    font-size: 10px;
-
-    line-height: 1.5;
-
-    opacity: 0.6;
-}
-
-
-/* =========================================
-   JOURNEY PROGRESS
-========================================= */
-
-.journey-progress {
-    position: fixed;
-
-    top: 50%;
-    right: 24px;
-
-    width: 1px;
-    height: 110px;
-
-    z-index: 30;
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.2
-        );
+    left: 50%;
+    bottom: 32px;
 
     transform:
-        translateY(-50%);
+        translateX(-50%);
 
-    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    font-size: 9px;
+
+    letter-spacing: .18em;
+
+    white-space: nowrap;
+
+    color:
+        rgba(255,255,255,.8);
 }
 
-.journey-progress__bar {
-    width: 100%;
-    height: 0%;
+.scroll-hint i {
+    display: block;
 
-    background: #ffffff;
+    width: 28px;
+    height: 1px;
 
-    transition:
-        height 0.35s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        );
+    background: #fff;
+
+    animation:
+        scrollLine 1.6s
+        ease-in-out
+        infinite;
+}
+
+@keyframes scrollLine {
+
+    0%,
+    100% {
+        transform: scaleX(.35);
+        transform-origin: left;
+    }
+
+    50% {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
 }
 
 
 /* =========================================
-   FINAL
+   BOOKING
 ========================================= */
 
-.final {
+.booking {
     position: relative;
 
     min-height: 100svh;
 
     display: flex;
-
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 
     padding:
-        12vh 5vw;
+        12vw;
 
-    background: #080807;
+    background: #080808;
 }
 
-.final__content {
-    max-width: 900px;
-}
-
-.final h2 {
-    margin-top: 25px;
+.booking h2 {
+    margin-top: 10px;
 
     font-size:
-        clamp(
-            72px,
-            13vw,
-            180px
-        );
+        clamp(58px, 11vw, 150px);
 
-    line-height: 0.78;
+    line-height: .82;
 
-    font-weight: 300;
+    font-weight: 400;
 
-    letter-spacing: -0.065em;
+    letter-spacing: -.06em;
 }
 
-.final__content p:not(.eyebrow) {
-    max-width: 300px;
+.booking p {
+    max-width: 400px;
 
-    margin-top: 40px;
+    margin-top: 32px;
 
-    font-size: 12px;
+    font-size: 15px;
 
-    line-height: 1.6;
+    line-height: 1.7;
 
     color:
-        rgba(
-            242,
-            238,
-            231,
-            0.65
-        );
+        rgba(255,255,255,.6);
 }
 
-.final__button {
+.booking__button {
     display: inline-flex;
 
-    margin-top: 45px;
+    width: fit-content;
+
+    margin-top: 42px;
 
     padding:
-        16px 24px;
+        17px 24px;
 
     border:
         1px solid
-        rgba(
-            242,
-            238,
-            231,
-            0.35
-        );
+        rgba(255,255,255,.5);
 
-    font-size: 9px;
+    font-size: 10px;
 
-    letter-spacing: 0.2em;
+    letter-spacing: .17em;
 
     transition:
-        background 0.4s ease,
-        color 0.4s ease;
+        background .3s ease,
+        color .3s ease;
 }
 
-.final__button:hover {
-    background: #f2eee7;
-
-    color: #080807;
+.booking__button:hover {
+    background: #fff;
+    color: #080808;
 }
 
 
 /* =========================================
-   TABLET
+   BACK TO TOP
 ========================================= */
 
-@media (max-width: 900px) {
+.back-top {
+    position: fixed;
 
-    .header {
-        padding: 0 6vw;
+    z-index: 95;
+
+    right: 20px;
+    bottom: 22px;
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,.25);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 17px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(10px);
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease,
+        transform .3s ease;
+}
+
+.back-top.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 800px) {
+
+    body {
+        scroll-snap-type: y proximity;
     }
 
-    .scene-copy {
-        width: 230px;
+    .scene {
+        scroll-snap-align: start;
     }
 
 }
@@ -712,91 +733,166 @@ main {
    MOBILE
 ========================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 799px) {
 
     .header {
-        height: 72px;
-
         padding:
-            0 6vw;
+            18px
+            18px;
     }
 
-    .header__location {
-        display: none;
+    .brand {
+        font-size: 11px;
     }
 
-    .hero {
-        min-height: 600px;
+    .menu-button {
+        width: 40px;
+        height: 40px;
     }
 
-    .hero__content {
-        left: 6vw;
-        right: 6vw;
+    .progress {
+        right: 9px;
 
-        bottom: 15vh;
+        gap: 1px;
     }
 
-    .hero h1 {
-        font-size:
-            clamp(
-                64px,
-                21vw,
-                120px
+    .progress__dot {
+        width: 18px;
+        height: 19px;
+    }
+
+    .progress__dot::before {
+        width: 3px;
+        height: 3px;
+    }
+
+    .progress__dot.active::before {
+        width: 7px;
+        height: 7px;
+    }
+
+    .scene__shade {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,.25) 0%,
+                rgba(0,0,0,.08) 40%,
+                rgba(0,0,0,.7) 100%
             );
     }
 
-    .hero__intro {
-        margin-top: 28px;
-    }
-
-    .scroll-indicator {
-        left: 6vw;
-        right: auto;
-
-        bottom: 6vh;
-    }
-
-    .journey {
-        height: 1400vh;
-    }
-
-    .journey__stage {
-        min-height: 600px;
-    }
-
-    .scene-info {
-        left: 6vw;
-        bottom: 4vh;
-    }
-
-    .scene-copy {
-        display: none;
-    }
-
-    .scene-info__name {
-        display: none;
-    }
-
-    .journey-progress {
-        right: 14px;
-
-        height: 80px;
-    }
-
-    .final {
-        min-height: 100svh;
-
-        padding:
-            12vh 6vw;
-    }
-
-    .final h2 {
-        font-size:
-            clamp(
-                64px,
-                20vw,
-                110px
+    .scene:nth-child(even)
+    .scene__shade {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,.25) 0%,
+                rgba(0,0,0,.08) 40%,
+                rgba(0,0,0,.7) 100%
             );
+    }
+
+    .scene__content,
+    .scene__content--right {
+        left: 22px;
+        right: 36px;
+        bottom: 105px;
+
+        width: auto;
+
+        text-align: left;
+    }
+
+    .scene__number {
+        margin-bottom: 12px;
+
+        font-size: 9px;
+    }
+
+    .scene__eyebrow {
+        margin-bottom: 10px;
+
+        font-size: 8px;
+
+        letter-spacing: .17em;
+    }
+
+    .scene h2 {
+        font-size:
+            clamp(42px, 15vw, 76px);
+    }
+
+    .scene p,
+    .scene__content--right p {
+        max-width: 280px;
+
+        margin-top: 14px;
+        margin-left: 0;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+    .scene__content--hero {
+        left: 22px;
+        right: 30px;
+        bottom: 145px;
+    }
+
+    .scene__content--hero h1 {
+        font-size:
+            clamp(68px, 23vw, 120px);
+    }
+
+    .scene__content--hero p {
+        margin-top: 22px;
+        font-size: 13px;
+    }
+
+    .scroll-hint {
+        bottom: 32px;
+
+        font-size: 8px;
+    }
+
+    .menu {
+        padding:
+            18px
+            18px
+            24px;
+    }
+
+    .menu__list {
+        grid-template-columns: 1fr;
+    }
+
+    .menu__list button {
+        min-height: 48px;
+    }
+
+    .menu__list button strong {
+        font-size: 11px;
+    }
+
+    .booking {
+        padding:
+            22px;
+    }
+
+    .booking h2 {
+        font-size:
+            clamp(62px, 20vw, 105px);
+    }
+
+    .booking p {
+        margin-top: 25px;
+
+        font-size: 13px;
+    }
+
+    .booking__button {
+        margin-top: 32px;
     }
 
 }
@@ -806,20 +902,17 @@ main {
    REDUCED MOTION
 ========================================= */
 
-@media (
-    prefers-reduced-motion: reduce
-) {
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
 
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
-
-        animation-duration:
-            0.01ms !important;
-
-        transition-duration:
-            0.01ms !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
     }
 
 }
