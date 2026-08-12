@@ -136,19 +136,28 @@ let currentIndex = 0;
 let changing = false;
 
 
-/* =========================
+/* =========================================
    PRELOAD
-========================= */
+========================================= */
+
+const imageCache = [];
 
 frames.forEach((frame) => {
-    const image = new Image();
-    image.src = frame.image;
+
+    const img = new Image();
+
+    img.decoding = "async";
+
+    img.src = frame.image;
+
+    imageCache.push(img);
+
 });
 
 
-/* =========================
-   ACTIVE BOTTOM ITEM
-========================= */
+/* =========================================
+   NAVIGATION
+========================================= */
 
 function updateNavigation(index) {
 
@@ -171,14 +180,19 @@ function updateNavigation(index) {
     }
 
     navItems.forEach((item, i) => {
-        item.classList.toggle("active", i === section);
+
+        item.classList.toggle(
+            "active",
+            i === section
+        );
+
     });
 }
 
 
-/* =========================
-   UPDATE
-========================= */
+/* =========================================
+   CONTENT
+========================================= */
 
 function updateContent(index) {
 
@@ -193,15 +207,16 @@ function updateContent(index) {
 
     title.innerHTML = frame.title;
 
-    description.textContent = frame.description;
+    description.textContent =
+        frame.description;
 
     updateNavigation(index);
 }
 
 
-/* =========================
-   CHANGE FRAME
-========================= */
+/* =========================================
+   FRAME CHANGE
+========================================= */
 
 function changeFrame(newIndex) {
 
@@ -223,46 +238,69 @@ function changeFrame(newIndex) {
 
     changing = true;
 
+    const frame = frames[newIndex];
+
     photo.classList.add("fade");
 
     setTimeout(() => {
 
         currentIndex = newIndex;
 
-        const frame = frames[currentIndex];
-
         photo.src = frame.image;
 
         updateContent(currentIndex);
 
-        requestAnimationFrame(() => {
-            photo.classList.remove("fade");
-        });
+        photo.onload = () => {
 
-        setTimeout(() => {
-            changing = false;
-        }, 220);
+            requestAnimationFrame(() => {
+
+                photo.classList.remove("fade");
+
+                changing = false;
+
+            });
+
+        };
+
+        /*
+         Если картинка уже в кэше,
+         onload может быть практически мгновенным.
+        */
+
+        if (photo.complete) {
+
+            requestAnimationFrame(() => {
+
+                photo.classList.remove("fade");
+
+                changing = false;
+
+            });
+
+        }
 
     }, 120);
 }
 
 
-/* =========================
+/* =========================================
    ARROWS
-========================= */
+========================================= */
 
-prev.addEventListener("click", () => {
-    changeFrame(currentIndex - 1);
-});
+prev.addEventListener(
+    "click",
+    () => changeFrame(currentIndex - 1)
+);
 
-next.addEventListener("click", () => {
-    changeFrame(currentIndex + 1);
-});
+next.addEventListener(
+    "click",
+    () => changeFrame(currentIndex + 1)
+);
 
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* =========================================
+   BOTTOM BAR
+========================================= */
 
 navItems.forEach((item) => {
 
@@ -278,25 +316,22 @@ navItems.forEach((item) => {
 });
 
 
-/* =========================
+/* =========================================
    MENU
-========================= */
+========================================= */
 
-function openMenu() {
+menuButton.addEventListener("click", () => {
 
     menuPanel.classList.add("open");
 
-}
+});
 
-function closeMenuPanel() {
+
+closeMenu.addEventListener("click", () => {
 
     menuPanel.classList.remove("open");
 
-}
-
-menuButton.addEventListener("click", openMenu);
-
-closeMenu.addEventListener("click", closeMenuPanel);
+});
 
 
 menuItems.forEach((item) => {
@@ -306,7 +341,7 @@ menuItems.forEach((item) => {
         const index =
             Number(item.dataset.index);
 
-        closeMenuPanel();
+        menuPanel.classList.remove("open");
 
         changeFrame(index);
 
@@ -315,15 +350,16 @@ menuItems.forEach((item) => {
 });
 
 
-/* =========================
+/* =========================================
    BOOKING
-========================= */
+========================================= */
 
 bookingButton.addEventListener("click", () => {
 
     bookingPanel.classList.add("open");
 
 });
+
 
 closeBooking.addEventListener("click", () => {
 
@@ -332,9 +368,9 @@ closeBooking.addEventListener("click", () => {
 });
 
 
-/* =========================
+/* =========================================
    HOME
-========================= */
+========================================= */
 
 homeButton.addEventListener("click", () => {
 
@@ -343,97 +379,116 @@ homeButton.addEventListener("click", () => {
 });
 
 
-/* =========================
-   ESC
-========================= */
+/* =========================================
+   KEYBOARD
+========================================= */
 
 document.addEventListener("keydown", (event) => {
 
     if (event.key === "Escape") {
 
-        closeMenuPanel();
+        menuPanel.classList.remove("open");
 
         bookingPanel.classList.remove("open");
 
     }
 
     if (event.key === "ArrowLeft") {
+
         changeFrame(currentIndex - 1);
+
     }
 
     if (event.key === "ArrowRight") {
+
         changeFrame(currentIndex + 1);
+
     }
 
 });
 
 
-/* =========================
+/* =========================================
    SWIPE
-========================= */
+========================================= */
 
 let startX = 0;
 let startY = 0;
 
-document.addEventListener("touchstart", (event) => {
+document.addEventListener(
+    "touchstart",
+    (event) => {
 
-    if (
-        menuPanel.classList.contains("open") ||
-        bookingPanel.classList.contains("open")
-    ) {
-        return;
+        if (
+            menuPanel.classList.contains("open") ||
+            bookingPanel.classList.contains("open")
+        ) {
+            return;
+        }
+
+        const touch = event.touches[0];
+
+        startX = touch.clientX;
+
+        startY = touch.clientY;
+
+    },
+    {
+        passive: true
     }
-
-    const touch = event.touches[0];
-
-    startX = touch.clientX;
-    startY = touch.clientY;
-
-}, {
-    passive: true
-});
+);
 
 
-document.addEventListener("touchend", (event) => {
+document.addEventListener(
+    "touchend",
+    (event) => {
 
-    if (
-        menuPanel.classList.contains("open") ||
-        bookingPanel.classList.contains("open")
-    ) {
-        return;
+        if (
+            menuPanel.classList.contains("open") ||
+            bookingPanel.classList.contains("open")
+        ) {
+            return;
+        }
+
+        const touch =
+            event.changedTouches[0];
+
+        const deltaX =
+            touch.clientX - startX;
+
+        const deltaY =
+            touch.clientY - startY;
+
+        if (Math.abs(deltaX) < 55) {
+            return;
+        }
+
+        if (
+            Math.abs(deltaX) <=
+            Math.abs(deltaY)
+        ) {
+            return;
+        }
+
+        if (deltaX < 0) {
+
+            changeFrame(currentIndex + 1);
+
+        } else {
+
+            changeFrame(currentIndex - 1);
+
+        }
+
+    },
+    {
+        passive: true
     }
-
-    const touch = event.changedTouches[0];
-
-    const deltaX =
-        touch.clientX - startX;
-
-    const deltaY =
-        touch.clientY - startY;
-
-    if (Math.abs(deltaX) < 60) {
-        return;
-    }
-
-    if (
-        Math.abs(deltaX) <= Math.abs(deltaY)
-    ) {
-        return;
-    }
-
-    if (deltaX < 0) {
-        changeFrame(currentIndex + 1);
-    } else {
-        changeFrame(currentIndex - 1);
-    }
-
-}, {
-    passive: true
-});
+);
 
 
-/* =========================
-   START
-========================= */
+/* =========================================
+   INITIAL
+========================================= */
 
 updateContent(0);
