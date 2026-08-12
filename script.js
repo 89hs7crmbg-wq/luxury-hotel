@@ -138,10 +138,16 @@ const scenes = [
 ];
 
 
+/* =========================================
+   СОСТОЯНИЕ
+========================================= */
+
 let current = 0;
 
 
-/* ELEMENTS */
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const image =
     document.getElementById("mainImage");
@@ -151,6 +157,9 @@ const imageWrap =
 
 const currentNumber =
     document.getElementById("currentNumber");
+
+const controlCurrent =
+    document.getElementById("controlCurrent");
 
 const category =
     document.getElementById("category");
@@ -192,21 +201,21 @@ const homeButton =
     document.getElementById("homeBtn");
 
 
-/* ==================================================
-   SHOW SCENE
-================================================== */
+/* =========================================
+   ПОКАЗ КАДРА
+========================================= */
 
 function showScene(index) {
 
+    if (index < 0) {
+        index = scenes.length - 1;
+    }
+
+    if (index >= scenes.length) {
+        index = 0;
+    }
+
     current = index;
-
-    if (current < 0) {
-        current = scenes.length - 1;
-    }
-
-    if (current >= scenes.length) {
-        current = 0;
-    }
 
     const scene = scenes[current];
 
@@ -220,8 +229,14 @@ function showScene(index) {
 
         image.alt = scene.category;
 
-        currentNumber.textContent =
+        const number =
             String(current + 1).padStart(2, "0");
+
+        currentNumber.textContent =
+            number;
+
+        controlCurrent.textContent =
+            number;
 
         category.textContent =
             scene.category;
@@ -248,81 +263,113 @@ function showScene(index) {
 }
 
 
-/* ==================================================
-   NAVIGATION
-================================================== */
+/* =========================================
+   НАВИГАЦИЯ
+========================================= */
 
 function updateNavigation(section) {
 
-    const items =
-        document.querySelectorAll(
-            ".nav-item"
-        );
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(function (item) {
 
-    items.forEach(function (item) {
-
-        if (
-            item.dataset.section === section
-        ) {
-
-            item.classList.add("active");
-
-        } else {
-
-            item.classList.remove("active");
-
-        }
-
-    });
-
-}
-
-
-/* ==================================================
-   OPEN SECTION
-================================================== */
-
-function openSection(section) {
-
-    const index =
-        scenes.findIndex(function (scene) {
-
-            return scene.section === section;
+            item.classList.toggle(
+                "active",
+                item.dataset.section === section
+            );
 
         });
 
+}
 
-    if (index !== -1) {
 
-        showScene(index);
+/* =========================================
+   РАЗДЕЛЫ
+========================================= */
 
+const sectionStarts = {
+
+    hotel: 0,
+
+    arrival: 1,
+
+    space: 3,
+
+    rooms: 8,
+
+    details: 11
+
+};
+
+
+function openSection(section) {
+
+    if (
+        !Object.prototype.hasOwnProperty.call(
+            sectionStarts,
+            section
+        )
+    ) {
+        return;
     }
+
+
+    showScene(
+        sectionStarts[section]
+    );
 
 }
 
 
-/* ==================================================
-   BOTTOM NAVIGATION
-================================================== */
+/* =========================================
+   НИЖНИЙ БАР
+========================================= */
 
 document
     .querySelectorAll(".nav-item")
     .forEach(function (item) {
 
-        item.onclick = function () {
+        item.addEventListener(
+            "click",
+            function () {
 
-            openSection(
-                item.dataset.section
-            );
+                openSection(
+                    item.dataset.section
+                );
 
-        };
+            }
+        );
 
     });
 
 
-/* ==================================================
-   MENU NAVIGATION
-================================================== */
+/* =========================================
+   МЕНЮ
+========================================= */
+
+menuButton.addEventListener(
+    "click",
+    function () {
+
+        menuOverlay.classList.add(
+            "open"
+        );
+
+    }
+);
+
+
+closeMenu.addEventListener(
+    "click",
+    function () {
+
+        menuOverlay.classList.remove(
+            "open"
+        );
+
+    }
+);
+
 
 document
     .querySelectorAll(
@@ -330,112 +377,111 @@ document
     )
     .forEach(function (item) {
 
-        item.onclick = function () {
+        item.addEventListener(
+            "click",
+            function () {
 
-            openSection(
-                item.dataset.section
-            );
+                openSection(
+                    item.dataset.section
+                );
 
-            menuOverlay.classList.remove(
-                "open"
-            );
+                menuOverlay.classList.remove(
+                    "open"
+                );
 
-        };
+            }
+        );
 
     });
 
 
-/* ==================================================
-   ARROWS
-================================================== */
+/* =========================================
+   ДОМОЙ
+========================================= */
 
-prevButton.onclick = function () {
+homeButton.addEventListener(
+    "click",
+    function () {
 
-    showScene(current - 1);
+        openSection("hotel");
 
-};
-
-
-nextButton.onclick = function () {
-
-    showScene(current + 1);
-
-};
+    }
+);
 
 
-/* ==================================================
-   MENU
-================================================== */
+/* =========================================
+   СТРЕЛКИ
+========================================= */
 
-menuButton.onclick = function () {
+prevButton.addEventListener(
+    "click",
+    function () {
 
-    menuOverlay.classList.add(
-        "open"
-    );
+        showScene(current - 1);
 
-};
-
-
-closeMenu.onclick = function () {
-
-    menuOverlay.classList.remove(
-        "open"
-    );
-
-};
+    }
+);
 
 
-/* ==================================================
-   HOME
-================================================== */
+nextButton.addEventListener(
+    "click",
+    function () {
 
-homeButton.onclick = function () {
+        showScene(current + 1);
 
-    openSection("hotel");
-
-};
-
-
-/* ==================================================
-   BOOKING
-================================================== */
-
-bookingButton.onclick = function () {
-
-    bookingPanel.classList.add(
-        "open"
-    );
-
-};
+    }
+);
 
 
-closeBooking.onclick = function () {
+/* =========================================
+   БРОНИРОВАНИЕ
+========================================= */
 
-    bookingPanel.classList.remove(
-        "open"
-    );
+bookingButton.addEventListener(
+    "click",
+    function () {
 
-};
+        bookingPanel.classList.add(
+            "open"
+        );
+
+    }
+);
 
 
-/* ==================================================
-   REQUEST
-================================================== */
+closeBooking.addEventListener(
+    "click",
+    function () {
+
+        bookingPanel.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================
+   ЗАПРОС
+========================================= */
 
 document
     .getElementById("requestButton")
-    .onclick = function () {
+    .addEventListener(
+        "click",
+        function () {
 
-        alert(
-            "Форма заявки будет подключена следующим этапом."
-        );
+            alert(
+                "Здесь будет форма отправки заявки на бронирование."
+            );
 
-    };
+        }
+    );
 
 
-/* ==================================================
-   SWIPE
-================================================== */
+/* =========================================
+   СВАЙП
+========================================= */
 
 let touchStartX = 0;
 
@@ -473,11 +519,15 @@ document.addEventListener(
 
         if (distance < 0) {
 
-            showScene(current + 1);
+            showScene(
+                current + 1
+            );
 
         } else {
 
-            showScene(current - 1);
+            showScene(
+                current - 1
+            );
 
         }
 
@@ -488,9 +538,9 @@ document.addEventListener(
 );
 
 
-/* ==================================================
-   KEYBOARD
-================================================== */
+/* =========================================
+   КЛАВИАТУРА
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -500,7 +550,9 @@ document.addEventListener(
             event.key === "ArrowRight"
         ) {
 
-            showScene(current + 1);
+            showScene(
+                current + 1
+            );
 
         }
 
@@ -509,7 +561,9 @@ document.addEventListener(
             event.key === "ArrowLeft"
         ) {
 
-            showScene(current - 1);
+            showScene(
+                current - 1
+            );
 
         }
 
@@ -530,3 +584,10 @@ document.addEventListener(
 
     }
 );
+
+
+/* =========================================
+   ПЕРВЫЙ ЗАПУСК
+========================================= */
+
+showScene(0);
