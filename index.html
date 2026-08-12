@@ -11,443 +11,262 @@
 
 <body>
 
-<header class="site-header">
+<div class="app">
 
-    <a href="#top" class="logo">THE HOTEL</a>
+    <!-- HEADER -->
 
-    <div class="header-right">
-        <span class="location">МОСКВА / РОССИЯ</span>
+    <header class="header">
 
-        <button class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
+        <button class="brand" id="homeBtn">
+            THE HOTEL
         </button>
-    </div>
 
-</header>
-
-
-<div class="menu" id="menu">
-
-    <button class="menu-close" id="menuClose">×</button>
-
-    <div class="menu-inner">
-
-        <span class="menu-label">НАВИГАЦИЯ</span>
-
-        <a href="#arrival">01 / ПРИБЫТИЕ</a>
-        <a href="#interior">02 / ПРОСТРАНСТВО</a>
-        <a href="#room">03 / НОМЕР</a>
-        <a href="#view">04 / ВИД</a>
-        <a href="#booking">05 / БРОНИРОВАНИЕ</a>
-
-    </div>
-
-</div>
-
-
-<main id="top">
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-image">
-            <img src="IMG_8684.png" alt="THE HOTEL">
+        <div class="header-center">
+            MOSCOW / RUSSIA
         </div>
 
-        <div class="hero-overlay"></div>
+        <button class="menu-button" id="menuButton">
+            <span>MENU</span>
+            <i></i>
+        </button>
 
-        <div class="hero-content">
+    </header>
 
-            <span class="eyebrow">
-                PRIVATE HOSPITALITY
-            </span>
 
-            <h1>
-                THE<br>
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- IMAGE AREA -->
+
+        <section class="visual">
+
+            <div class="image-wrap" id="imageWrap">
+
+                <img
+                    id="mainImage"
+                    src="IMG_8684.png"
+                    alt="THE HOTEL"
+                >
+
+            </div>
+
+
+            <div class="image-number">
+
+                <span id="currentNumber">01</span>
+
+                <span class="line"></span>
+
+                <span>15</span>
+
+            </div>
+
+
+            <div class="image-counter">
+                DISCOVER
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="info">
+
+            <div class="info-top">
+
+                <span class="category" id="category">
+                    THE HOTEL
+                </span>
+
+                <span class="coordinates" id="coordinates">
+                    55°45' N / 37°37' E
+                </span>
+
+            </div>
+
+
+            <div class="content">
+
+                <div class="content-index" id="contentIndex">
+                    00
+                </div>
+
+                <div class="content-main">
+
+                    <h1 id="title">
+                        THE<br>
+                        HOTEL
+                    </h1>
+
+                    <p id="description">
+                        Пространство,
+                        созданное для
+                        тишины.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    data-index="0"
+                >
+                    <span>01</span>
+                    HOTEL
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-index="1"
+                >
+                    <span>02</span>
+                    ARRIVAL
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-index="2"
+                >
+                    <span>03</span>
+                    SPACE
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-index="3"
+                >
+                    <span>04</span>
+                    ROOMS
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-index="4"
+                >
+                    <span>05</span>
+                    DETAILS
+                </button>
+
+            </nav>
+
+
+            <!-- CONTROLS -->
+
+            <div class="controls">
+
+                <button id="prevButton">
+                    ←
+                </button>
+
+                <span>
+                    EXPLORE
+                </span>
+
+                <button id="nextButton">
+                    →
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MENU -->
+
+    <div class="menu-overlay" id="menuOverlay">
+
+        <div class="menu-inner">
+
+            <div class="menu-heading">
+                EXPLORE
+            </div>
+
+            <button data-menu="0">
+                <span>01</span>
                 HOTEL
-            </h1>
+            </button>
 
-            <div class="hero-bottom">
+            <button data-menu="1">
+                <span>02</span>
+                ARRIVAL
+            </button>
 
-                <p>
-                    Место, где город<br>
-                    остаётся за дверью.
-                </p>
+            <button data-menu="2">
+                <span>03</span>
+                SPACE
+            </button>
 
-                <span class="scroll">
-                    SCROLL ↓
-                </span>
+            <button data-menu="3">
+                <span>04</span>
+                ROOMS
+            </button>
 
-            </div>
+            <button data-menu="4">
+                <span>05</span>
+                DETAILS
+            </button>
 
-        </div>
-
-    </section>
-
-
-    <!-- ARRIVAL -->
-
-    <section class="arrival section" id="arrival">
-
-        <div class="section-intro">
-
-            <span class="section-number">01</span>
-
-            <div>
-
-                <span class="eyebrow">
-                    FIRST IMPRESSION
-                </span>
-
-                <h2>
-                    ПРИБЫТИЕ
-                </h2>
-
-                <p>
-                    Первые несколько секунд
-                    определяют всё остальное.
-                </p>
-
-            </div>
+            <button id="closeMenu">
+                CLOSE ×
+            </button>
 
         </div>
 
-
-        <div class="arrival-grid">
-
-            <figure class="image-large reveal">
-                <img src="IMG_8685.png" alt="Прибытие">
-            </figure>
-
-            <div class="arrival-text">
-                <span>01 — 03</span>
-
-                <p>
-                    Архитектура не требует
-                    внимания. Она его получает.
-                </p>
-            </div>
-
-            <figure class="image-small reveal">
-                <img src="IMG_8687.png" alt="Вход">
-            </figure>
-
-        </div>
-
-
-        <figure class="wide-image reveal">
-            <img src="IMG_8688.png" alt="Лобби">
-        </figure>
-
-    </section>
-
-
-    <!-- INTERIOR -->
-
-    <section class="interior section" id="interior">
-
-        <div class="section-intro intro-right">
-
-            <span class="section-number">02</span>
-
-            <div>
-
-                <span class="eyebrow">
-                    THE SPACE
-                </span>
-
-                <h2>
-                    ПРОСТРАНСТВО
-                </h2>
-
-                <p>
-                    Всё вокруг создано,
-                    чтобы замедлить время.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="interior-feature">
-
-            <figure class="feature-image reveal">
-                <img src="IMG_8691.png" alt="Интерьер">
-            </figure>
-
-            <div class="feature-caption">
-
-                <span>THE DETAILS</span>
-
-                <p>
-                    Свет. Материалы.
-                    Тишина.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="split-gallery">
-
-            <figure class="split-image reveal">
-                <img src="IMG_8692.png" alt="Лифт">
-            </figure>
-
-            <figure class="split-image reveal">
-                <img src="IMG_8693.png" alt="Этаж">
-            </figure>
-
-        </div>
-
-
-        <div class="statement">
-
-            <span>THE JOURNEY CONTINUES</span>
-
-            <h3>
-                ВЫШЕ.
-            </h3>
-
-        </div>
-
-
-        <figure class="wide-image wide-dark reveal">
-            <img src="IMG_8694.png" alt="Интерьер">
-        </figure>
-
-
-        <div class="corridor-block">
-
-            <figure class="corridor-image reveal">
-                <img src="IMG_8695.png" alt="Коридор">
-            </figure>
-
-            <div class="corridor-copy">
-
-                <span>PRIVATE FLOOR</span>
-
-                <h3>
-                    ТИШИНА
-                    НАЧИНАЕТСЯ
-                    ЗДЕСЬ.
-                </h3>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ROOM -->
-
-    <section class="room section" id="room">
-
-        <div class="section-intro">
-
-            <span class="section-number">03</span>
-
-            <div>
-
-                <span class="eyebrow">
-                    YOUR PRIVATE SPACE
-                </span>
-
-                <h2>
-                    НОМЕР
-                </h2>
-
-                <p>
-                    Ничего лишнего.
-                    Только то, что действительно нужно.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="door-feature">
-
-            <figure class="door-image reveal">
-                <img src="IMG_8697.png" alt="Номер">
-            </figure>
-
-            <div class="door-label">
-                <span>09 / YOUR ROOM</span>
-            </div>
-
-        </div>
-
-
-        <div class="room-main">
-
-            <figure class="room-image reveal">
-                <img src="IMG_8698.png" alt="Номер отеля">
-            </figure>
-
-            <div class="room-copy">
-
-                <span>PRIVATE SPACE</span>
-
-                <h3>
-                    ВАШЕ
-                    ПРОСТРАНСТВО.
-                </h3>
-
-                <p>
-                    Интерьер, в котором
-                    не хочется торопиться.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="bedroom-feature">
-
-            <div class="bedroom-copy">
-
-                <span>REST</span>
-
-                <h3>
-                    ПОКОЙ.
-                </h3>
-
-            </div>
-
-            <figure class="bedroom-image reveal">
-                <img src="IMG_8699.png" alt="Спальня">
-            </figure>
-
-        </div>
-
-
-        <figure class="wide-image reveal">
-            <img src="IMG_8700.png" alt="Гостиная">
-        </figure>
-
-    </section>
-
-
-    <!-- VIEW -->
-
-    <section class="view section" id="view">
-
-        <div class="view-heading">
-
-            <span class="section-number">04</span>
-
-            <span class="eyebrow">
-                BEYOND THE WINDOW
-            </span>
-
-            <h2>
-                ГОРОД
-                <br>
-                ОСТАЁТСЯ
-                <br>
-                СНАРУЖИ.
-            </h2>
-
-        </div>
-
-
-        <figure class="view-image reveal">
-
-            <img src="IMG_8702.png" alt="Вид из отеля">
-
-        </figure>
-
-
-        <div class="view-footer">
-
-            <span>THE HOTEL / MOSCOW</span>
-
-            <p>
-                Выше шума.<br>
-                Ближе к себе.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- BATHROOM -->
-
-    <section class="bathroom section">
-
-        <figure class="bathroom-image reveal">
-            <img src="IMG_8703.png" alt="Ванная">
-        </figure>
-
-        <div class="bathroom-copy">
-
-            <span>05 / YOUR TIME</span>
-
-            <h2>
-                ВРЕМЯ
-                <br>
-                ДЛЯ СЕБЯ.
-            </h2>
-
-        </div>
-
-    </section>
+    </div>
 
 
     <!-- BOOKING -->
 
-    <section class="booking" id="booking">
+    <div class="booking-panel" id="bookingPanel">
 
-        <div class="booking-inner">
+        <button id="closeBooking">
+            CLOSE ×
+        </button>
 
-            <span class="eyebrow">
-                THE HOTEL
-            </span>
+        <div class="booking-content">
+
+            <span>PRIVATE STAY</span>
 
             <h2>
-                ОСТАНЬТЕСЬ
-                <br>
-                ЕЩЁ.
+                BOOK<br>
+                YOUR<br>
+                ROOM
             </h2>
 
-            <p>
-                Некоторые места посещают.
-                Другие проживают.
-            </p>
+            <div class="booking-row">
 
-            <a href="#" class="booking-button">
-                ЗАБРОНИРОВАТЬ НОМЕР
-                <span>↗</span>
-            </a>
+                <div>
+                    <small>CHECK IN</small>
+                    <strong>— / — / —</strong>
+                </div>
+
+                <div>
+                    <small>CHECK OUT</small>
+                    <strong>— / — / —</strong>
+                </div>
+
+                <button>
+                    REQUEST
+                </button>
+
+            </div>
 
         </div>
 
-        <div class="booking-footer">
-
-            <span>THE HOTEL</span>
-            <span>МОСКВА / РОССИЯ</span>
-            <span>© 2026</span>
-
-        </div>
-
-    </section>
-
-</main>
+    </div>
 
 
-<button class="back-top" id="backTop">
-    ↑
-</button>
+</div>
 
 
 <script src="script.js"></script>
