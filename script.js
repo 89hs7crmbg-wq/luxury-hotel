@@ -142,18 +142,15 @@ let current = 0;
 let isChanging = false;
 
 
-/* =================================
+/* =========================================
    ЭЛЕМЕНТЫ
-================================= */
+========================================= */
 
 const image =
     document.getElementById("mainImage");
 
 const currentNumber =
     document.getElementById("currentNumber");
-
-const controlCurrent =
-    document.getElementById("controlCurrent");
 
 const category =
     document.getElementById("category");
@@ -198,22 +195,24 @@ const requestButton =
     document.getElementById("requestButton");
 
 
-/* =================================
+/* =========================================
    ПРЕДЗАГРУЗКА
-================================= */
+========================================= */
 
 scenes.forEach(function(scene) {
 
-    const preload = new Image();
+    const preload =
+        new Image();
 
-    preload.src = scene.image;
+    preload.src =
+        scene.image;
 
 });
 
 
-/* =================================
-   НАВИГАЦИЯ
-================================= */
+/* =========================================
+   ОБНОВЛЕНИЕ BAR
+========================================= */
 
 function updateNavigation(section) {
 
@@ -231,11 +230,14 @@ function updateNavigation(section) {
 }
 
 
-/* =================================
-   ОБНОВЛЕНИЕ ТЕКСТА
-================================= */
+/* =========================================
+   ОБНОВЛЕНИЕ КАДРА
+========================================= */
 
-function updateSceneText(scene, number) {
+function updateSceneText(
+    scene,
+    number
+) {
 
     currentNumber.textContent =
         number;
@@ -259,23 +261,32 @@ function updateSceneText(scene, number) {
 }
 
 
-/* =================================
-   ПЕРЕКЛЮЧЕНИЕ КАДРА
-================================= */
+/* =========================================
+   ПЕРЕКЛЮЧЕНИЕ
+========================================= */
 
-function showScene(index, animate = true) {
+function showScene(
+    index,
+    animate = true
+) {
 
-    if (isChanging && animate) {
+    if (
+        isChanging &&
+        animate
+    ) {
         return;
     }
 
 
     if (index < 0) {
-        index = scenes.length - 1;
+        index =
+            scenes.length - 1;
     }
 
 
-    if (index >= scenes.length) {
+    if (
+        index >= scenes.length
+    ) {
         index = 0;
     }
 
@@ -325,40 +336,51 @@ function showScene(index, animate = true) {
         );
 
 
-        requestAnimationFrame(function() {
+        requestAnimationFrame(
+            function() {
 
-            requestAnimationFrame(function() {
+                requestAnimationFrame(
+                    function() {
 
-                image.classList.remove(
-                    "fade-out"
+                        image.classList.remove(
+                            "fade-out"
+                        );
+
+                    }
                 );
 
-            });
+            }
+        );
 
-        });
 
+        setTimeout(
+            function() {
 
-        setTimeout(function() {
+                isChanging = false;
 
-            isChanging = false;
-
-        }, 480);
+            },
+            480
+        );
 
     }, 220);
 
 }
 
 
-/* =================================
+/* =========================================
    РАЗДЕЛЫ
-================================= */
+========================================= */
 
 const sectionStarts = {
 
     hotel: 0,
+
     arrival: 1,
+
     space: 3,
+
     rooms: 8,
+
     details: 11
 
 };
@@ -383,9 +405,9 @@ function openSection(section) {
 }
 
 
-/* =================================
+/* =========================================
    НИЖНИЙ BAR
-================================= */
+========================================= */
 
 document
     .querySelectorAll(".nav-item")
@@ -405,9 +427,9 @@ document
     });
 
 
-/* =================================
+/* =========================================
    МЕНЮ
-================================= */
+========================================= */
 
 menuButton.addEventListener(
     "click",
@@ -435,7 +457,7 @@ closeMenu.addEventListener(
 
 document
     .querySelectorAll(
-        ".menu-grid button[data-section]"
+        ".menu-list button[data-section]"
     )
     .forEach(function(item) {
 
@@ -457,9 +479,9 @@ document
     });
 
 
-/* =================================
+/* =========================================
    ЛОГОТИП
-================================= */
+========================================= */
 
 homeButton.addEventListener(
     "click",
@@ -471,9 +493,9 @@ homeButton.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    СТРЕЛКА НАЗАД
-================================= */
+========================================= */
 
 prevButton.addEventListener(
     "click",
@@ -491,9 +513,9 @@ prevButton.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    СТРЕЛКА ВПЕРЁД
-================================= */
+========================================= */
 
 nextButton.addEventListener(
     "click",
@@ -511,9 +533,9 @@ nextButton.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    БРОНИРОВАНИЕ
-================================= */
+========================================= */
 
 bookingButton.addEventListener(
     "click",
@@ -539,9 +561,9 @@ closeBooking.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    ЗАПРОС
-================================= */
+========================================= */
 
 requestButton.addEventListener(
     "click",
@@ -555,9 +577,9 @@ requestButton.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    СВАЙП
-================================= */
+========================================= */
 
 let touchStartX = 0;
 let touchStartY = 0;
@@ -633,9 +655,9 @@ document.addEventListener(
 );
 
 
-/* =================================
+/* =========================================
    КЛАВИАТУРА
-================================= */
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -681,9 +703,9 @@ document.addEventListener(
 );
 
 
-/* =================================
-   ЗАПУСК
-================================= */
+/* =========================================
+   СТАРТ
+========================================= */
 
 showScene(
     0,
