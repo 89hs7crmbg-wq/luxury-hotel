@@ -2,7 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
     <title>THE HOTEL</title>
 
@@ -13,25 +16,35 @@
 
 <div class="app">
 
+    <!-- HEADER -->
+
     <header class="header">
 
         <button class="brand" id="homeBtn">
             THE HOTEL
         </button>
 
-        <div class="header-center">
+        <div class="header-location">
             МОСКВА / РОССИЯ
         </div>
 
         <button class="menu-button" id="menuButton">
             <span>МЕНЮ</span>
-            <i></i>
+
+            <i>
+                <b></b>
+                <b></b>
+            </i>
         </button>
 
     </header>
 
 
+    <!-- MAIN -->
+
     <main class="main">
+
+        <!-- IMAGE -->
 
         <section class="visual">
 
@@ -49,28 +62,30 @@
 
                 <span id="currentNumber">01</span>
 
-                <span class="line"></span>
+                <span class="number-line"></span>
 
                 <span>15</span>
 
             </div>
 
-            <div class="image-counter">
+            <div class="image-label">
                 ИССЛЕДОВАТЬ
             </div>
 
         </section>
 
 
+        <!-- INFORMATION -->
+
         <section class="info">
 
             <div class="info-top">
 
-                <span class="category" id="category">
+                <span id="category">
                     ОТЕЛЬ
                 </span>
 
-                <span class="coordinates">
+                <span>
                     55°45' СШ / 37°37' ВД
                 </span>
 
@@ -79,7 +94,10 @@
 
             <div class="content">
 
-                <div class="content-index" id="contentIndex">
+                <div
+                    class="content-index"
+                    id="contentIndex"
+                >
                     00
                 </div>
 
@@ -101,6 +119,8 @@
             </div>
 
 
+            <!-- NAVIGATION -->
+
             <nav class="navigation">
 
                 <button
@@ -108,7 +128,7 @@
                     data-section="hotel"
                 >
                     <span>01</span>
-                    ОТЕЛЬ
+                    <strong>ОТЕЛЬ</strong>
                 </button>
 
                 <button
@@ -116,7 +136,7 @@
                     data-section="arrival"
                 >
                     <span>02</span>
-                    ПРИБЫТИЕ
+                    <strong>ПРИБЫТИЕ</strong>
                 </button>
 
                 <button
@@ -124,7 +144,7 @@
                     data-section="space"
                 >
                     <span>03</span>
-                    ПРОСТРАНСТВО
+                    <strong>ПРОСТРАНСТВО</strong>
                 </button>
 
                 <button
@@ -132,7 +152,7 @@
                     data-section="rooms"
                 >
                     <span>04</span>
-                    НОМЕРА
+                    <strong>НОМЕРА</strong>
                 </button>
 
                 <button
@@ -140,26 +160,40 @@
                     data-section="details"
                 >
                     <span>05</span>
-                    ДЕТАЛИ
+                    <strong>ДЕТАЛИ</strong>
                 </button>
 
             </nav>
 
 
+            <!-- CONTROLS -->
+
             <div class="controls">
 
-                <button id="prevButton" aria-label="Предыдущий кадр">
+                <button
+                    class="arrow-button"
+                    id="prevButton"
+                    aria-label="Предыдущий кадр"
+                >
                     ←
                 </button>
 
+
                 <button
-                    class="book-button"
+                    class="booking-trigger"
                     id="bookingButton"
+                    aria-label="Открыть бронирование"
                 >
-                    ЗАБРОНИРОВАТЬ
+                    <span>БРОНЬ</span>
+                    <i>↗</i>
                 </button>
 
-                <button id="nextButton" aria-label="Следующий кадр">
+
+                <button
+                    class="arrow-button"
+                    id="nextButton"
+                    aria-label="Следующий кадр"
+                >
                     →
                 </button>
 
@@ -170,82 +204,81 @@
     </main>
 
 
-    <!-- МЕНЮ -->
+    <!-- MENU -->
 
-    <div class="menu-overlay" id="menuOverlay">
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    >
 
         <div class="menu-inner">
 
-            <div class="menu-heading">
-                НАВИГАЦИЯ
+            <div class="menu-top">
+
+                <span>НАВИГАЦИЯ</span>
+
+                <span>THE HOTEL / 2026</span>
+
             </div>
 
-            <button data-section="hotel">
-                <span>01</span>
-                ОТЕЛЬ
-            </button>
 
-            <button data-section="arrival">
-                <span>02</span>
-                ПРИБЫТИЕ
-            </button>
+            <div class="menu-grid">
 
-            <button data-section="space">
-                <span>03</span>
-                ПРОСТРАНСТВО
-            </button>
+                <button data-section="hotel">
 
-            <button data-section="rooms">
-                <span>04</span>
-                НОМЕРА
-            </button>
+                    <small>01</small>
 
-            <button data-section="details">
-                <span>05</span>
-                ДЕТАЛИ
-            </button>
+                    <span>ОТЕЛЬ</span>
 
-            <button id="closeMenu">
-                ЗАКРЫТЬ ×
-            </button>
-
-        </div>
-
-    </div>
+                </button>
 
 
-    <!-- БРОНИРОВАНИЕ -->
+                <button data-section="arrival">
 
-    <div class="booking-panel" id="bookingPanel">
+                    <small>02</small>
 
-        <button id="closeBooking">
-            ЗАКРЫТЬ ×
-        </button>
+                    <span>ПРИБЫТИЕ</span>
 
-        <div class="booking-content">
+                </button>
 
-            <span>ПРОЖИВАНИЕ</span>
 
-            <h2>
-                ВЫБЕРИТЕ<br>
-                СВОЙ<br>
-                НОМЕР
-            </h2>
+                <button data-section="space">
 
-            <div class="booking-row">
+                    <small>03</small>
 
-                <div>
-                    <small>ЗАСЕЛЕНИЕ</small>
-                    <strong>— / — / —</strong>
-                </div>
+                    <span>ПРОСТРАНСТВО</span>
 
-                <div>
-                    <small>ВЫЕЗД</small>
-                    <strong>— / — / —</strong>
-                </div>
+                </button>
 
-                <button id="requestButton">
-                    ОСТАВИТЬ ЗАПРОС
+
+                <button data-section="rooms">
+
+                    <small>04</small>
+
+                    <span>НОМЕРА</span>
+
+                </button>
+
+
+                <button data-section="details">
+
+                    <small>05</small>
+
+                    <span>ДЕТАЛИ</span>
+
+                </button>
+
+            </div>
+
+
+            <div class="menu-bottom">
+
+                <span>
+                    МОСКВА / РОССИЯ
+                </span>
+
+                <button id="closeMenu">
+                    ЗАКРЫТЬ ×
                 </button>
 
             </div>
@@ -255,7 +288,91 @@
     </div>
 
 
+    <!-- BOOKING -->
+
+    <div
+        class="booking-panel"
+        id="bookingPanel"
+    >
+
+        <button
+            id="closeBooking"
+            class="close-booking"
+        >
+            ЗАКРЫТЬ ×
+        </button>
+
+
+        <div class="booking-content">
+
+            <span class="booking-label">
+                ПРОЖИВАНИЕ
+            </span>
+
+            <h2>
+                ВЫБЕРИТЕ<br>
+                СВОЁ<br>
+                ВРЕМЯ
+            </h2>
+
+
+            <div class="booking-form">
+
+                <div class="booking-field">
+
+                    <small>
+                        ЗАСЕЛЕНИЕ
+                    </small>
+
+                    <strong>
+                        ВЫБРАТЬ ДАТУ
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-field">
+
+                    <small>
+                        ВЫЕЗД
+                    </small>
+
+                    <strong>
+                        ВЫБРАТЬ ДАТУ
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-field">
+
+                    <small>
+                        ГОСТИ
+                    </small>
+
+                    <strong>
+                        2 ГОСТЯ
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="request-button"
+                    id="requestButton"
+                >
+                    ОСТАВИТЬ ЗАПРОС
+                    <span>↗</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
 
 <script src="script.js"></script>
 
