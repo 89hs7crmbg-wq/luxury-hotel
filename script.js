@@ -1,538 +1,622 @@
-const scenes = [
+const frames = [
 
     {
         image: "IMG_8684.png",
         category: "ОТЕЛЬ",
         number: "00",
-        title: "THE HOTEL",
-        description: "Пространство,\nсозданное для тишины.",
-        section: "hotel"
+        title: "ВРЕМЯ<br>ОСТАНОВИТЬСЯ",
+        description: "Место, где город наконец становится тише."
     },
 
     {
         image: "IMG_8685.png",
         category: "ПРИБЫТИЕ",
         number: "01",
-        title: "ПЕРВОЕ ВПЕЧАТЛЕНИЕ",
-        description: "Первые секунды\nначинаются ещё до номера.",
-        section: "arrival"
+        title: "ПЕРВЫЕ<br>СЕКУНДЫ",
+        description: "Впечатление начинается ещё до номера."
     },
 
     {
         image: "IMG_8687.png",
         category: "ПРИБЫТИЕ",
         number: "02",
-        title: "ВХОД В ТИШИНУ",
-        description: "Город остаётся\nпо ту сторону двери.",
-        section: "arrival"
+        title: "ОСТАВИТЬ<br>ГОРОД",
+        description: "Всё лишнее остаётся по ту сторону двери."
     },
 
     {
         image: "IMG_8688.png",
         category: "ПРОСТРАНСТВО",
         number: "03",
-        title: "САМО ПРОСТРАНСТВО",
-        description: "Архитектура,\nкоторая не требует объяснений.",
-        section: "space"
+        title: "СВОБОДА<br>ПРОСТРАНСТВА",
+        description: "Архитектура, которой не нужно ничего доказывать."
     },
 
     {
         image: "IMG_8691.png",
         category: "ПРОСТРАНСТВО",
         number: "04",
-        title: "КАЖДАЯ ДЕТАЛЬ",
-        description: "Материалы.\nСвет. Пропорции.",
-        section: "space"
+        title: "КАЖДАЯ<br>ДЕТАЛЬ",
+        description: "Свет, материал и пропорции работают вместе."
     },
 
     {
         image: "IMG_8692.png",
         category: "ПРОСТРАНСТВО",
         number: "05",
-        title: "ПУТЬ ВВЕРХ",
-        description: "Каждый переход\nстановится частью опыта.",
-        section: "space"
+        title: "ТИШИНА<br>МЕЖДУ",
+        description: "Иногда самое важное находится между пространствами."
     },
 
     {
         image: "IMG_8693.png",
         category: "ПРОСТРАНСТВО",
         number: "06",
-        title: "МЕЖДУ ПРОСТРАНСТВАМИ",
-        description: "Тишина становится\nощутимой.",
-        section: "space"
+        title: "НЕ СПЕШИТЬ<br>НИКУДА",
+        description: "Здесь у времени другой ритм."
     },
 
     {
         image: "IMG_8694.png",
         category: "ПРОСТРАНСТВО",
         number: "07",
-        title: "ЛИЧНОЕ ПРОСТРАНСТВО",
-        description: "Пространство,\nкоторое остаётся только вашим.",
-        section: "space"
+        title: "ЛИЧНОЕ<br>ПРОСТРАНСТВО",
+        description: "Место, которое остаётся только вашим."
     },
 
     {
         image: "IMG_8695.png",
         category: "НОМЕРА",
         number: "08",
-        title: "ВАШ НОМЕР",
-        description: "Здесь начинается\nваше время.",
-        section: "rooms"
+        title: "ВАШ<br>НОМЕР",
+        description: "Пространство для собственного ритма."
     },
 
     {
         image: "IMG_8697.png",
         category: "НОМЕРА",
         number: "09",
-        title: "ЛИЧНОЕ ПРОСТРАНСТВО",
-        description: "Ничего лишнего.\nТолько необходимое.",
-        section: "rooms"
+        title: "НИЧЕГО<br>ЛИШНЕГО",
+        description: "Только то, что действительно нужно."
     },
 
     {
         image: "IMG_8698.png",
         category: "НОМЕРА",
         number: "10",
-        title: "ВРЕМЯ ОСТАНОВИТЬСЯ",
-        description: "Место,\nгде не нужно торопиться.",
-        section: "rooms"
+        title: "МОЖНО<br>ОСТАТЬСЯ",
+        description: "Иногда лучший план на вечер отсутствует."
     },
 
     {
         image: "IMG_8699.png",
         category: "ДЕТАЛИ",
         number: "11",
-        title: "ОСТАНОВИТЕСЬ ЗДЕСЬ",
-        description: "Вечер.\nТишина. Ваше пространство.",
-        section: "details"
+        title: "МАЛЕНЬКИЕ<br>МГНОВЕНИЯ",
+        description: "Именно они остаются в памяти."
     },
 
     {
         image: "IMG_8700.png",
         category: "ДЕТАЛИ",
         number: "12",
-        title: "ВАШ МОМЕНТ",
-        description: "Иногда роскошь\nвыглядит именно так.",
-        section: "details"
+        title: "ВАШ<br>МОМЕНТ",
+        description: "Время, которое принадлежит только вам."
     },
 
     {
         image: "IMG_8702.png",
         category: "ДЕТАЛИ",
         number: "13",
-        title: "ГОРОД СВЕРХУ",
-        description: "Город остаётся\nгде-то далеко внизу.",
-        section: "details"
+        title: "ГОРОД<br>ОСТАЁТСЯ ВНИЗУ",
+        description: "Сургут продолжает жить где-то там."
     },
 
     {
         image: "IMG_8703.png",
         category: "ДЕТАЛИ",
         number: "14",
-        title: "ВАШЕ ВРЕМЯ",
-        description: "Время, которое\nпринадлежит только вам.",
-        section: "details"
+        title: "ОСТАТЬСЯ<br>ЕЩЁ НЕМНОГО",
+        description: "Пожалуй, именно ради этого всё и начиналось."
     }
 
 ];
 
 
-let currentIndex = 0;
-let changing = false;
-
-
-/* =====================================
+/* =========================================
    ЭЛЕМЕНТЫ
-===================================== */
+========================================= */
 
-const image = document.getElementById("mainImage");
-
+const photo = document.getElementById("photo");
 const category = document.getElementById("category");
-const sceneNumber = document.getElementById("sceneNumber");
-
+const frameNumber = document.getElementById("frameNumber");
 const title = document.getElementById("title");
 const description = document.getElementById("description");
+const currentFrame = document.getElementById("currentFrame");
 
-const current = document.getElementById("current");
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
 
-const menuPanel = document.getElementById("menuPanel");
-const bookingPanel = document.getElementById("bookingPanel");
+const menuButton = document.getElementById("menuButton");
+const closeMenu = document.getElementById("closeMenu");
+
+const menuOverlay = document.getElementById("menuOverlay");
+
+const bookButton = document.getElementById("bookButton");
+const closeBooking = document.getElementById("closeBooking");
+
+const bookingOverlay = document.getElementById("bookingOverlay");
+
+const brandButton = document.getElementById("brandButton");
+
+const barItems =
+    document.querySelectorAll(".bar-item");
+
+const menuLinks =
+    document.querySelectorAll(".menu-links button");
 
 
-/* =====================================
+let currentIndex = 0;
+
+let isAnimating = false;
+
+
+/* =========================================
    ПРЕДЗАГРУЗКА
-===================================== */
+========================================= */
 
-scenes.forEach(scene => {
+frames.forEach(frame => {
 
     const img = new Image();
 
-    img.src = scene.image;
+    img.src = frame.image;
 
 });
 
 
-/* =====================================
-   АКТИВНЫЙ BAR
-===================================== */
+/* =========================================
+   АКТИВНАЯ СЕКЦИЯ
+========================================= */
 
-function setActiveBar(index) {
+function updateBar(index) {
 
-    const section =
-        scenes[index].section;
+    let activeIndex = 0;
 
-    document
-        .querySelectorAll(".bar-item")
-        .forEach(item => {
+    if (index >= 1 && index <= 2) {
+        activeIndex = 1;
+    }
 
-            const start =
-                Number(item.dataset.start);
+    if (index >= 3 && index <= 7) {
+        activeIndex = 2;
+    }
 
-            let active = false;
+    if (index >= 8 && index <= 10) {
+        activeIndex = 3;
+    }
 
-            if (section === "hotel") {
-                active = start === 0;
-            }
+    if (index >= 11) {
+        activeIndex = 4;
+    }
 
-            if (section === "arrival") {
-                active = start === 1;
-            }
 
-            if (section === "space") {
-                active = start === 3;
-            }
+    barItems.forEach((item, i) => {
 
-            if (section === "rooms") {
-                active = start === 8;
-            }
+        item.classList.toggle(
+            "active",
+            i === activeIndex
+        );
 
-            if (section === "details") {
-                active = start === 11;
-            }
-
-            item.classList.toggle(
-                "active",
-                active
-            );
-
-        });
+    });
 }
 
 
-/* =====================================
-   ОБНОВЛЕНИЕ
-===================================== */
+/* =========================================
+   ОТРИСОВКА ТЕКСТА
+========================================= */
 
-function render(index) {
+function updateText(index) {
 
-    const scene =
-        scenes[index];
+    const frame = frames[index];
 
     category.textContent =
-        scene.category;
+        frame.category;
 
-    sceneNumber.textContent =
-        scene.number;
+    frameNumber.textContent =
+        frame.number;
 
-    title.textContent =
-        scene.title;
-
-    description.textContent =
-        scene.description;
-
-    current.textContent =
+    currentFrame.textContent =
         String(index + 1).padStart(2, "0");
 
-    setActiveBar(index);
+    title.innerHTML =
+        frame.title;
+
+    description.textContent =
+        frame.description;
+
+    updateBar(index);
 }
 
 
-/* =====================================
-   ПЕРЕКЛЮЧЕНИЕ
-===================================== */
+/* =========================================
+   СМЕНА КАДРА
+========================================= */
 
-function changeScene(newIndex) {
+function changeFrame(index) {
 
-    if (changing) {
+    if (isAnimating) {
         return;
     }
 
-    if (newIndex < 0) {
-        newIndex = scenes.length - 1;
+    if (index < 0) {
+        index = frames.length - 1;
     }
 
-    if (newIndex >= scenes.length) {
-        newIndex = 0;
+    if (index >= frames.length) {
+        index = 0;
     }
 
-    if (newIndex === currentIndex) {
+    if (index === currentIndex) {
         return;
     }
 
-    changing = true;
 
-    image.classList.add("fade");
+    isAnimating = true;
 
+    photo.classList.add("changing");
+
+
+    /*
+        Сначала меняем текст.
+        Никаких цепочек setTimeout,
+        которые потом начинают дёргать
+        интерфейс на iPhone.
+    */
 
     setTimeout(() => {
 
-        currentIndex =
-            newIndex;
+        currentIndex = index;
 
-        image.src =
-            scenes[currentIndex].image;
+        photo.src =
+            frames[currentIndex].image;
 
-        render(currentIndex);
+        updateText(currentIndex);
 
-        requestAnimationFrame(() => {
+        photo.onload = () => {
 
-            image.classList.remove("fade");
+            requestAnimationFrame(() => {
 
-        });
+                photo.classList.remove("changing");
+
+            });
+
+        };
+
+
+        /*
+            Если изображение уже находится
+            в кеше браузера, onload может быть
+            не нужен.
+        */
+
+        if (photo.complete) {
+
+            requestAnimationFrame(() => {
+
+                photo.classList.remove("changing");
+
+            });
+
+        }
+
 
         setTimeout(() => {
 
-            changing = false;
+            isAnimating = false;
 
-        }, 280);
+        }, 260);
 
-    }, 180);
+    }, 120);
 }
 
 
-/* =====================================
-   СТРЕЛКИ
-===================================== */
+/* =========================================
+   СТРЕЛКА НАЗАД
+========================================= */
 
-document
-    .getElementById("prev")
-    .addEventListener("click", () => {
+previous.addEventListener(
+    "click",
+    function () {
 
-        changeScene(
+        changeFrame(
             currentIndex - 1
         );
 
-    });
+    }
+);
 
 
-document
-    .getElementById("next")
-    .addEventListener("click", () => {
+/* =========================================
+   СТРЕЛКА ВПЕРЁД
+========================================= */
 
-        changeScene(
+next.addEventListener(
+    "click",
+    function () {
+
+        changeFrame(
             currentIndex + 1
         );
 
-    });
+    }
+);
 
 
-/* =====================================
+/* =========================================
    НИЖНИЙ BAR
-===================================== */
+========================================= */
 
-document
-    .querySelectorAll(".bar-item")
-    .forEach(button => {
+barItems.forEach(item => {
 
-        button.addEventListener(
-            "click",
-            () => {
+    item.addEventListener(
+        "click",
+        function () {
 
-                const target =
-                    Number(button.dataset.start);
-
-                changeScene(target);
-
-            }
-        );
-
-    });
-
-
-/* =====================================
-   МЕНЮ
-===================================== */
-
-document
-    .getElementById("openMenu")
-    .addEventListener("click", () => {
-
-        menuPanel.classList.add("open");
-
-    });
-
-
-document
-    .getElementById("closeMenu")
-    .addEventListener("click", () => {
-
-        menuPanel.classList.remove("open");
-
-    });
-
-
-/* =====================================
-   ПУНКТЫ МЕНЮ
-===================================== */
-
-document
-    .querySelectorAll(".menu-list button")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const target =
-                    Number(button.dataset.start);
-
-                menuPanel.classList.remove(
-                    "open"
+            const index =
+                Number(
+                    this.dataset.index
                 );
 
-                setTimeout(() => {
+            changeFrame(index);
 
-                    changeScene(target);
+        }
+    );
 
-                }, 120);
+});
 
-            }
+
+/* =========================================
+   БУРГЕР
+========================================= */
+
+menuButton.addEventListener(
+    "click",
+    function () {
+
+        menuOverlay.classList.add("open");
+
+        menuOverlay.setAttribute(
+            "aria-hidden",
+            "false"
         );
 
-    });
+    }
+);
 
 
-/* =====================================
+/* =========================================
+   ЗАКРЫТЬ МЕНЮ
+========================================= */
+
+closeMenu.addEventListener(
+    "click",
+    function () {
+
+        menuOverlay.classList.remove("open");
+
+        menuOverlay.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+);
+
+
+/* =========================================
+   ПУНКТЫ МЕНЮ
+========================================= */
+
+menuLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        function () {
+
+            const index =
+                Number(
+                    this.dataset.index
+                );
+
+            menuOverlay.classList.remove(
+                "open"
+            );
+
+            menuOverlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            changeFrame(index);
+
+        }
+    );
+
+});
+
+
+/* =========================================
    THE HOTEL
-===================================== */
+========================================= */
 
-document
-    .getElementById("logoButton")
-    .addEventListener("click", () => {
+brandButton.addEventListener(
+    "click",
+    function () {
 
-        changeScene(0);
+        changeFrame(0);
 
-    });
+    }
+);
 
 
-/* =====================================
+/* =========================================
    БРОНИРОВАНИЕ
-===================================== */
+========================================= */
 
-document
-    .getElementById("openBooking")
-    .addEventListener("click", () => {
+bookButton.addEventListener(
+    "click",
+    function () {
 
-        bookingPanel.classList.add("open");
+        bookingOverlay.classList.add(
+            "open"
+        );
 
-    });
+        bookingOverlay.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+);
 
 
-document
-    .getElementById("closeBooking")
-    .addEventListener("click", () => {
+/* =========================================
+   ЗАКРЫТЬ БРОНЬ
+========================================= */
 
-        bookingPanel.classList.remove("open");
+closeBooking.addEventListener(
+    "click",
+    function () {
 
-    });
+        bookingOverlay.classList.remove(
+            "open"
+        );
+
+        bookingOverlay.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+);
 
 
-/* =====================================
-   СВАЙП
-===================================== */
+/* =========================================
+   SWIPE
+========================================= */
 
-let startX = 0;
-let startY = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+
+let touchStartTime = 0;
+
 
 document.addEventListener(
     "touchstart",
-    event => {
+    function (event) {
 
         if (
-            menuPanel.classList.contains("open") ||
-            bookingPanel.classList.contains("open")
+            menuOverlay.classList.contains("open") ||
+            bookingOverlay.classList.contains("open")
         ) {
             return;
         }
 
-        startX =
-            event.changedTouches[0].clientX;
+        const touch =
+            event.touches[0];
 
-        startY =
-            event.changedTouches[0].clientY;
+        touchStartX =
+            touch.clientX;
+
+        touchStartY =
+            touch.clientY;
+
+        touchStartTime =
+            Date.now();
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
 document.addEventListener(
     "touchend",
-    event => {
-
-        if (changing) {
-            return;
-        }
+    function (event) {
 
         if (
-            menuPanel.classList.contains("open") ||
-            bookingPanel.classList.contains("open")
+            menuOverlay.classList.contains("open") ||
+            bookingOverlay.classList.contains("open")
         ) {
             return;
         }
 
-        const endX =
-            event.changedTouches[0].clientX;
+        const touch =
+            event.changedTouches[0];
 
-        const endY =
-            event.changedTouches[0].clientY;
+        const deltaX =
+            touch.clientX - touchStartX;
 
-        const dx =
-            endX - startX;
+        const deltaY =
+            touch.clientY - touchStartY;
 
-        const dy =
-            endY - startY;
+        const duration =
+            Date.now() - touchStartTime;
 
+
+        /*
+            Не воспринимаем обычный тап
+            как свайп.
+        */
+
+        if (duration > 700) {
+            return;
+        }
+
+        if (Math.abs(deltaX) < 55) {
+            return;
+        }
 
         if (
-            Math.abs(dx) < 50 ||
-            Math.abs(dx) < Math.abs(dy)
+            Math.abs(deltaX) <
+            Math.abs(deltaY) * 1.25
         ) {
             return;
         }
 
 
-        if (dx < 0) {
+        if (deltaX < 0) {
 
-            changeScene(
+            changeFrame(
                 currentIndex + 1
             );
 
         } else {
 
-            changeScene(
+            changeFrame(
                 currentIndex - 1
             );
 
         }
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
-/* =====================================
+/* =========================================
    КЛАВИАТУРА
-===================================== */
+========================================= */
 
 document.addEventListener(
     "keydown",
-    event => {
+    function (event) {
 
         if (event.key === "ArrowRight") {
 
-            changeScene(
+            changeFrame(
                 currentIndex + 1
             );
 
@@ -540,7 +624,7 @@ document.addEventListener(
 
         if (event.key === "ArrowLeft") {
 
-            changeScene(
+            changeFrame(
                 currentIndex - 1
             );
 
@@ -548,9 +632,13 @@ document.addEventListener(
 
         if (event.key === "Escape") {
 
-            menuPanel.classList.remove("open");
+            menuOverlay.classList.remove(
+                "open"
+            );
 
-            bookingPanel.classList.remove("open");
+            bookingOverlay.classList.remove(
+                "open"
+            );
 
         }
 
@@ -558,8 +646,8 @@ document.addEventListener(
 );
 
 
-/* =====================================
+/* =========================================
    СТАРТ
-===================================== */
+========================================= */
 
-render(0);
+updateText(0);
